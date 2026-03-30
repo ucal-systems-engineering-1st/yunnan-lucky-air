@@ -65,6 +65,10 @@ metadata:
 - [ ] Fetch carga datos correctamente (si aplica)
 - [ ] README actualizado con las nuevas funcionalidades
 - [ ] Sitio publicado y verificado en GitHub Pages
+
+### Licencia
+
+Al enviar este Pull Request confirmo que mi contribución se realiza bajo los términos de la licencia **MIT** del proyecto.
 ```
 
 ---

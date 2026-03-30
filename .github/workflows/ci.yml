@@ -515,3 +515,39 @@ jobs:
             exit 1
           fi
           echo "✅ All GitFlow branch security rules passed."
+
+      - name: Validate branch ownership
+        run: |
+          set -euo pipefail
+
+          HEAD="${{ github.head_ref }}"
+          ACTOR="${{ github.actor }}"
+
+          echo "🔍 Branch Ownership Check"
+          echo "  Branch : $HEAD"
+          echo "  Actor  : @$ACTOR"
+          echo ""
+
+          # Map: branch → allowed GitHub username
+          declare -A OWNERS=(
+            ["feat/self-service"]="Rachelduarte"
+            ["feat/corporate"]="1v4nz2023"
+            ["feat/community"]="alemarquina"
+            ["feat/students"]="Geraldow"
+          )
+
+          if [[ -n "${OWNERS[$HEAD]+_}" ]]; then
+            EXPECTED="${OWNERS[$HEAD]}"
+            if [[ "$ACTOR" == "$EXPECTED" ]]; then
+              echo "  ✅ @$ACTOR is the assigned owner of $HEAD"
+            else
+              echo "  ❌ Branch $HEAD belongs to @$EXPECTED, not @$ACTOR"
+              echo "     Fix  : Use your own assigned branch"
+              exit 1
+            fi
+          else
+            echo "  ℹ️  No ownership rule for branch: $HEAD — skipping check"
+          fi
+
+          echo ""
+          echo "✅ Branch ownership check passed."
