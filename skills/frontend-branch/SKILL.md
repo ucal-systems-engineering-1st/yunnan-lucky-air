@@ -90,7 +90,7 @@ gitGraph
 
 ## Convención de nombres de ramas
 
-```
+```text
 tipo/descripción-corta
 ```
 

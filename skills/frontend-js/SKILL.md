@@ -26,7 +26,7 @@ metadata:
 
 ### 1. Integración del script — estructura de archivos
 
-```
+```text
 scripts/
 └── main.js      ← archivo principal de JavaScript
 data/

@@ -23,7 +23,7 @@ metadata:
 
 ## Formato del commit
 
-```
+```text
 tipo(scope): descripción concisa
 
 - Cambio clave 1
@@ -76,7 +76,7 @@ feat: cambios
 
 ## Árbol de decisión
 
-```
+```text
 ¿Solo cambió un archivo?
 ├─ Sí → Solo título (omitir cuerpo con bullets)
 └─ No → Incluir bullets con cambios clave

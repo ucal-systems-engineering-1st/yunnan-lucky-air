@@ -30,7 +30,7 @@ metadata:
 <link rel="stylesheet" href="css/styles.css">
 ```
 
-```
+```text
 css/
 └── styles.css   ← archivo base de estilos
 ```

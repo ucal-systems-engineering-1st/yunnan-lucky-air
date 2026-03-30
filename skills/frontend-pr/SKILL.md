@@ -77,7 +77,7 @@ Al enviar este Pull Request confirmo que mi contribución se realiza bajo los t�
 
 Seguir conventional commits:
 
-```
+```text
 feat: nueva sección de galería con CSS Grid
 fix: corregir validación del campo email
 docs: actualizar README con instrucciones de despliegue
