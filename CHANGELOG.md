@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.1.0] - 2026-03-30
+
+### 🚀 Added
+
+- add complete EE1 page structure
+
+---
+
 ## [1.0.0] - 2026-03-30
 
 ### 🚀 Added
