@@ -102,6 +102,7 @@ jobs:
           [ -d "data" ]          && FILES="$FILES data/"
           [ -f "README.md" ]     && FILES="$FILES README.md"
           [ -f "CHANGELOG.md" ]  && FILES="$FILES CHANGELOG.md"
+          [ -f "LICENSE" ]       && FILES="$FILES LICENSE"
 
           VERSION="${{ steps.version.outputs.VERSION }}"
           zip -r "dist/site-v${VERSION}.zip" $FILES
