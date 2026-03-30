@@ -3,22 +3,199 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lucky Air Estudiantes – Descuentos grupales y paquetes especiales para universitarios que viajan a Yunnan, Dali y Xishuangbanna." />
   <title>Lucky Air | Estudiantes</title>
+  <!-- Rutas relativas desde views/ hacia la raíz -->
+  <link rel="stylesheet" href="../css/themes/brand.css" />
+  <link rel="stylesheet" href="../css/layouts/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
 </head>
 <body>
 
-  <header>
-    <nav>
-      <!-- Navegación -->
+  <!-- HEADER / NAV — estructura idéntica a index.html para coherencia del sitio -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="logo">
+        <img src="../assets/images/logo.png" alt="Lucky Air Logo" />
+        <span>Lucky Air</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="self-service.html">Autoservicio</a></li>
+        <li><a href="community.html">Comunidad</a></li>
+        <li><a href="students.html">Estudiantes</a></li>
+        <li><a href="corporate.html">Corporativo</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="../index.html#login" class="btn btn-outline">Iniciar sesión</a>
+        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+      </div>
     </nav>
   </header>
 
+  <!-- NAVEGACIÓN DE SECCIONES — anclas internas de la página -->
+  <nav id="students-section-nav" aria-label="Secciones de la página Estudiantes">
+    <ul>
+      <li><a href="#student-benefits">Beneficios</a></li>
+      <li><a href="#student-packages">Paquetes</a></li>
+      <li><a href="#student-register">Registrarse</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <!-- Contenido para estudiantes -->
+
+    <!-- HERO — banner principal del segmento estudiantil -->
+    <section id="students-hero">
+      <div class="hero-content">
+        <h1>Viaja a Yunnan con tu grupo universitario</h1>
+        <p>Lucky Air ofrece descuentos exclusivos para estudiantes y grupos universitarios.
+           Descubre Dali, Xishuangbanna y Kunming con tarifas especiales,
+           equipaje incluido y asesoría de viaje personalizada.</p>
+        <a href="#student-register" class="btn btn-primary btn-large">Solicitar descuento grupal</a>
+      </div>
+      <div class="hero-image">
+        <img src="../assets/images/students-hero.jpg"
+             alt="Grupo de estudiantes universitarios viajando a Yunnan, China" />
+      </div>
+    </section>
+
+    <!-- BENEFICIOS — lista de ventajas del programa estudiantil (mínimo 5 ítems EE1) -->
+    <section id="student-benefits">
+      <h2>Beneficios del programa estudiantil</h2>
+      <ul class="benefits-list">
+        <li>Descuento de hasta 30% en tarifas regulares para grupos universitarios registrados</li>
+        <li>Equipaje facturado de 23 kg incluido sin costo adicional para cada integrante del grupo</li>
+        <li>Cancelación flexible hasta 72 horas antes del vuelo sin penalidad económica</li>
+        <li>Asesoría personalizada para trámites de visa y documentación de viaje internacional</li>
+        <li>Seguro de viaje básico incluido automáticamente para todos los integrantes del grupo</li>
+        <li>Prioridad en check-in y abordaje para grupos universitarios registrados en el programa</li>
+      </ul>
+    </section>
+
+    <!-- PAQUETES — tabla comparativa (mínimo 3x4 EE1: 4 columnas × 5 filas de datos) -->
+    <section id="student-packages">
+      <h2>Comparativa de paquetes</h2>
+      <div class="table-wrapper">
+        <table id="packages-table">
+          <thead>
+            <tr>
+              <th scope="col">Característica</th>
+              <th scope="col">Básico</th>
+              <th scope="col">Estándar</th>
+              <th scope="col">Premium</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Descuento sobre tarifa regular</td>
+              <td>10%</td>
+              <td>20%</td>
+              <td>30%</td>
+            </tr>
+            <tr>
+              <td>Equipaje incluido</td>
+              <td>Solo equipaje de mano</td>
+              <td>23 kg facturado</td>
+              <td>32 kg facturado</td>
+            </tr>
+            <tr>
+              <td>Cambio de fecha sin cargo</td>
+              <td>No incluido</td>
+              <td>1 vez gratis</td>
+              <td>Ilimitado</td>
+            </tr>
+            <tr>
+              <td>Mínimo de pasajeros</td>
+              <td>5 personas</td>
+              <td>10 personas</td>
+              <td>20 personas</td>
+            </tr>
+            <tr>
+              <td>Seguro de viaje</td>
+              <td>No incluido</td>
+              <td>Cobertura básica</td>
+              <td>Cobertura completa</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- REGISTRO — formulario con validación HTML5 (EE1: nombre, email required, type=email) -->
+    <section id="student-register">
+      <h2>Registra tu grupo</h2>
+      <p>Completá el formulario y un asesor de Lucky Air se pondrá en contacto
+         dentro de las 48 horas hábiles.</p>
+      <form id="student-register-form" action="#" method="POST" novalidate>
+
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre"
+                 placeholder="Tu nombre completo" required />
+        </div>
+
+        <div class="form-group">
+          <label for="universidad">Universidad</label>
+          <input type="text" id="universidad" name="universidad"
+                 placeholder="Nombre de tu universidad" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo institucional</label>
+          <input type="email" id="email" name="email"
+                 placeholder="correo@universidad.edu" required />
+        </div>
+
+        <div class="form-group">
+          <label for="grupo">Número de integrantes</label>
+          <input type="number" id="grupo" name="grupo"
+                 min="5" placeholder="Mínimo 5 integrantes" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Consulta o comentario</label>
+          <textarea id="mensaje" name="mensaje" rows="4"
+                    placeholder="Cuéntanos sobre tu viaje: destino, fechas tentativas, universidad..."
+                    required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Solicitar descuento estudiantil</button>
+
+      </form>
+    </section>
+
   </main>
 
-  <footer>
-    <!-- Pie de página -->
+  <!-- FOOTER — estructura idéntica a index.html (rutas ajustadas desde views/) -->
+  <footer id="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.png" alt="Lucky Air" />
+        <p>Conectando el mundo con Yunnan.</p>
+      </div>
+      <nav class="footer-links" aria-label="Destinos">
+        <h4>Destinos</h4>
+        <ul>
+          <li><a href="#">Dali</a></li>
+          <li><a href="#">Xishuangbanna</a></li>
+          <li><a href="#">Kunming</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="self-service.html">Autoservicio</a></li>
+          <li><a href="community.html">Comunidad</a></li>
+          <li><a href="../assets/docs/guia-yunnan.pdf">Guía de viaje (PDF)</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>soporte@luckyair.com</p>
+        <p>+86 871 0000 0000</p>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
 </body>
