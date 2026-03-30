@@ -1,0 +1,9 @@
+# CODEOWNERS — Lucky Air Portal
+#
+# Cada integrante es responsable de su vista asignada.
+# GitHub requerirá su aprobación en cualquier PR que toque esos archivos.
+
+views/self-service.html   @Rachelduarte
+views/corporate.html      @1v4nz2023
+views/community.html      @alemarquina
+views/students.html       @Geraldow

@@ -1,0 +1,553 @@
+name: CI — Site & Skills Validation
+
+on:
+  pull_request:
+    branches:
+      - main           # Only release/* and hotfix/* — validated by branch-security job
+      - "release/**"   # Only from develop — validated by branch-security job
+      - develop        # feature/*, fix/*, docs/*, chore/* → develop
+  push:
+    branches:
+      - "release/**"   # Every push to release/* validates the state
+      - "hotfix/**"    # Every push to hotfix/* validates the fix
+
+jobs:
+  # ─────────────────────────────────────────────────────────────
+  # JOB 1: Site validation against guidelines
+  # Primary checks — what the instructor evaluates
+  # ─────────────────────────────────────────────────────────────
+  validate-site:
+    name: Validate Site Requirements
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # ── EE1: HTML + Git ─────────────────────────────────────
+      - name: EE1 — HTML Structure (always required)
+        run: |
+          set -euo pipefail
+          ERRORS=0
+
+          echo "🔍 EE1 — Checking HTML requirements..."
+
+          # index.html must exist
+          if [ ! -f "index.html" ]; then
+            echo "  ❌ index.html not found in the project root"
+            ERRORS=$((ERRORS + 1))
+          else
+            echo "  ✅ index.html existe"
+
+            # meta viewport
+            if grep -qi 'name="viewport"' index.html; then
+              echo "  ✅ meta viewport present"
+            else
+              echo "  ❌ Missing <meta name=\"viewport\"> in <head>"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # navigation anchors (href="#")
+            if grep -qE 'href="#[^"]+' index.html; then
+              echo "  ✅ Internal anchor navigation present"
+            else
+              echo "  ❌ No internal anchors found (href=\"#section\")"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # images with alt
+            IMG_COUNT=$(grep -c '<img' index.html 2>/dev/null || echo "0")
+            IMG_ALT=$(grep -c 'alt=' index.html 2>/dev/null || echo "0")
+            if [ "$IMG_COUNT" -gt 0 ] && [ "$IMG_ALT" -ge "$IMG_COUNT" ]; then
+              echo "  ✅ Images with alt attribute ($IMG_COUNT image(s))"
+            elif [ "$IMG_COUNT" -gt 0 ]; then
+              echo "  ❌ Images found without alt attribute ($IMG_ALT with alt out of $IMG_COUNT total)"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # list with minimum 5 items
+            LI_COUNT=$(grep -c '<li' index.html 2>/dev/null || echo "0")
+            if [ "$LI_COUNT" -ge 5 ]; then
+              echo "  ✅ List with $LI_COUNT items (minimum 5)"
+            else
+              echo "  ❌ List with fewer than 5 items ($LI_COUNT found)"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # table (minimum 3 columns × 4 rows → minimum 4 <tr> and 3 <td> per row)
+            TR_COUNT=$(grep -c '<tr' index.html 2>/dev/null || echo "0")
+            TD_COUNT=$(grep -c '<td' index.html 2>/dev/null || echo "0")
+            if [ "$TR_COUNT" -ge 4 ] && [ "$TD_COUNT" -ge 9 ]; then
+              echo "  ✅ Table present ($TR_COUNT rows, $TD_COUNT cells)"
+            else
+              echo "  ❌ Insufficient table — minimum 4 rows and 3 columns (found: $TR_COUNT tr, $TD_COUNT td)"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # form with type=email and required
+            if grep -qi 'type="email"' index.html || grep -qi "type='email'" index.html; then
+              echo "  ✅ Form with type=\"email\" present"
+            else
+              echo "  ❌ Missing form field with type=\"email\""
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            if grep -qi '\brequired\b' index.html; then
+              echo "  ✅ required attribute present in form"
+            else
+              echo "  ❌ Missing required attribute in form fields"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # label in form
+            if grep -qi '<label' index.html; then
+              echo "  ✅ <label> elements present in form"
+            else
+              echo "  ❌ Missing <label> in form (required by EE1 guidelines)"
+              ERRORS=$((ERRORS + 1))
+            fi
+          fi
+
+          # README.md must exist
+          if [ -f "README.md" ]; then
+            echo "  ✅ README.md exists"
+          else
+            echo "  ❌ README.md not found"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ EE1: $ERRORS error(s) found"
+            exit 1
+          fi
+          echo "✅ EE1: All HTML requirements verified"
+
+      # ── EE2: CSS + Layout + Responsive ──────────────────────
+      - name: EE2 — CSS, Flexbox, Grid and Responsive (if applicable)
+        run: |
+          set -euo pipefail
+
+          # Detectar si hay archivo CSS externo
+          CSS_FILE=$(find . -name "*.css" -not -path "./.git/*" | head -1)
+
+          if [ -z "$CSS_FILE" ]; then
+            echo "ℹ️  No CSS file found — EE2 checks skipped"
+            exit 0
+          fi
+
+          echo "🔍 EE2 — Checking CSS requirements (file: $CSS_FILE)..."
+          ERRORS=0
+
+          # CSS linked in index.html
+          if grep -qi '<link.*\.css' index.html; then
+            echo "  ✅ External stylesheet linked in index.html"
+          else
+            echo "  ❌ <link rel=\"stylesheet\"> not found in index.html"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # Flexbox
+          if grep -q 'display\s*:\s*flex' $CSS_FILE; then
+            echo "  ✅ Flexbox implemented (display: flex)"
+          else
+            echo "  ❌ display: flex not found in $CSS_FILE"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # Grid
+          if grep -q 'display\s*:\s*grid' $CSS_FILE; then
+            echo "  ✅ CSS Grid implemented (display: grid)"
+          else
+            echo "  ❌ display: grid not found in $CSS_FILE"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # Media queries (minimum 2 breakpoints)
+          MEDIA_COUNT=$(grep -c '@media' $CSS_FILE 2>/dev/null || echo "0")
+          if [ "$MEDIA_COUNT" -ge 2 ]; then
+            echo "  ✅ Media queries present ($MEDIA_COUNT breakpoint(s))"
+          else
+            echo "  ❌ Minimum 2 media queries (@media) required — found: $MEDIA_COUNT"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ EE2: $ERRORS error(s) found"
+            exit 1
+          fi
+          echo "✅ EE2: All CSS requirements verified"
+
+      # ── EE3: JavaScript + DOM + Data ───────────────────────
+      - name: EE3 — JavaScript, localStorage and Fetch (if applicable)
+        run: |
+          set -euo pipefail
+
+          # Detectar si hay archivos JS
+          JS_FILE=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" | head -1)
+
+          if [ -z "$JS_FILE" ]; then
+            echo "ℹ️  No JS file found — EE3 checks skipped"
+            exit 0
+          fi
+
+          echo "🔍 EE3 — Checking JavaScript requirements..."
+          ERRORS=0
+
+          # scripts/ must exist
+          if [ -d "scripts" ]; then
+            echo "  ✅ scripts/ folder exists"
+          else
+            echo "  ❌ scripts/ folder not found (EE3 guideline: /scripts/main.js)"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # Script linked in index.html with defer or at the end of body
+          if grep -qi '<script.*scripts/' index.html; then
+            echo "  ✅ Script linked in index.html"
+            if grep -qi 'defer' index.html || grep -qi '</body>' index.html; then
+              echo "  ✅ Script with defer or at the end of body"
+            else
+              echo "  ⚠️  Recommended: script with defer or before </body>"
+            fi
+          else
+            echo "  ❌ No script reference found in index.html"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # addEventListener (minimum 2 DOM interactions)
+          ALL_JS=$(find scripts/ -name "*.js" 2>/dev/null || echo "")
+          if [ -n "$ALL_JS" ]; then
+            EVENT_COUNT=$(grep -rh 'addEventListener' scripts/ 2>/dev/null | wc -l || echo "0")
+            if [ "$EVENT_COUNT" -ge 2 ]; then
+              echo "  ✅ addEventListener found ($EVENT_COUNT use(s) — minimum 2)"
+            else
+              echo "  ❌ Minimum 2 addEventListener required — found: $EVENT_COUNT"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # localStorage
+            if grep -rq 'localStorage' scripts/ 2>/dev/null; then
+              echo "  ✅ localStorage implemented"
+            else
+              echo "  ❌ localStorage not found (minimum 1 case required)"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # Fetch
+            if grep -rq 'fetch(' scripts/ 2>/dev/null; then
+              echo "  ✅ Fetch API implemented"
+            else
+              echo "  ❌ fetch() not found (Fetch + dynamic rendering required)"
+              ERRORS=$((ERRORS + 1))
+            fi
+
+            # No inline onclick
+            if grep -qi 'onclick=' index.html; then
+              echo "  ❌ Inline onclick found in HTML — use addEventListener instead"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  ✅ No inline onclick in HTML"
+            fi
+          fi
+
+          # data/ with JSON (if using local Fetch)
+          if grep -rq 'site-data.json\|data/' scripts/ 2>/dev/null; then
+            if [ -d "data" ]; then
+              echo "  ✅ data/ folder with JSON present"
+            else
+              echo "  ❌ data/ is referenced in JS but the folder does not exist"
+              ERRORS=$((ERRORS + 1))
+            fi
+          fi
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ EE3: $ERRORS error(s) found"
+            exit 1
+          fi
+          echo "✅ EE3: All JavaScript requirements verified"
+
+      # ── EE4: Integration, Quality and Deployment ──────────────
+      - name: EE4 — Final structure, quality and documentation (if applicable)
+        run: |
+          set -euo pipefail
+
+          if [ ! -f "CHANGELOG.md" ]; then
+            echo "ℹ️  CHANGELOG.md not found — EE4 checks skipped"
+            exit 0
+          fi
+
+          echo "🔍 EE4 — Checking final integration requirements..."
+          ERRORS=0
+
+          # Organized folders
+          for dir in css scripts assets; do
+            if [ -d "$dir" ]; then
+              echo "  ✅ /$dir folder exists"
+            else
+              # also accept styles/ as alternative to css/
+              if [ "$dir" = "css" ] && [ -d "styles" ]; then
+                echo "  ✅ /styles folder exists (alternative to /css)"
+              else
+                echo "  ⚠️  /$dir folder not found (recommended by EE4)"
+              fi
+            fi
+          done
+
+          # CHANGELOG.md exists
+          echo "  ✅ CHANGELOG.md exists"
+
+          # Quality evidence: docs/quality.md or mention in README
+          if [ -f "docs/quality.md" ]; then
+            echo "  ✅ docs/quality.md present (quality evidence)"
+          elif grep -qi 'lighthouse\|calidad\|quality\|hallazgo\|corrección' README.md 2>/dev/null; then
+            echo "  ✅ Quality/Lighthouse evidence in README.md"
+          else
+            echo "  ❌ Missing quality evidence (docs/quality.md or Lighthouse section in README)"
+            ERRORS=$((ERRORS + 1))
+          fi
+
+          # README with required links
+          if grep -qi 'github.com' README.md 2>/dev/null; then
+            echo "  ✅ README contains link to repository"
+          else
+            echo "  ⚠️  README should include link to repository and published site"
+          fi
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ EE4: $ERRORS error(s) found"
+            exit 1
+          fi
+          echo "✅ EE4: All integration requirements verified"
+
+      - name: Summary
+        if: always()
+        run: |
+          echo ""
+          echo "════════════════════════════════════════"
+          echo "  Site Validation Complete"
+          echo "════════════════════════════════════════"
+
+  # ─────────────────────────────────────────────────────────────
+  # JOB 2: Skill library integrity validation (secondary)
+  # ─────────────────────────────────────────────────────────────
+  validate-skills:
+    name: Validate Skill Library Integrity
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check skill directories are listed in AGENTS.md
+        run: |
+          set -euo pipefail
+          echo "🔍 Checking skills/ are referenced in AGENTS.md..."
+          MISSING=0
+          if [ -d "skills" ]; then
+            for skill_dir in skills/*/; do
+              skill_name=$(basename "$skill_dir")
+              if ! grep -q "$skill_name" AGENTS.md; then
+                echo "  ❌ MISSING in AGENTS.md: $skill_name"
+                MISSING=$((MISSING + 1))
+              else
+                echo "  ✅ Found: $skill_name"
+              fi
+            done
+          fi
+          [ "$MISSING" -gt 0 ] && exit 1 || echo "✅ All skills referenced in AGENTS.md."
+
+      - name: Check every skill has a SKILL.md
+        run: |
+          set -euo pipefail
+          echo "🔍 Checking every skill has SKILL.md..."
+          MISSING=0
+          if [ -d "skills" ]; then
+            for skill_dir in skills/*/; do
+              if [ ! -f "$skill_dir/SKILL.md" ]; then
+                echo "  ❌ MISSING SKILL.md in: $skill_dir"
+                MISSING=$((MISSING + 1))
+              else
+                echo "  ✅ $(basename $skill_dir)/SKILL.md ✓"
+              fi
+            done
+          fi
+          [ "$MISSING" -gt 0 ] && exit 1 || echo "✅ All skills have SKILL.md."
+
+      - name: Check Markdown code blocks have language identifiers
+        run: |
+          set -euo pipefail
+          echo "🔍 Checking code blocks have language identifiers..."
+          ISSUES=0
+          while IFS= read -r file; do
+            RESULT=$(awk '
+              /^```/{
+                if (in_block) { in_block=0; next }
+                if (/^```[a-zA-Z]/) { in_block=1; next }
+                print NR ":``` (missing language)"
+                in_block=1
+              }
+            ' "$file")
+            if [ -n "$RESULT" ]; then
+              echo "  ❌ $file:"; echo "$RESULT"
+              ISSUES=$((ISSUES + 1))
+            fi
+          done < <(find skills/ -name "*.md" 2>/dev/null || true)
+          [ "$ISSUES" -gt 0 ] && exit 1 || echo "✅ All code blocks have language identifiers."
+
+      - name: Summary
+        if: always()
+        run: |
+          echo ""
+          echo "════════════════════════════════════════"
+          echo "  Skills Validation Complete"
+          echo "════════════════════════════════════════"
+
+  # ─────────────────────────────────────────────────────────────
+  # JOB 3: Branch security (GitFlow enforcement)
+  # Only runs on pull_request — validates that the origin is correct
+  # ─────────────────────────────────────────────────────────────
+  validate-branches:
+    name: Validate Branch Security (GitFlow)
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Validate conventional commits
+        run: |
+          set -euo pipefail
+
+          BASE="${{ github.base_ref }}"
+          VALID_TYPES="feat|fix|docs|style|chore|refactor|perf|test"
+          ERRORS=0
+
+          echo "🔍 Conventional Commits Check"
+          echo "  Base: $BASE"
+          echo ""
+
+          # Read commits in this PR (exclude merge commits)
+          COMMITS=$(git log "origin/${BASE}..HEAD" --no-merges --format="%s" 2>/dev/null || true)
+
+          if [ -z "$COMMITS" ]; then
+            echo "ℹ️  No commits to validate."
+            exit 0
+          fi
+
+          while IFS= read -r MSG; do
+            [ -z "$MSG" ] && continue
+            if echo "$MSG" | grep -qE "^(${VALID_TYPES})(\([^)]+\))?: .+"; then
+              echo "  ✅ $MSG"
+            else
+              echo "  ❌ Invalid: $MSG"
+              echo "     Expected: type(scope): description"
+              echo "     Valid types: feat, fix, docs, style, chore, refactor, perf, test"
+              ERRORS=$((ERRORS + 1))
+            fi
+          done <<< "$COMMITS"
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ Conventional commits: $ERRORS invalid commit(s) — see https://www.conventionalcommits.org"
+            exit 1
+          fi
+          echo "✅ All commits follow conventional commits format."
+
+      - name: Check PR source matches GitFlow rules
+        run: |
+          set -euo pipefail
+
+          BASE="${{ github.base_ref }}"
+          HEAD="${{ github.head_ref }}"
+          ERRORS=0
+
+          echo "🔍 GitFlow Branch Security Check"
+          echo "  Base : $BASE"
+          echo "  Head : $HEAD"
+          echo ""
+
+          # Rule 1 — PRs to main MUST come from release/* or hotfix/*
+          if [ "$BASE" = "main" ]; then
+            if [[ "$HEAD" =~ ^(release|hotfix)/ ]]; then
+              echo "  ✅ PR to main from valid branch: $HEAD"
+            else
+              echo "  ❌ PRs to main are ONLY allowed from release/* or hotfix/*"
+              echo "     Found: $HEAD"
+              echo "     Fix  : Create a release/* or hotfix/* branch first"
+              ERRORS=$((ERRORS + 1))
+            fi
+          fi
+
+          # Rule 2 — PRs to release/* MUST come from develop
+          if [[ "$BASE" =~ ^release/ ]]; then
+            if [ "$HEAD" = "develop" ] || [[ "$HEAD" =~ ^hotfix/ ]]; then
+              echo "  ✅ PR to $BASE from valid branch: $HEAD"
+            else
+              echo "  ❌ PRs to release/* are ONLY allowed from develop"
+              echo "     Found: $HEAD"
+              echo "     Fix  : Merge your changes to develop first"
+              ERRORS=$((ERRORS + 1))
+            fi
+          fi
+
+          # Rule 3 — PRs to develop MUST NOT come from release/* or hotfix/* directly
+          if [ "$BASE" = "develop" ]; then
+            if [[ "$HEAD" =~ ^(release|hotfix)/ ]]; then
+              echo "  ❌ PRs to develop from release/* or hotfix/* are not allowed"
+              echo "     Found: $HEAD → develop"
+              echo "     Fix  : Sync via dedicated sync PR after merging to main"
+              ERRORS=$((ERRORS + 1))
+            else
+              echo "  ✅ PR to develop from valid branch: $HEAD"
+            fi
+          fi
+
+          echo ""
+          if [ "$ERRORS" -gt 0 ]; then
+            echo "❌ Branch security: $ERRORS rule violation(s) — see GitFlow rules in README.md"
+            exit 1
+          fi
+          echo "✅ All GitFlow branch security rules passed."
+
+      - name: Validate branch ownership
+        run: |
+          set -euo pipefail
+
+          HEAD="${{ github.head_ref }}"
+          ACTOR="${{ github.actor }}"
+
+          echo "🔍 Branch Ownership Check"
+          echo "  Branch : $HEAD"
+          echo "  Actor  : @$ACTOR"
+          echo ""
+
+          # Map: branch → allowed GitHub username
+          declare -A OWNERS=(
+            ["feat/self-service"]="Rachelduarte"
+            ["feat/corporate"]="1v4nz2023"
+            ["feat/community"]="alemarquina"
+            ["feat/students"]="Geraldow"
+          )
+
+          if [[ -n "${OWNERS[$HEAD]+_}" ]]; then
+            EXPECTED="${OWNERS[$HEAD]}"
+            if [[ "$ACTOR" == "$EXPECTED" ]]; then
+              echo "  ✅ @$ACTOR is the assigned owner of $HEAD"
+            else
+              echo "  ❌ Branch $HEAD belongs to @$EXPECTED, not @$ACTOR"
+              echo "     Fix  : Use your own assigned branch"
+              exit 1
+            fi
+          else
+            echo "  ℹ️  No ownership rule for branch: $HEAD — skipping check"
+          fi
+
+          echo ""
+          echo "✅ Branch ownership check passed."
