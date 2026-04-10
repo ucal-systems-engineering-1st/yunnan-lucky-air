@@ -3,22 +3,305 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lucky Air Comunidad – Compartí tu experiencia viajando a Yunnan, Dali y Xishuangbanna. Leé reseñas y blogs de otros viajeros." />
   <title>Lucky Air | Comunidad</title>
+  <!-- Rutas relativas desde views/ hacia la raíz -->
+  <link rel="stylesheet" href="../css/themes/brand.css" />
+  <link rel="stylesheet" href="../css/layouts/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
 </head>
 <body>
 
-  <header>
-    <nav>
-      <!-- Navegación -->
+  <!-- HEADER / NAV — estructura idéntica a index.html para coherencia del sitio -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="logo">
+        <img src="../assets/images/logo.png" alt="Lucky Air Logo" />
+        <span>Lucky Air</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="self-service.html">Autoservicio</a></li>
+        <li><a href="community.html" aria-current="page">Comunidad</a></li>
+        <li><a href="students.html">Estudiantes</a></li>
+        <li><a href="corporate.html">Corporativo</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="../index.html#login" class="btn btn-outline">Iniciar sesión</a>
+        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+      </div>
     </nav>
   </header>
 
+  <!-- NAVEGACIÓN DE SECCIONES — anclas internas de la página -->
+  <nav id="community-section-nav" aria-label="Secciones de la página Comunidad">
+    <ul>
+      <li><a href="#community-wall">Muro de experiencias</a></li>
+      <li><a href="#community-highlights">Destinos destacados</a></li>
+      <li><a href="#community-reviews">Reseñas de viajeros</a></li>
+      <li><a href="#community-share">Compartí tu viaje</a></li>
+    </ul>
+  </nav>
+
   <main>
-    <!-- Contenido de la comunidad -->
+
+    <!-- HERO — banner principal de la sección Comunidad -->
+    <section id="community-hero">
+      <div class="hero-content">
+        <h1>La comunidad Lucky Air</h1>
+        <p>Miles de viajeros ya descubrieron Yunnan con Lucky Air.
+           Leé sus experiencias, explorá sus fotos y compartí tu propia historia
+           con una comunidad apasionada por Dali, Xishuangbanna y Kunming.</p>
+        <a href="#community-share" class="btn btn-primary btn-large">Compartí tu experiencia</a>
+      </div>
+      <div class="hero-image">
+        <img src="../assets/images/community-hero.jpg"
+             alt="Viajeros disfrutando los paisajes de Yunnan, China" />
+      </div>
+    </section>
+
+    <!-- MURO DE EXPERIENCIAS — blogs y posts de viajeros -->
+    <section id="community-wall">
+      <h2>Muro de experiencias</h2>
+      <p>Las últimas historias compartidas por nuestra comunidad de viajeros.</p>
+
+      <div class="community-posts">
+
+        <article id="post-1" class="community-card">
+          <img src="../assets/images/post-dali.jpg"
+               alt="Atardecer sobre el lago Erhai en Dali, Yunnan" />
+          <div class="card-body">
+            <span class="card-tag">Dali</span>
+            <h3>Una semana en Dali: el lago Erhai y los pueblos bai</h3>
+            <p>Llegué a Dali sin esperar mucho y me fui completamente enamorado.
+               El lago Erhai al amanecer es una de las vistas más impresionantes
+               que viví en mi vida.</p>
+            <footer class="card-footer">
+              <span>Por <strong>María G.</strong></span>
+              <time datetime="2026-03-15">15 mar 2026</time>
+            </footer>
+          </div>
+        </article>
+
+        <article id="post-2" class="community-card">
+          <img src="../assets/images/post-xishuangbanna.jpg"
+               alt="Selva tropical de Xishuangbanna en la provincia de Yunnan" />
+          <div class="card-body">
+            <span class="card-tag">Xishuangbanna</span>
+            <h3>Xishuangbanna: la Amazonia de China</h3>
+            <p>La selva tropical al sur de Yunnan no se parece a nada que haya
+               visto antes. La diversidad cultural de los pueblos dai es increíble
+               y el vuelo con Lucky Air fue puntual y muy cómodo.</p>
+            <footer class="card-footer">
+              <span>Por <strong>Carlos T.</strong></span>
+              <time datetime="2026-02-28">28 feb 2026</time>
+            </footer>
+          </div>
+        </article>
+
+        <article id="post-3" class="community-card">
+          <img src="../assets/images/post-kunming.jpg"
+               alt="Ciudad de Kunming con flores de cerezo en primavera" />
+          <div class="card-body">
+            <span class="card-tag">Kunming</span>
+            <h3>Kunming en primavera: la ciudad eterna</h3>
+            <p>Kunming merece más reconocimiento internacional.
+               Su clima perfecto todo el año, el Parque de la Piedra Forestal
+               y su gastronomía la convierten en una parada obligada en Yunnan.</p>
+            <footer class="card-footer">
+              <span>Por <strong>Laura M.</strong></span>
+              <time datetime="2026-01-10">10 ene 2026</time>
+            </footer>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DESTINOS DESTACADOS — lista de razones para visitar (mínimo 5 ítems EE1) -->
+    <section id="community-highlights">
+      <h2>¿Por qué la comunidad elige Yunnan?</h2>
+      <ul class="highlights-list">
+        <li>Paisajes únicos en el mundo: montañas nevadas, selvas tropicales y lagos de altura coexisten en la misma provincia</li>
+        <li>Diversidad cultural extraordinaria con más de 25 etnias distintas, cada una con su propia lengua, tradiciones y gastronomía</li>
+        <li>Gastronomía auténtica reconocida internacionalmente, desde el auténtico pho yunnanés hasta los hongos silvestres de temporada</li>
+        <li>Accesibilidad y conectividad mejorada gracias a Lucky Air, que opera vuelos directos a Dali, Xishuangbanna y Kunming</li>
+        <li>Precios accesibles en comparación con otros destinos turísticos de Asia, con opciones para todo tipo de presupuesto</li>
+        <li>Clima templado durante todo el año en Kunming y microclimas variados en el resto de la provincia para cada estación</li>
+        <li>Comunidad de viajeros activa que comparte rutas, consejos y experiencias para aprovechar al máximo cada viaje</li>
+      </ul>
+    </section>
+
+    <!-- RESEÑAS — tabla comparativa de destinos (mínimo 3x4 EE1: 4 columnas × 5 filas de datos) -->
+    <section id="community-reviews">
+      <h2>Reseñas por destino</h2>
+      <p>Puntuaciones promedio según las valoraciones de nuestra comunidad de viajeros.</p>
+
+      <div class="table-wrapper">
+        <table id="reviews-table">
+          <thead>
+            <tr>
+              <th scope="col">Destino</th>
+              <th scope="col">Puntuación general</th>
+              <th scope="col">Recomendado para</th>
+              <th scope="col">Mejor temporada</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Dali</td>
+              <td>
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-empty.svg" alt="estrella vacía" />
+                4.0 / 5
+              </td>
+              <td>Cultura, naturaleza y fotografía</td>
+              <td>Marzo a mayo (primavera)</td>
+            </tr>
+            <tr>
+              <td>Xishuangbanna</td>
+              <td>
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                5.0 / 5
+              </td>
+              <td>Naturaleza, selva y ecoturismo</td>
+              <td>Noviembre a febrero (seco)</td>
+            </tr>
+            <tr>
+              <td>Kunming</td>
+              <td>
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-empty.svg" alt="estrella vacía" />
+                4.2 / 5
+              </td>
+              <td>Ciudad, gastronomía y base de exploración</td>
+              <td>Todo el año (clima templado)</td>
+            </tr>
+            <tr>
+              <td>Lijiang</td>
+              <td>
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-empty.svg" alt="estrella vacía" />
+                4.5 / 5
+              </td>
+              <td>Historia, patrimonio y aventura</td>
+              <td>Abril a octubre (primavera-verano)</td>
+            </tr>
+            <tr>
+              <td>Shangri-La</td>
+              <td>
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-filled.svg" alt="estrella llena" />
+                <img src="../assets/icons/star-empty.svg" alt="estrella vacía" />
+                4.3 / 5
+              </td>
+              <td>Espiritualidad, trekking y montañas</td>
+              <td>Junio a septiembre (verano)</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FORMULARIO — compartir experiencia (mínimo: nombre, email, mensaje con label y required) -->
+    <section id="community-share">
+      <h2>Compartí tu experiencia</h2>
+      <p>¿Viajaste a Yunnan con Lucky Air? Contanos tu historia y ayudá a otros
+         viajeros a descubrir lo mejor de la provincia.</p>
+
+      <form id="community-share-form" action="#" method="POST" novalidate>
+
+        <div class="form-group">
+          <label for="nombre">Nombre completo</label>
+          <input type="text" id="nombre" name="nombre"
+                 placeholder="Tu nombre completo" required />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email" name="email"
+                 placeholder="correo@ejemplo.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="destino">Destino visitado</label>
+          <select id="destino" name="destino" required>
+            <option value="" disabled selected>Seleccioná un destino</option>
+            <option value="dali">Dali</option>
+            <option value="xishuangbanna">Xishuangbanna</option>
+            <option value="kunming">Kunming</option>
+            <option value="lijiang">Lijiang</option>
+            <option value="shangri-la">Shangri-La</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="titulo">Título de tu experiencia</label>
+          <input type="text" id="titulo" name="titulo"
+                 placeholder="Ej: Mi semana en Dali fue increíble" required />
+        </div>
+
+        <div class="form-group">
+          <label for="mensaje">Contanos tu historia</label>
+          <textarea id="mensaje" name="mensaje" rows="5"
+                    placeholder="Describí tu experiencia: lugares que visitaste, comidas que probaste, personas que conociste..."
+                    required></textarea>
+        </div>
+
+        <button type="submit" id="community-submit-btn" class="btn btn-primary">
+          Publicar mi experiencia
+        </button>
+
+      </form>
+    </section>
+
   </main>
 
-  <footer>
-    <!-- Pie de página -->
+  <!-- FOOTER — estructura idéntica a index.html (rutas ajustadas desde views/) -->
+  <footer id="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.png" alt="Lucky Air" />
+        <p>Conectando el mundo con Yunnan.</p>
+      </div>
+      <nav class="footer-links" aria-label="Destinos">
+        <h4>Destinos</h4>
+        <ul>
+          <li><a href="#">Dali</a></li>
+          <li><a href="#">Xishuangbanna</a></li>
+          <li><a href="#">Kunming</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="self-service.html">Autoservicio</a></li>
+          <li><a href="students.html">Estudiantes</a></li>
+          <li><a href="../assets/docs/guia-yunnan.pdf">Guía de viaje (PDF)</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>soporte@luckyair.com</p>
+        <p>+86 871 0000 0000</p>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
 </body>
