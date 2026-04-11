@@ -7,18 +7,153 @@
 </head>
 <body>
 
-  <header>
-    <nav>
-      <!-- Navegación -->
+  <!-- HEADER / NAV -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="logo">
+        <img src="../assets/images/logo.png" alt="Lucky Air Logo"/>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="./self-service.html">Autoservicio</a></li>
+        <li><a href="./community.html">Comunidad</a></li>
+        <li><a href="./students.html">Estudiantes</a></li>
+        <li><a href="./corporate.html">Corporativo</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#login" class="btn btn-outline">Iniciar sesión</a>
+        <a href="#booking" class="btn btn-primary">Reservar ahora</a>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <!-- Contenido corporativo -->
-  </main>
+<main>
 
-  <footer>
-    <!-- Pie de página -->
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Soluciones Corporativas Inteligentes</h1>
+      <p>Optimiza los viajes de tu empresa con Lucky Air: menos costos, más eficiencia.</p>
+      <a href="#registro" class="btn btn-primary">Crear cuenta empresarial</a>
+    </div>
+    <div class="hero-image">
+      <img src="../assets/images/corporate-hero.png" alt="Viajes corporativos" />
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="benefits">
+    <h2>Beneficios para tu empresa</h2>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <img src="../assets/icons/cost.svg" alt="Ahorro de costos" width="25px" />
+        <h3>Ahorro de costos</h3>
+        <p>Reduce gastos operativos con tarifas corporativas exclusivas.</p>
+      </div>
+      <div class="benefit">
+        <img src="../assets/icons/control.svg" alt="Control total" width="25px" />
+        <h3>Control total</h3>
+        <p>Gestiona todos los viajes desde un solo panel.</p>
+      </div>
+      <div class="benefit">
+        <img src="../assets/icons/time.svg" alt="Ahorro de tiempo" width="25px"/>
+        <h3>Ahorro de tiempo</h3>
+        <p>Reservas rápidas y sin intermediarios.</p>
+      </div>
+      <div class="benefit">
+        <img src="../assets/icons/report.svg" alt="Reportes" width="25px" />
+        <h3>Reportes</h3>
+        <p>Visualiza gastos y movimientos en tiempo real.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES -->
+  <section class="features">
+    <h2>Soluciones corporativas</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <img src="../assets/images/booking.png" alt="Reservas" />
+        <h3>Reservas centralizadas</h3>
+        <p>Administra todos los vuelos de tu empresa en un solo lugar.</p>
+      </div>
+      <div class="feature">
+        <img src="../assets/images/analytics.png" alt="Analítica" />
+        <h3>Gestión de gastos</h3>
+        <p>Controla y optimiza el presupuesto de viajes.</p>
+      </div>
+      <div class="feature">
+        <img src="../assets/images/selfservice.png" alt="Autoservicio" />
+        <h3>Autoservicio</h3>
+        <p>Permite a tus empleados reservar fácilmente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonials">
+    <h2>Empresas que confían en nosotros</h2>
+    <div class="testimonial">
+      <img src="../assets/images/client1.png" alt="Globaltech" width="100px"/>
+      <p>"Reducimos nuestros costos de viaje en un 30% gracias a Lucky Air."</p>
+      <span>- Empresa GlobalTech</span>
+    </div>
+        <div class="testimonial">
+      <img src="../assets/images/client2.png" alt="Movitours" width="100px"/>
+      <p>"Reducimos nuestros costos de viaje en un 30% gracias a Lucky Air."</p>
+      <span>- Empresa Movitours</span>
+    </div>
+  </section>
+
+  <!-- FORMULARIO -->
+  <section id="registro" class="form-section">
+    <h2>Registra tu empresa</h2>
+    <form class="corporate-form">
+      <input type="text" placeholder="Nombre de la empresa" required />
+      <input type="email" placeholder="Correo corporativo" required />
+      <input type="number" placeholder="Número de empleados" />
+      <button type="submit" class="btn btn-primary">Registrarse</button>
+    </form>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta">
+    <h2>Empieza hoy con Lucky Air</h2>
+    <p>Transforma la gestión de viajes de tu empresa.</p>
+    <a href="#registro" class="btn btn-primary">Comenzar ahora</a>
+  </section>
+
+</main>
+
+  <footer id="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.png" alt="Lucky Air" />
+        <p>Conectando el mundo con Yunnan.</p>
+      </div>
+      <nav class="footer-links" aria-label="Enlaces del pie de página">
+        <h4>Destinos</h4>
+        <ul>
+          <li><a href="#">Dali</a></li>
+          <li><a href="#">Xishuangbanna</a></li>
+          <li><a href="#">Kunming</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="./self-service.html">Autoservicio</a></li>
+          <li><a href="./community.html">Comunidad</a></li>
+          <li><a href="../assets/docs/guia-yunnan.pdf">Guía de viaje (PDF)</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>soporte@luckyair.com</p>
+        <p>+86 871 0000 0000</p>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
 </body>
