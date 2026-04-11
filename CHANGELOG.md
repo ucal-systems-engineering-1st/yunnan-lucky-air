@@ -6,6 +6,16 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.2.0] - 2026-04-11
+
+### 🚀 Added
+
+- add self-service page with check-in, flight status, and baggage policy sections
+- implementar sección corporativa con hero, beneficios y formulario
+- add complete community.html structure with sections, tabla and form - EE1 guideline
+
+---
+
 ## [] - 2026-04-11
 
 ### 🚀 Added
