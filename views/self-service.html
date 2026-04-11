@@ -3,22 +3,511 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portal de autoservicio Lucky Air. Realiza tu check-in en línea, consulta el estado de tu vuelo, solicita reembolsos y gestiona tu equipaje." />
   <title>Lucky Air | Autoservicio</title>
+  <link rel="stylesheet" href="../css/themes/brand.css" />
+  <link rel="stylesheet" href="../css/layouts/main.css" />
+  <link rel="stylesheet" href="../css/components/buttons.css" />
 </head>
 <body>
 
-  <header>
-    <nav>
-      <!-- Navegación -->
+  <!-- HEADER / NAV -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="logo">
+        <img src="../assets/images/logo.png" alt="Lucky Air Logo" />
+        <span>Lucky Air</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="self-service.html" aria-current="page">Autoservicio</a></li>
+        <li><a href="community.html">Comunidad</a></li>
+        <li><a href="students.html">Estudiantes</a></li>
+        <li><a href="corporate.html">Corporativo</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#login" class="btn btn-outline">Iniciar sesión</a>
+        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+      </div>
     </nav>
   </header>
 
-  <main>
-    <!-- Contenido de autoservicio -->
+  <!-- MAIN CONTENT -->
+  <main id="self-service-main">
+
+    <!-- HERO DE AUTOSERVICIO -->
+    <section id="self-service-hero">
+      <div class="hero-content">
+        <h1>Portal de Autoservicio</h1>
+        <p>
+          Gestiona tus vuelos sin hacer filas ni llamar. Realiza el check-in,
+          consulta el estado de tu vuelo, solicita reembolsos y más, todo desde aquí.
+        </p>
+        <a href="#checkin" class="btn btn-primary btn-large">Hacer check-in ahora</a>
+        <a href="#flight-status" class="btn btn-outline">Consultar vuelo</a>
+      </div>
+    </section>
+
+    <!-- SERVICIOS DISPONIBLES -->
+    <section id="services-overview">
+      <h2>¿Qué puedes hacer aquí?</h2>
+      <p>Nuestro portal de autoservicio te permite completar los trámites más comunes de manera rápida y sencilla:</p>
+      <ul id="services-list">
+        <li>✈️ <strong>Check-in en línea</strong> – Regístrate hasta 48 h antes de tu vuelo y elige tu asiento.</li>
+        <li>🔍 <strong>Estado de vuelo</strong> – Consulta en tiempo real si tu vuelo está a tiempo, demorado o cancelado.</li>
+        <li>💼 <strong>Gestión de equipaje</strong> – Agrega maletas adicionales o consulta las restricciones vigentes.</li>
+        <li>🔄 <strong>Cambio de vuelo</strong> – Modifica la fecha o el horario de tu reserva sin cobro adicional (según tarifa).</li>
+        <li>💰 <strong>Solicitud de reembolso</strong> – Solicita la devolución de tu dinero directamente desde este portal.</li>
+        <li>🪑 <strong>Selección de asiento</strong> – Escoge tu asiento preferido en el mapa del avión antes de volar.</li>
+        <li>📄 <strong>Descarga de itinerario</strong> – Descarga o comparte tu itinerario en PDF de forma gratuita.</li>
+      </ul>
+    </section>
+
+    <!-- CHECK-IN EN LÍNEA -->
+    <section id="checkin">
+      <h2>Check-in en línea</h2>
+      <p>Introduce los datos de tu reserva para iniciar el proceso de check-in. Disponible entre 48 h y 1 h antes del vuelo.</p>
+
+      <form id="checkin-form" action="#" method="POST" novalidate>
+        <fieldset>
+          <legend>Datos del pasajero</legend>
+
+          <div class="form-group">
+            <label for="booking-code">Código de reserva</label>
+            <input
+              type="text"
+              id="booking-code"
+              name="booking_code"
+              placeholder="Ej. LKA-20261102"
+              required
+              pattern="[A-Z]{3}-\d{8}"
+              title="Formato: 3 letras mayúsculas, guion y 8 dígitos (Ej. LKA-20261102)"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="passenger-lastname">Apellido del pasajero</label>
+            <input
+              type="text"
+              id="passenger-lastname"
+              name="passenger_lastname"
+              placeholder="Ej. García"
+              required
+              minlength="2"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="passenger-doc">Número de documento</label>
+            <input
+              type="text"
+              id="passenger-doc"
+              name="passenger_doc"
+              placeholder="DNI o pasaporte"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="flight-date">Fecha del vuelo</label>
+            <input
+              type="date"
+              id="flight-date"
+              name="flight_date"
+              required
+            />
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Selección de asiento</legend>
+          <div class="form-group">
+            <label for="seat-preference">Preferencia de asiento</label>
+            <select id="seat-preference" name="seat_preference">
+              <option value="">-- Sin preferencia --</option>
+              <option value="window">Ventana</option>
+              <option value="middle">Centro</option>
+              <option value="aisle">Pasillo</option>
+              <option value="emergency">Salida de emergencia (+espacio)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>
+              <input type="checkbox" id="extra-legroom" name="extra_legroom" value="yes" />
+              Solicitar filas con espacio extra para piernas (sujeto a disponibilidad)
+            </label>
+          </div>
+        </fieldset>
+
+        <button type="submit" id="checkin-submit-btn" class="btn btn-primary">
+          Iniciar check-in
+        </button>
+      </form>
+    </section>
+
+    <!-- ESTADO DEL VUELO -->
+    <section id="flight-status">
+      <h2>Estado de tu vuelo</h2>
+      <p>Ingresa el número de vuelo y la fecha para consultar su estado en tiempo real.</p>
+
+      <form id="flight-status-form" action="#" method="GET" novalidate>
+        <div class="form-group">
+          <label for="flight-number">Número de vuelo</label>
+          <input
+            type="text"
+            id="flight-number"
+            name="flight_number"
+            placeholder="Ej. LK 203"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="status-date">Fecha</label>
+          <input type="date" id="status-date" name="status_date" required />
+        </div>
+        <button type="submit" id="flight-status-btn" class="btn btn-secondary">
+          Consultar estado
+        </button>
+      </form>
+    </section>
+
+    <!-- TABLA DE EQUIPAJE -->
+    <section id="baggage-info">
+      <h2>Política de equipaje</h2>
+      <p>
+        Conoce los límites de peso y dimensiones según la tarifa de tu boleto.
+        El exceso de equipaje puede ser agregado en línea con descuento de hasta el 30 % respecto al precio en aeropuerto.
+      </p>
+
+      <div class="table-wrapper">
+        <table id="baggage-table">
+          <caption>Límites de equipaje por tipo de tarifa — vuelos Lucky Air 2026</caption>
+          <thead>
+            <tr>
+              <th scope="col">Tipo de tarifa</th>
+              <th scope="col">Equipaje de mano</th>
+              <th scope="col">Maleta en bodega</th>
+              <th scope="col">Peso máximo (bodega)</th>
+              <th scope="col">Exceso (por kg adicional)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Básica</strong></td>
+              <td>1 bolso (hasta 7 kg)</td>
+              <td>No incluida</td>
+              <td>—</td>
+              <td>$8 USD / kg</td>
+            </tr>
+            <tr>
+              <td><strong>Estándar</strong></td>
+              <td>1 bolso (hasta 7 kg)</td>
+              <td>1 maleta incluida</td>
+              <td>23 kg</td>
+              <td>$6 USD / kg</td>
+            </tr>
+            <tr>
+              <td><strong>Plus</strong></td>
+              <td>2 bolsos (hasta 10 kg)</td>
+              <td>2 maletas incluidas</td>
+              <td>23 kg c/u</td>
+              <td>$5 USD / kg</td>
+            </tr>
+            <tr>
+              <td><strong>Business</strong></td>
+              <td>2 bolsos (hasta 12 kg)</td>
+              <td>2 maletas incluidas</td>
+              <td>32 kg c/u</td>
+              <td>$4 USD / kg</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">
+                * Las dimensiones máximas del equipaje de mano son 55 × 40 × 20 cm.
+                Los artículos líquidos deben cumplir la norma IATA 3-1-1.
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <p>
+        <strong>Artículos prohibidos en bodega:</strong>
+      </p>
+      <ol id="prohibited-items-list">
+        <li>Baterías de litio sueltas (superiores a 100 Wh)</li>
+        <li>Materiales inflamables (líquidos, gases a presión)</li>
+        <li>Explosivos o municiones de cualquier tipo</li>
+        <li>Sustancias corrosivas o tóxicas</li>
+        <li>Dinero en efectivo superior a los límites aduaneros del país de destino</li>
+      </ol>
+    </section>
+
+    <!-- SOLICITUD DE REEMBOLSO -->
+    <section id="refund-request">
+      <h2>Solicitud de reembolso</h2>
+      <p>
+        Si necesitas cancelar tu vuelo, completa el formulario a continuación.
+        Los reembolsos se procesan en un plazo de 7 a 14 días hábiles según el método de pago original.
+      </p>
+
+      <form id="refund-form" action="#" method="POST" novalidate>
+        <fieldset>
+          <legend>Datos de la reserva a reembolsar</legend>
+
+          <div class="form-group">
+            <label for="refund-booking">Código de reserva</label>
+            <input
+              type="text"
+              id="refund-booking"
+              name="refund_booking"
+              placeholder="Ej. LKA-20261102"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="refund-email">Correo electrónico de contacto</label>
+            <input
+              type="email"
+              id="refund-email"
+              name="refund_email"
+              placeholder="tu@correo.com"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="refund-phone">Teléfono de contacto</label>
+            <input
+              type="tel"
+              id="refund-phone"
+              name="refund_phone"
+              placeholder="+51 900 000 000"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="refund-reason">Motivo del reembolso</label>
+            <select id="refund-reason" name="refund_reason" required>
+              <option value="">-- Selecciona un motivo --</option>
+              <option value="medical">Emergencia médica</option>
+              <option value="schedule-change">Cambio de horario por la aerolínea</option>
+              <option value="cancellation">Vuelo cancelado por la aerolínea</option>
+              <option value="voluntary">Cancelación voluntaria</option>
+              <option value="other">Otro motivo</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="refund-details">Descripción adicional</label>
+            <textarea
+              id="refund-details"
+              name="refund_details"
+              rows="4"
+              placeholder="Describe brevemente la situación (máx. 500 caracteres)"
+              maxlength="500"
+            ></textarea>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend>Método de devolución preferido</legend>
+          <div class="form-group">
+            <label>
+              <input type="radio" id="refund-original" name="refund_method" value="original" checked />
+              Método de pago original
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="radio" id="refund-voucher" name="refund_method" value="voucher" />
+              Voucher de crédito Lucky Air (proceso más rápido)
+            </label>
+          </div>
+          <div class="form-group">
+            <label>
+              <input type="radio" id="refund-transfer" name="refund_method" value="transfer" />
+              Transferencia bancaria
+            </label>
+          </div>
+        </fieldset>
+
+        <div class="form-group">
+          <label>
+            <input type="checkbox" id="refund-terms" name="refund_terms" value="accepted" required />
+            He leído y acepto la
+            <a href="#faq" target="_blank">política de reembolsos de Lucky Air</a>.
+          </label>
+        </div>
+
+        <button type="submit" id="refund-submit-btn" class="btn btn-primary">
+          Enviar solicitud
+        </button>
+      </form>
+    </section>
+
+    <!-- PREGUNTAS FRECUENTES (FAQ) -->
+    <section id="faq">
+      <h2>Preguntas frecuentes</h2>
+      <p>Encuentra respuestas rápidas a las dudas más comunes sobre nuestros servicios de autoservicio.</p>
+
+      <details id="faq-checkin-time">
+        <summary>¿Cuándo puedo hacer el check-in en línea?</summary>
+        <p>
+          El check-in en línea está disponible desde las <strong>48 horas</strong> hasta
+          <strong>1 hora antes</strong> del horario de salida de tu vuelo.
+          Pasado ese límite, deberás presentarte en el mostrador del aeropuerto.
+        </p>
+      </details>
+
+      <details id="faq-seat-change">
+        <summary>¿Puedo cambiar mi asiento después de hacer el check-in?</summary>
+        <p>
+          Sí, puedes modificar tu asiento hasta <strong>2 horas antes</strong> del vuelo,
+          siempre que haya asientos disponibles. El cambio es gratuito para tarifas
+          Plus y Business, y puede tener un costo adicional en tarifas Básica y Estándar.
+        </p>
+      </details>
+
+      <details id="faq-refund-time">
+        <summary>¿Cuánto tiempo tarda el proceso de reembolso?</summary>
+        <p>
+          Los reembolsos al método de pago original tardan entre <strong>7 y 14 días hábiles</strong>.
+          Si eliges un voucher de crédito Lucky Air, el proceso puede completarse en tan solo
+          <strong>24 a 48 horas</strong>.
+        </p>
+      </details>
+
+      <details id="faq-baggage-excess">
+        <summary>¿Cómo agrego equipaje adicional desde el portal?</summary>
+        <p>
+          Ve a la sección <em>"Gestión de equipaje"</em>, ingresa tu código de reserva
+          y selecciona la opción de agregar maletas. El precio en línea es hasta un
+          <strong>30 % más económico</strong> que comprarlo en el aeropuerto.
+        </p>
+      </details>
+
+      <details id="faq-flight-cancel">
+        <summary>Mi vuelo fue cancelado por Lucky Air, ¿qué hago?</summary>
+        <p>
+          Si Lucky Air canceló tu vuelo, tienes derecho a:
+        </p>
+        <ul>
+          <li>Cambio de vuelo sin costo</li>
+          <li>Reembolso total del monto pagado</li>
+          <li>Voucher de crédito por el valor más un bono del 10 %</li>
+        </ul>
+        <p>
+          Puedes gestionar cualquiera de estas opciones directamente desde este portal
+          en la sección <a href="#refund-request">Solicitud de reembolso</a>.
+        </p>
+      </details>
+    </section>
+
+    <!-- CONTACTO / SOPORTE -->
+    <section id="support-contact">
+      <h2>¿Necesitas ayuda adicional?</h2>
+      <p>
+        Si no encontraste lo que buscabas, nuestro equipo de soporte está disponible las
+        <time datetime="PT24H">24 horas</time>, los 7 días de la semana.
+      </p>
+
+      <address>
+        <p>📧 <a href="mailto:soporte@luckyair.com">soporte@luckyair.com</a></p>
+        <p>📞 <a href="tel:+8687100000000">+86 871 0000 0000</a></p>
+        <p>📍 Kunming Changshui International Airport, Yunnan, China</p>
+      </address>
+
+      <form id="support-form" action="#" method="POST" novalidate>
+        <h3>Envíanos un mensaje</h3>
+
+        <div class="form-group">
+          <label for="support-name">Nombre completo</label>
+          <input
+            type="text"
+            id="support-name"
+            name="support_name"
+            placeholder="Tu nombre completo"
+            required
+            minlength="3"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="support-email">Correo electrónico</label>
+          <input
+            type="email"
+            id="support-email"
+            name="support_email"
+            placeholder="tu@correo.com"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="support-subject">Asunto</label>
+          <input
+            type="text"
+            id="support-subject"
+            name="support_subject"
+            placeholder="¿En qué podemos ayudarte?"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="support-message">Mensaje</label>
+          <textarea
+            id="support-message"
+            name="support_message"
+            rows="5"
+            placeholder="Describe tu consulta con el mayor detalle posible"
+            required
+            minlength="20"
+          ></textarea>
+        </div>
+
+        <button type="submit" id="support-submit-btn" class="btn btn-primary">
+          Enviar mensaje
+        </button>
+      </form>
+    </section>
+
   </main>
 
-  <footer>
-    <!-- Pie de página -->
+  <!-- FOOTER -->
+  <footer id="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.png" alt="Lucky Air" />
+        <p>Conectando el mundo con Yunnan.</p>
+      </div>
+      <nav class="footer-links" aria-label="Destinos">
+        <h4>Destinos</h4>
+        <ul>
+          <li><a href="#">Dali</a></li>
+          <li><a href="#">Xishuangbanna</a></li>
+          <li><a href="#">Kunming</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="self-service.html">Autoservicio</a></li>
+          <li><a href="community.html">Comunidad</a></li>
+          <li><a href="../assets/docs/guia-yunnan.pdf">Guía de viaje (PDF)</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>soporte@luckyair.com</p>
+        <p>+86 871 0000 0000</p>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
 </body>
