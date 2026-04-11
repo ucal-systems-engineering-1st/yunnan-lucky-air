@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.2.3] - 2026-04-11
+
+### 🐞 Fixed
+
+- replace blank destination images with actual photos
+
+---
+
 ## [1.2.2] - 2026-04-11
 
 ### 🐞 Fixed
