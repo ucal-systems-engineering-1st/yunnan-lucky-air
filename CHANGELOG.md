@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.2.2] - 2026-04-11
+
+### 🐞 Fixed
+
+- add contact form with type=email to satisfy EE1 CI check
+
+---
+
 ## [1.2.1] - 2026-04-11
 
 ### 🐞 Fixed
