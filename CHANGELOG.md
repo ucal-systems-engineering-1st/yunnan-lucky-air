@@ -6,6 +6,24 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [] - 2026-04-11
+
+### 🚀 Added
+
+- add self-service page with check-in, flight status, and baggage policy sections
+- add complete community.html structure with sections, tabla and form - EE1 guideline
+- add complete EE1 page structure
+- add routes and fares table section
+- add branch ownership validation and CODEOWNERS
+- initialize project structure with core HTML pages, assets, and documentation
+
+### 🐞 Fixed
+
+- add language identifiers to all code fences
+- include LICENSE file in release zip package
+
+---
+
 ## [1.1.0] - 2026-03-30
 
 ### 🚀 Added
