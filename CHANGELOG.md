@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.3.0] - 2026-04-11
+
+### 🚀 Added
+
+- add GitHub Pages deployment workflow
+
+---
+
 ## [1.2.3] - 2026-04-11
 
 ### 🐞 Fixed
