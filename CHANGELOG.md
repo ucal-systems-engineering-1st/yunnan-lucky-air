@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.2.1] - 2026-04-11
+
+### 🐞 Fixed
+
+- correct broken image paths, add login/register pages and labels
+
+---
+
 ## [1.2.0] - 2026-04-11
 
 ### 🚀 Added
