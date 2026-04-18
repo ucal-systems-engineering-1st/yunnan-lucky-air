@@ -6,6 +6,15 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.4.0] - 2026-04-18
+
+### 🐞 Fixed
+
+- change png to webp
+- missing main in index.html
+
+---
+
 ## [1.3.0] - 2026-04-11
 
 ### 🚀 Added
