@@ -6,6 +6,22 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.5.0] - 2026-04-25
+
+### 🚀 Added
+
+- add footer component styling with responsive grid and social links
+- redesign site footer with global design tokens and Lucide icons
+- initialize global CSS framework with design tokens and base styles
+- upload design md
+- initialize project directory structure and add footer component stylesheet
+
+### 🔄 Changed
+
+- add header styles apply
+
+---
+
 ## [1.4.0] - 2026-04-18
 
 ### 🐞 Fixed
