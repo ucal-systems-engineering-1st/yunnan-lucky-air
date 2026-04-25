@@ -1,35 +1,48 @@
 :root {
-  /* 2. Color Palette */
-  --color-primary: #D32F2F;        /* Lucky Red */
+  /* 2. Paleta de Colores */
+  --color-primary: #D32F2F;
+  /* Rojo Lucky */
   --color-primary-hover: #B71C1C;
-  --color-secondary: #1A237E;      /* Aviation Navy */
+  --color-secondary: #1A237E;
+  /* Azul Aviación */
   --color-secondary-hover: #0D47A1;
-  --color-accent: #FFC107;         /* Golden Yellow */
-  --color-background: #F8F9FA;     /* Off-white */
-  --color-surface: #FFFFFF;        /* Pure White */
-  --color-text-primary: #212121;   /* Dark Gray */
-  --color-text-secondary: #757575; /* Medium Gray */
-  --color-border: #E0E0E0;         /* Light Gray */
+  --color-accent: #FFC107;
+  /* Amarillo Dorado */
+  --color-background: #F8F9FA;
+  /* Blanco roto */
+  --color-surface: #FFFFFF;
+  /* Blanco puro */
+  --color-text-primary: #212121;
+  /* Gris oscuro */
+  --color-text-secondary: #757575;
+  /* Gris medio */
+  --color-border: #E0E0E0;
+  /* Gris claro */
   --color-border-input: #BDBDBD;
-
-  /* 3. Typography */
+  --color-dark-background: #0F172A;
+  /* 3. Tipografía */
   --font-primary: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
   --font-size-base: 16px;
   --line-height-body: 1.5;
   --line-height-heading: 1.2;
-  
-  --font-size-h1: 2.5rem;   /* 40px */
-  --font-size-h2: 2rem;     /* 32px */
-  --font-size-h3: 1.5rem;   /* 24px */
-  --font-size-body: 1rem;   /* 16px */
-  --font-size-small: 0.875rem; /* 14px */
-  
+
+  --font-size-h1: 2.5rem;
+  /* 40px */
+  --font-size-h2: 2rem;
+  /* 32px */
+  --font-size-h3: 1.5rem;
+  /* 24px */
+  --font-size-body: 1rem;
+  /* 16px */
+  --font-size-small: 0.875rem;
+  /* 14px */
+
   --font-weight-regular: 400;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
 
-  /* 4. Spacing & Layout */
-  /* Spacing Scale (Base 8px) */
+  /* 4. Espaciado y Layout */
+  /* Escala de espaciado (Base 8px) */
   --spacing-xs: 4px;
   --spacing-sm: 8px;
   --spacing-md: 16px;
@@ -43,13 +56,16 @@
   --grid-gap: 24px;
   --card-padding: 24px;
 
-  /* 5. Component Styles - Tokens */
-  --border-radius-sm: 6px;   /* Forms */
-  --border-radius-md: 8px;   /* Buttons */
-  --border-radius-lg: 12px;  /* Cards */
-  
-  --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
-  --shadow-md: 0 8px 15px rgba(0,0,0,0.1);
-  
+  /* 5. Estilos de Componentes - Tokens */
+  --border-radius-sm: 6px;
+  /* Formularios */
+  --border-radius-md: 8px;
+  /* Botones */
+  --border-radius-lg: 12px;
+  /* Tarjetas */
+
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 15px rgba(0, 0, 0, 0.1);
+
   --transition-base: all 0.3s ease;
 }
