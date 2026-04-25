@@ -1,0 +1,251 @@
+/* =============================================================
+   HEADER — Lucky Air
+   Archivo: css/components/header.css
+   Depende de: css/base/variables.css (importado vía styles.css)
+   ============================================================= */
+
+/* -----------------------------------------------------------
+   1. Contenedor principal del header
+   ----------------------------------------------------------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+
+/* -----------------------------------------------------------
+   2. Barra de navegación interna (Flexbox)
+   ----------------------------------------------------------- */
+.header__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-md) var(--spacing-xl);
+  gap: var(--spacing-lg);
+}
+
+/* -----------------------------------------------------------
+   3. Logo
+   ----------------------------------------------------------- */
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.header__logo-text {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);       /* 24px */
+  font-weight: var(--font-weight-bold);
+  font-style: italic;
+  color: var(--color-primary);          /* Lucky Red */
+  letter-spacing: -0.5px;
+  line-height: var(--line-height-heading);
+}
+
+/* -----------------------------------------------------------
+   4. Lista de enlaces de navegación
+   ----------------------------------------------------------- */
+.header__links {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);               /* 4px — los links tienen su propio padding */
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__link-item {
+  display: flex;
+}
+
+.header__link {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);     /* 16px */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);     /* Dark Gray */
+  text-decoration: none;
+  padding: var(--spacing-xs) var(--spacing-md); /* 4px 16px */
+  border-radius: var(--border-radius-sm);
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+.header__link:hover {
+  color: var(--color-primary);
+  background-color: rgba(211, 47, 47, 0.06); /* primary con opacidad baja */
+}
+
+/* Estado activo — link actual (Inicio) */
+.header__link--active {
+  color: var(--color-primary);           /* Lucky Red */
+  font-weight: var(--font-weight-semibold);
+  border-bottom: 2px solid var(--color-primary);
+  border-radius: 0;                      /* underline: sin radius en bottom */
+  padding-bottom: calc(var(--spacing-xs) - 2px); /* compensa el border */
+}
+
+.header__link--active:hover {
+  background-color: transparent;
+}
+
+/* -----------------------------------------------------------
+   5. Acciones del header (Iniciar Sesión + Registrarse)
+   ----------------------------------------------------------- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);               /* 16px entre botones */
+  flex-shrink: 0;
+}
+
+/* Botón fantasma: "Iniciar Sesión" */
+.header__btn-ghost {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);     /* 16px */
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-primary);
+  text-decoration: none;
+  background: none;
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--border-radius-md);
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+.header__btn-ghost:hover {
+  color: var(--color-primary);
+}
+
+/* Botón primario: "Registrarse" */
+.header__btn-primary {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);     /* 16px */
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-surface);          /* Blanco */
+  text-decoration: none;
+  background-color: var(--color-primary); /* Lucky Red */
+  border: none;
+  border-radius: var(--border-radius-md); /* 8px */
+  padding: var(--spacing-sm) var(--spacing-lg); /* 8px 24px */
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+.header__btn-primary:hover {
+  background-color: var(--color-primary-hover); /* #B71C1C */
+}
+
+/* -----------------------------------------------------------
+   6. Botón hamburguesa (solo móvil, oculto en desktop)
+   ----------------------------------------------------------- */
+.header__menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-sm);
+}
+
+.header__menu-toggle span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--color-text-primary);
+  border-radius: 2px;
+  transition: var(--transition-base);
+}
+
+/* -----------------------------------------------------------
+   7. Responsive — Tablet (≤ 900px)
+   ----------------------------------------------------------- */
+@media (max-width: 900px) {
+  .header__nav {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .header__links {
+    gap: 0;
+  }
+
+  .header__link {
+    font-size: var(--font-size-small);  /* 14px */
+    padding: var(--spacing-xs) var(--spacing-sm);
+  }
+}
+
+/* -----------------------------------------------------------
+   8. Responsive — Móvil (≤ 768px)
+   ----------------------------------------------------------- */
+@media (max-width: 768px) {
+  .header__nav {
+    flex-wrap: wrap;
+    padding: var(--spacing-sm) var(--spacing-md);
+    gap: var(--spacing-sm);
+  }
+
+  /* Mostrar botón hamburguesa */
+  .header__menu-toggle {
+    display: flex;
+  }
+
+  /* Ocultar nav links en móvil (se muestran con JS o con :target) */
+  .header__links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 0;
+    padding: var(--spacing-sm) 0;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .header__links--open {
+    display: flex;
+  }
+
+  .header__link {
+    font-size: var(--font-size-body);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 0;
+    width: 100%;
+  }
+
+  .header__link--active {
+    border-bottom: none;
+    border-left: 3px solid var(--color-primary);
+    padding-left: calc(var(--spacing-md) - 3px);
+    border-radius: 0;
+  }
+
+  /* Acciones en móvil */
+  .header__actions {
+    width: 100%;
+    justify-content: flex-end;
+    gap: var(--spacing-sm);
+    padding-top: var(--spacing-sm);
+    border-top: 1px solid var(--color-border);
+  }
+
+  .header__btn-primary {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: var(--font-size-small);
+  }
+
+  .header__btn-ghost {
+    font-size: var(--font-size-small);
+  }
+}

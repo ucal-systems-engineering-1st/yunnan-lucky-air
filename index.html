@@ -8,30 +8,68 @@
       content="Lucky Air – Vuela a Yunnan, Dali y Xishuangbanna. Reserva vuelos, descubre destinos y únete a nuestra comunidad de viajeros."
     />
     <title>Lucky Air | Vuelos a Yunnan y más</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Estilos -->
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/components/header.css" />
     <link rel="stylesheet" href="css/components/footer.css" />
     <!-- Iconos de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
   <body>
     <!-- HEADER / NAV -->
-    <header id="main-header">
-      <nav id="main-nav">
-        <div class="logo">
-          <img src="assets/images/logo.webp" alt="Lucky Air Logo" />
-          <span>Lucky Air</span>
-        </div>
-        <ul class="nav-links">
-          <li><a href="index.html">Inicio</a></li>
-          <li><a href="views/self-service.html">Autoservicio</a></li>
-          <li><a href="views/community.html">Comunidad</a></li>
-          <li><a href="views/students.html">Estudiantes</a></li>
-          <li><a href="views/corporate.html">Corporativo</a></li>
+    <header id="main-header" class="header">
+      <nav id="main-nav" class="header__nav" aria-label="Navegación principal">
+
+        <!-- Logo -->
+        <a href="index.html" class="header__logo" aria-label="Lucky Air – Inicio">
+          <span class="header__logo-text">Lucky Air</span>
+        </a>
+
+        <!-- Botón hamburguesa (móvil) -->
+        <button
+          id="menu-toggle"
+          class="header__menu-toggle"
+          aria-label="Abrir menú"
+          aria-expanded="false"
+          aria-controls="main-links"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Links de navegación -->
+        <ul id="main-links" class="header__links" role="list">
+          <li class="header__link-item">
+            <a href="index.html" class="header__link header__link--active" aria-current="page">Inicio</a>
+          </li>
+          <li class="header__link-item">
+            <a href="views/self-service.html" class="header__link">Autoservicio</a>
+          </li>
+          <li class="header__link-item">
+            <a href="views/community.html" class="header__link">Comunidad</a>
+          </li>
+          <li class="header__link-item">
+            <a href="views/students.html" class="header__link">Estudiantes</a>
+          </li>
+          <li class="header__link-item">
+            <a href="views/corporate.html" class="header__link">Corporativo</a>
+          </li>
         </ul>
-        <div class="nav-actions">
-          <a href="views/login.html" class="btn btn-outline">Iniciar sesión</a>
-          <a href="#booking" class="btn btn-primary">Reservar ahora</a>
+
+        <!-- Acciones -->
+        <div class="header__actions">
+          <a href="views/login.html" class="header__btn-ghost">Iniciar Sesión</a>
+          <a href="#booking" class="header__btn-primary" id="header-register-btn">Registrarse</a>
         </div>
+
       </nav>
     </header>
 

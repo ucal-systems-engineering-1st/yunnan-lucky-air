@@ -2,6 +2,7 @@
 
 /* Import base variables */
 @import url('base/variables.css');
+@import url('components/header.css');
 
 /* Basic Reset */
 *, *::before, *::after {
