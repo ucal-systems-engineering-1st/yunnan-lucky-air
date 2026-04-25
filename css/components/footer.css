@@ -1,7 +1,6 @@
 /* Componente Footer - Lucky Air */
 .site-footer {
     background-color: var(--color-dark-background);
-    /* Azul Aviación (#1A237E) */
     color: #ffffff;
     padding: var(--spacing-xxl) 0 var(--spacing-lg);
     font-family: var(--font-primary);
@@ -23,7 +22,6 @@
 /* Columna de Marca */
 .brand-column .footer-logo-text {
     color: var(--color-primary);
-    /* Rojo Lucky (#D32F2F) */
     font-size: 2.2rem;
     font-weight: var(--font-weight-bold);
     font-style: italic;
@@ -111,31 +109,4 @@
     font-size: 0.75rem;
     letter-spacing: 1px;
     text-transform: uppercase;
-}
-
-/* Diseño Responsivo */
-@media (max-width: 992px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--spacing-xxl);
-    }
-}
-
-@media (max-width: 576px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .brand-description {
-        margin: 0 auto var(--spacing-lg);
-    }
-
-    .social-icons {
-        justify-content: center;
-    }
-
-    .footer-links a:hover {
-        transform: none;
-    }
 }
