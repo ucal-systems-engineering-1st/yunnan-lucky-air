@@ -6,6 +6,48 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [1.3.0] - 2026-04-11
+
+### 🚀 Added
+
+- add GitHub Pages deployment workflow
+
+---
+
+## [1.2.3] - 2026-04-11
+
+### 🐞 Fixed
+
+- replace blank destination images with actual photos
+
+---
+
+## [1.2.2] - 2026-04-11
+
+### 🐞 Fixed
+
+- add contact form with type=email to satisfy EE1 CI check
+
+---
+
+## [1.2.1] - 2026-04-11
+
+### 🐞 Fixed
+
+- correct broken image paths, add login/register pages and labels
+
+---
+
+## [1.2.0] - 2026-04-11
+
+### 🚀 Added
+
+- add self-service page with check-in, flight status, and baggage policy sections
+- implementar sección corporativa con hero, beneficios y formulario
+- add complete community.html structure with sections, tabla and form - EE1 guideline
+
+---
+
 ## [] - 2026-04-11
 
 ### 🚀 Added

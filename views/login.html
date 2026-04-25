@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Inicia sesión en Lucky Air y accede a tus reservas, historial de vuelos y beneficios del programa de lealtad." />
+  <title>Lucky Air | Iniciar sesión</title>
+</head>
+<body>
+
+  <!-- HEADER / NAV -->
+  <header id="main-header">
+    <nav id="main-nav">
+      <div class="logo">
+        <img src="../assets/images/logo.webp" alt="Lucky Air Logo" />
+        <span>Lucky Air</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="self-service.html">Autoservicio</a></li>
+        <li><a href="community.html">Comunidad</a></li>
+        <li><a href="students.html">Estudiantes</a></li>
+        <li><a href="corporate.html">Corporativo</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="login.html" aria-current="page" class="btn btn-outline">Iniciar sesión</a>
+        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="login-main">
+
+    <section id="login-section">
+      <h1>Iniciar sesión</h1>
+      <p>Accede a tu cuenta Lucky Air para gestionar tus reservas y beneficios.</p>
+
+      <form id="login-form" action="#" method="POST">
+
+        <div class="form-group">
+          <label for="login-email">Correo electrónico</label>
+          <input type="email" id="login-email" name="email"
+                 placeholder="correo@ejemplo.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="login-password">Contraseña</label>
+          <input type="password" id="login-password" name="password"
+                 placeholder="Tu contraseña" required />
+        </div>
+
+        <button type="submit" id="login-btn" class="btn btn-primary">Ingresar</button>
+
+        <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
+        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+
+      </form>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="main-footer">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/images/logo.webp" alt="Lucky Air" />
+        <p>Conectando el mundo con Yunnan.</p>
+      </div>
+      <nav class="footer-links" aria-label="Destinos">
+        <h4>Destinos</h4>
+        <ul>
+          <li><a href="../index.html#popular-destinations">Dali</a></li>
+          <li><a href="../index.html#popular-destinations">Xishuangbanna</a></li>
+          <li><a href="../index.html#popular-destinations">Kunming</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-links" aria-label="Servicios">
+        <h4>Servicios</h4>
+        <ul>
+          <li><a href="self-service.html">Autoservicio</a></li>
+          <li><a href="community.html">Comunidad</a></li>
+          <li><a href="register.html">Crear cuenta</a></li>
+        </ul>
+      </nav>
+      <div class="footer-contact">
+        <h4>Contacto</h4>
+        <p>soporte@luckyair.com</p>
+        <p>+86 871 0000 0000</p>
+      </div>
+    </div>
+    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
+  </footer>
+
+</body>
+</html>
