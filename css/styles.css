@@ -38,3 +38,216 @@ img {
   max-width: 100%;
   display: block;
 }
+
+/* =============================================================
+   LAYOUT — Secciones (Flexbox)
+   ============================================================= */
+
+/* Utilidad compartida para todas las secciones */
+.section-inner {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+}
+
+/* ------------------------------------------------------------------
+   1. HERO — dos columnas: contenido | imagen
+   ------------------------------------------------------------------ */
+#hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-xxl);
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+}
+
+.hero-content {
+  flex: 1;
+  max-width: 520px;
+}
+
+.hero-content h1 {
+  font-size: var(--font-size-h1);
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-content p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-xl);
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: var(--border-radius-lg);
+  object-fit: cover;
+}
+
+/* ------------------------------------------------------------------
+   2. DESTINOS POPULARES — 3 tarjetas en fila
+   ------------------------------------------------------------------ */
+#popular-destinations {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+  text-align: center;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--grid-gap);
+  margin-top: var(--spacing-xl);
+}
+
+.destination-card {
+  min-width: 0;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-base);
+}
+
+.destination-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+}
+
+.destination-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-info {
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.price-tag {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+}
+
+/* ------------------------------------------------------------------
+   3. ¿POR QUÉ LUCKY AIR? — 4 features en fila
+   ------------------------------------------------------------------ */
+#why-lucky-air {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+  text-align: center;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--grid-gap);
+  margin-top: var(--spacing-xl);
+}
+
+.feature-item {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--card-padding);
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.feature-item img {
+  width: 48px;
+  height: 48px;
+}
+
+/* ------------------------------------------------------------------
+   4. ESTRELLAS — iconos en fila
+   ------------------------------------------------------------------ */
+.stars {
+  display: flex;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.stars img {
+  width: 20px;
+  height: 20px;
+}
+
+/* ------------------------------------------------------------------
+   5. RESEÑAS — 3 cards en fila (mismo patrón que destinos)
+   ------------------------------------------------------------------ */
+#reviews {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+  text-align: center;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--grid-gap);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+}
+
+.review-card {
+  min-width: 0;
+  background: var(--color-surface);
+  border-radius: var(--border-radius-lg);
+  padding: var(--card-padding);
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+}
+
+.review-card p {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin-bottom: var(--spacing-md);
+}
+
+.review-card footer {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+}
+
+/* ------------------------------------------------------------------
+   Responsive — Móvil (≤ 768px)
+   ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+  #hero {
+    flex-direction: column;
+    padding: var(--spacing-xxl) var(--spacing-md);
+    gap: var(--spacing-xl);
+  }
+
+  .hero-content {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .hero-image {
+    justify-content: center;
+  }
+
+  #popular-destinations,
+  #why-lucky-air,
+  #reviews {
+    padding: var(--spacing-xxl) var(--spacing-md);
+  }
+}
