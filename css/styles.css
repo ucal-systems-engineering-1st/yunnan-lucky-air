@@ -102,17 +102,14 @@ img {
 }
 
 .destinations-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--grid-gap);
-  flex-wrap: wrap;
-  justify-content: center;
   margin-top: var(--spacing-xl);
 }
 
 .destination-card {
-  flex: 1;
-  min-width: 260px;
-  max-width: 360px;
+  min-width: 0;
   background: var(--color-surface);
   border-radius: var(--border-radius-lg);
   overflow: hidden;
@@ -154,17 +151,14 @@ img {
 }
 
 .features-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: var(--grid-gap);
-  flex-wrap: wrap;
-  justify-content: center;
   margin-top: var(--spacing-xl);
 }
 
 .feature-item {
-  flex: 1;
-  min-width: 200px;
-  max-width: 260px;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -205,18 +199,15 @@ img {
 }
 
 .reviews-grid {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--grid-gap);
-  flex-wrap: wrap;
-  justify-content: center;
   margin-top: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
 }
 
 .review-card {
-  flex: 1;
-  min-width: 260px;
-  max-width: 360px;
+  min-width: 0;
   background: var(--color-surface);
   border-radius: var(--border-radius-lg);
   padding: var(--card-padding);
