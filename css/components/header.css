@@ -151,8 +151,8 @@
    ----------------------------------------------------------- */
 .header__menu-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: center;
+  grid-template-rows: repeat(3, 2px);
+  align-content: space-between;
   gap: 5px;
   background: none;
   border: none;
@@ -200,7 +200,7 @@
 
   /* Mostrar botón hamburguesa */
   .header__menu-toggle {
-    display: flex;
+    display: grid;
   }
 
   /* Ocultar nav links en móvil (se muestran con JS o con :target) */
