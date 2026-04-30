@@ -6,6 +6,19 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.0.0] - 2026-04-30
+
+### 🚀 Added
+
+- add Flexbox layout to hero, cards, features and reviews sections
+
+### 🐞 Fixed
+
+- use CSS Grid on hamburger toggle to satisfy EE2 CI check
+- replace Flexbox with CSS Grid on card grids to meet EE2 requirements
+
+---
+
 ## [1.5.0] - 2026-04-25
 
 ### 🚀 Added
