@@ -51,7 +51,7 @@
             <a href="index.html" class="header__link header__link--active" aria-current="page">Inicio</a>
           </li>
           <li class="header__link-item">
-            <a href="views/self-service.html" class="header__link">Autoservicio</a>
+            <a href="views/self-service.html" class="header__link">Académico</a>
           </li>
           <li class="header__link-item">
             <a href="views/community.html" class="header__link">Comunidad</a>
@@ -60,7 +60,7 @@
             <a href="views/students.html" class="header__link">Estudiantes</a>
           </li>
           <li class="header__link-item">
-            <a href="views/corporate.html" class="header__link">Corporativo</a>
+            <a href="views/corporate.html" class="header__link">Encuentros</a>
           </li>
         </ul>
 
@@ -77,7 +77,7 @@
       <!-- HERO -->
       <section id="hero">
         <div class="hero-content">
-          <h1>Descubre la magia de Yunnan</h1>
+          <h1>Descubre la magia de Yunnan Lucky Air</h1>
           <p>
             Vuelos directos a Dali, Xishuangbanna y más destinos únicos en
             China.
@@ -90,7 +90,7 @@
                 type="text"
                 id="origin"
                 name="origin"
-                placeholder="Ciudad de origen"
+                placeholder="Origen"
                 required
               />
             </div>
@@ -100,7 +100,7 @@
                 type="text"
                 id="destination"
                 name="destination"
-                placeholder="Ciudad de destino"
+                placeholder="Destino"
                 required
               />
             </div>
@@ -115,55 +115,61 @@
             <div class="form-group">
               <label for="passengers">Pasajeros</label>
               <select id="passengers" name="passengers">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4+</option>
+                <option value="1">1 Pasajero</option>
+                <option value="2">2 Pasajeros</option>
+                <option value="3">3 Pasajeros</option>
+                <option value="4">4+ Pasajeros</option>
               </select>
             </div>
             <button
               type="submit"
-              class="btn btn-primary btn-large"
+              class="btn btn-primary"
               id="search-flights-btn"
             >
-              Buscar vuelos
+              Buscar
             </button>
           </form>
-        </div>
-        <div class="hero-image">
-          <img src="assets/images/yunnan-hero.webp" alt="Paisaje de Yunnan" />
         </div>
       </section>
 
       <!-- DESTINOS POPULARES -->
       <section id="popular-destinations">
-        <h2>Destinos populares</h2>
+        <div class="section-header">
+          <div>
+            <h2>Destinos populares</h2>
+            <p>Descubre la belleza de la provincia de Yunnan y más allá.</p>
+          </div>
+          <a href="#" class="section-link">Ver todos los destinos →</a>
+        </div>
         <div class="destinations-grid">
+          <article class="destination-card" id="card-kunming">
+            <img src="assets/images/kunming.webp" alt="Kunming" />
+            <div class="card-info">
+              <h3>Kunming</h3>
+              <p>La Ciudad de la Eterna Primavera</p>
+              <span class="price-tag">Desde ¥450</span>
+              <a href="#booking" class="btn btn-secondary">Reservar</a>
+            </div>
+          </article>
+          <article class="destination-card" id="card-xishuangbanna">
+            <div class="card-image-wrapper">
+              <img src="assets/images/xishuangbanna.webp" alt="Xishuangbanna" />
+              <span class="badge badge--popular">Más Visto</span>
+            </div>
+            <div class="card-info">
+              <h3>Xishuangbanna</h3>
+              <p>Selvas tropicales y cultura Dai</p>
+              <span class="price-tag">Desde ¥580</span>
+              <a href="#booking" class="btn btn-secondary">Reservar</a>
+            </div>
+          </article>
           <article class="destination-card" id="card-dali">
             <img src="assets/images/dali.webp" alt="Dali, Yunnan" />
             <div class="card-info">
               <h3>Dali</h3>
               <p>Ciudad histórica junto al lago Erhai</p>
-              <span class="price-tag">Desde $199 USD</span>
-              <a href="#booking" class="btn btn-secondary">Ver vuelos</a>
-            </div>
-          </article>
-          <article class="destination-card" id="card-xishuangbanna">
-            <img src="assets/images/xishuangbanna.webp" alt="Xishuangbanna" />
-            <div class="card-info">
-              <h3>Xishuangbanna</h3>
-              <p>Selvas tropicales y cultura Dai</p>
-              <span class="price-tag">Desde $220 USD</span>
-              <a href="#booking" class="btn btn-secondary">Ver vuelos</a>
-            </div>
-          </article>
-          <article class="destination-card" id="card-kunming">
-            <img src="assets/images/kunming.webp" alt="Kunming" />
-            <div class="card-info">
-              <h3>Kunming</h3>
-              <p>La Ciudad Primavera de China</p>
-              <span class="price-tag">Desde $180 USD</span>
-              <a href="#booking" class="btn btn-secondary">Ver vuelos</a>
+              <span class="price-tag">Desde ¥520</span>
+              <a href="#booking" class="btn btn-secondary">Reservar</a>
             </div>
           </article>
         </div>
@@ -171,47 +177,39 @@
 
       <!-- RUTAS Y TARIFAS -->
       <section id="routes-fares">
-        <h2>Rutas y tarifas</h2>
+        <h2>Rutas Populares y Tarifas</h2>
         <div class="table-wrapper">
           <table id="routes-table">
             <thead>
               <tr>
                 <th scope="col">Origen</th>
                 <th scope="col">Destino</th>
-                <th scope="col">Duración aprox.</th>
-                <th scope="col">Tarifa desde</th>
+                <th scope="col">Duración Aprox.</th>
+                <th scope="col">Tarifa Desde</th>
+                <th scope="col"></th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Lima, Perú</td>
-                <td>Kunming</td>
-                <td>20 h</td>
-                <td>$180 USD</td>
+                <td>Kunming (KMG)</td>
+                <td>Beijing (PEK)</td>
+                <td>33 h</td>
+                <td class="price-highlight">¥680</td>
+                <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
               </tr>
               <tr>
-                <td>Lima, Perú</td>
-                <td>Dali</td>
-                <td>22 h</td>
-                <td>$199 USD</td>
+                <td>Kunming (KMG)</td>
+                <td>Shanghai (PVG)</td>
+                <td>31 h</td>
+                <td class="price-highlight">¥750</td>
+                <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
               </tr>
               <tr>
-                <td>Lima, Perú</td>
-                <td>Xishuangbanna</td>
-                <td>24 h</td>
-                <td>$220 USD</td>
-              </tr>
-              <tr>
-                <td>Bogotá, Colombia</td>
-                <td>Kunming</td>
-                <td>20 h</td>
-                <td>$195 USD</td>
-              </tr>
-              <tr>
-                <td>Ciudad de México</td>
-                <td>Kunming</td>
-                <td>18 h</td>
-                <td>$210 USD</td>
+                <td>Lijiang (LJG)</td>
+                <td>Guangzhou (CAN)</td>
+                <td>31 h</td>
+                <td class="price-highlight">¥635</td>
+                <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
               </tr>
             </tbody>
           </table>
@@ -222,32 +220,32 @@
       <section id="why-lucky-air">
         <h2>¿Por qué volar con Lucky Air?</h2>
         <div class="features-grid">
-          <div class="feature-item" id="feature-price">
-            <img src="assets/icons/cost.svg" alt="Mejor precio" />
-            <h3>Mejor precio garantizado</h3>
-            <p>Tarifas competitivas en todos nuestros destinos.</p>
+          <div class="feature-item" id="feature-security">
+            <i data-lucide="shield"></i>
+            <h3>Seguridad Primera</h3>
+            <p>Cumplimos con todos los estándares internacionales de seguridad aérea.</p>
           </div>
-          <div class="feature-item" id="feature-loyalty">
-            <img src="assets/icons/star-filled.svg" alt="Programa de lealtad" />
-            <h3>Programa de lealtad</h3>
-            <p>Acumula puntos y canjéalos por vuelos gratis.</p>
+          <div class="feature-item" id="feature-support">
+            <i data-lucide="headset"></i>
+            <h3>Soporte 24/7</h3>
+            <p>Nuestro equipo está disponible toda la semana para ayudarte en cada vuelo.</p>
           </div>
-          <div class="feature-item" id="feature-service">
-            <img src="assets/icons/time.svg" alt="Servicio 24/7" />
-            <h3>Atención 24/7</h3>
-            <p>Chat en vivo y soporte en varios idiomas.</p>
+          <div class="feature-item" id="feature-local">
+            <i data-lucide="utensils"></i>
+            <h3>Sabor Local</h3>
+            <p>Disfruta de la auténtica gastronomía yunnanesa a bordo de nuestros vuelos.</p>
           </div>
-          <div class="feature-item" id="feature-safe">
-            <img src="assets/icons/control.svg" alt="Pago seguro" />
-            <h3>Pago seguro</h3>
-            <p>Acepta Alipay, PayPal y tarjetas internacionales.</p>
+          <div class="feature-item" id="feature-punctuality">
+            <i data-lucide="clock"></i>
+            <h3>Puntualidad</h3>
+            <p>Más del 95% de nuestros vuelos llegan a tiempo cada día en la región.</p>
           </div>
         </div>
       </section>
 
       <!-- RESEÑAS DE USUARIOS -->
       <section id="reviews">
-        <h2>Lo que dicen nuestros viajeros</h2>
+        <h2>Lo que dicen nuestros pasajeros</h2>
         <div class="reviews-grid">
           <article class="review-card" id="review-1">
             <div class="stars">
