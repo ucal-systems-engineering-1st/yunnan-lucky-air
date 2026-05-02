@@ -6,6 +6,15 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.1.0] - 2026-05-02
+
+### 🚀 Added
+
+- refactorizar estilos Home al diseño Figma
+- alinear contenido Home al diseño Figma
+
+---
+
 ## [2.0.0] - 2026-04-30
 
 ### 🚀 Added
