@@ -51,44 +51,116 @@ img {
 }
 
 /* ------------------------------------------------------------------
-   1. HERO — dos columnas: contenido | imagen
+   1. HERO — full-width con imagen de fondo y overlay
    ------------------------------------------------------------------ */
 #hero {
+  position: relative;
+  min-height: 520px;
+  background-image: url('../assets/images/yunnan-hero.webp');
+  background-size: cover;
+  background-position: center right;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-xxl);
+  color: #fff;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(15, 23, 42, 0.88) 0%,
+    rgba(15, 23, 42, 0.55) 55%,
+    rgba(15, 23, 42, 0.15) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-huge) var(--spacing-xl);
 }
 
-.hero-content {
-  flex: 1;
-  max-width: 520px;
-}
-
 .hero-content h1 {
   font-size: var(--font-size-h1);
   margin-bottom: var(--spacing-md);
+  max-width: 600px;
+  color: #fff;
 }
 
-.hero-content p {
-  color: var(--color-text-secondary);
+.hero-content > p {
+  color: rgba(255, 255, 255, 0.85);
   margin-bottom: var(--spacing-xl);
+  font-size: 1.1rem;
+  max-width: 480px;
 }
 
-.hero-image {
-  flex: 1;
+/* Formulario de búsqueda — barra horizontal sobre el hero */
+#booking {
   display: flex;
-  justify-content: flex-end;
+  align-items: flex-end;
+  gap: var(--spacing-md);
+  background: #fff;
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-md) var(--spacing-lg);
+  max-width: 900px;
+  flex-wrap: wrap;
 }
 
-.hero-image img {
+#booking .form-group {
+  flex: 1;
+  min-width: 110px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+#booking label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+}
+
+#booking input,
+#booking select {
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--spacing-xs) 0;
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  background: transparent;
   width: 100%;
-  max-width: 500px;
-  border-radius: var(--border-radius-lg);
-  object-fit: cover;
+  outline: none;
+  font-family: var(--font-primary);
+}
+
+#booking input:focus,
+#booking select:focus {
+  border-bottom-color: var(--color-primary);
+}
+
+#booking .btn {
+  flex-shrink: 0;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  cursor: pointer;
+  transition: var(--transition-base);
+  white-space: nowrap;
+}
+
+#booking .btn:hover {
+  background-color: var(--color-primary-hover);
 }
 
 /* ------------------------------------------------------------------
@@ -98,14 +170,43 @@ img {
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: var(--spacing-huge) var(--spacing-xl);
-  text-align: center;
+}
+
+/* Encabezado de sección con link alineado a la derecha */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-header h2 {
+  margin-bottom: var(--spacing-xs);
+}
+
+.section-header p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin: 0;
+}
+
+.section-link {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  white-space: nowrap;
+  transition: var(--transition-base);
+}
+
+.section-link:hover {
+  color: var(--color-primary-hover);
 }
 
 .destinations-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: var(--grid-gap);
-  margin-top: var(--spacing-xl);
 }
 
 .destination-card {
@@ -122,10 +223,35 @@ img {
   transform: translateY(-4px);
 }
 
-.destination-card img {
+/* Wrapper para imagen + badge posicionado */
+.card-image-wrapper {
+  position: relative;
+}
+
+.destination-card img,
+.card-image-wrapper img {
   width: 100%;
   height: 200px;
   object-fit: cover;
+  display: block;
+}
+
+/* Badge "Más Visto" */
+.badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-bold);
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badge--popular {
+  background-color: var(--color-accent);
+  color: var(--color-text-primary);
 }
 
 .card-info {
@@ -167,6 +293,15 @@ img {
   background: var(--color-surface);
   border-radius: var(--border-radius-lg);
   box-shadow: var(--shadow-sm);
+}
+
+/* Iconos Lucide en feature items */
+.feature-item i,
+.feature-item svg {
+  width: 48px;
+  height: 48px;
+  color: var(--color-primary);
+  stroke-width: 1.5;
 }
 
 .feature-item img {
@@ -227,22 +362,63 @@ img {
 }
 
 /* ------------------------------------------------------------------
+   6. TABLA DE RUTAS — precio destacado y link "Ver Tarifas"
+   ------------------------------------------------------------------ */
+.price-highlight {
+  font-weight: var(--font-weight-bold);
+  color: var(--color-primary);
+}
+
+.table-link {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  transition: var(--transition-base);
+}
+
+.table-link:hover {
+  color: var(--color-primary-hover);
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------
    Responsive — Móvil (≤ 768px)
    ------------------------------------------------------------------ */
 @media (max-width: 768px) {
+  /* Hero: reducir altura mínima y ajustar padding */
   #hero {
-    flex-direction: column;
-    padding: var(--spacing-xxl) var(--spacing-md);
-    gap: var(--spacing-xl);
+    min-height: 420px;
+    background-position: center;
   }
 
   .hero-content {
-    max-width: 100%;
+    padding: var(--spacing-xxl) var(--spacing-md);
+  }
+
+  .hero-content h1 {
+    font-size: 1.75rem;
+  }
+
+  /* Formulario apilado en móvil */
+  #booking {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md);
+  }
+
+  #booking .form-group {
+    min-width: 100%;
+  }
+
+  #booking .btn {
+    width: 100%;
     text-align: center;
   }
 
-  .hero-image {
-    justify-content: center;
+  /* Encabezado de sección apilado */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   #popular-destinations,
