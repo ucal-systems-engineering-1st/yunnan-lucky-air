@@ -1,0 +1,623 @@
+/* =============================================================
+   SELF-SERVICE — Layout específico de página
+   Archivo: css/layouts/self-service.css
+   Depende de: css/base/variables.css, css/styles.css
+   ============================================================= */
+
+/* ==================================================================
+   1. HERO DE AUTOSERVICIO
+   ================================================================== */
+#self-service-hero {
+  position: relative;
+  min-height: 420px;
+  background-image: url('../../assets/images/selfservice.webp');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+#self-service-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg,
+      rgba(15, 23, 42, 0.90) 0%,
+      rgba(15, 23, 42, 0.55) 55%,
+      rgba(15, 23, 42, 0.15) 100%);
+}
+
+#self-service-hero .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--spacing-huge) var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+#self-service-hero h1 {
+  font-size: var(--font-size-h1);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  max-width: 560px;
+  line-height: var(--line-height-heading);
+  margin: 0;
+}
+
+#self-service-hero p {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.05rem;
+  max-width: 480px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+}
+
+#self-service-hero .btn-outline {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#self-service-hero .btn-outline:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: #fff;
+  color: #fff;
+}
+
+/* ==================================================================
+   2. SECCIONES DE CONTENIDO — layout base
+   padding-inline dinámico centra un área de --container-max-width;
+   todo el contenido dentro queda left-aligned al mismo borde.
+   ================================================================== */
+#services-overview,
+#checkin,
+#flight-status,
+#baggage-info,
+#refund-request,
+#faq,
+#support-contact {
+  padding-block: var(--spacing-huge);
+  padding-inline: max(var(--spacing-xl), calc((100% - var(--container-max-width)) / 2));
+}
+
+/* Fondos alternos */
+#services-overview,
+#baggage-info,
+#faq {
+  background-color: var(--color-background);
+}
+
+#checkin,
+#flight-status,
+#refund-request,
+#support-contact {
+  background-color: #fff;
+}
+
+/* ------------------------------------------------------------------
+   2a. Encabezados de sección — centrados
+   Patrón: h2 centrado + párrafo descriptivo centrado debajo
+   ------------------------------------------------------------------ */
+#services-overview h2,
+#checkin h2,
+#flight-status h2,
+#baggage-info h2,
+#refund-request h2,
+#faq h2,
+#support-contact h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+}
+
+/* Párrafos descriptivos — centrados debajo del h2 */
+#services-overview>p,
+#checkin>p,
+#flight-status>p,
+#baggage-info>p,
+#refund-request>p,
+#support-contact>p {
+  color: var(--color-text-secondary);
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto var(--spacing-xxl);
+  line-height: 1.7;
+}
+
+/* ==================================================================
+   3. TARJETAS DE SERVICIOS — usa .features-grid del styles.css global
+   ================================================================== */
+/* (Las clases .features-grid y .feature-item están en styles.css) */
+
+/* Encabezado + subtítulo de la sección de servicios */
+.section-title-center {
+  text-align: center;
+  max-width: 620px;
+  margin: 0 auto var(--spacing-xxl);
+}
+
+.section-title-center h2 {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--spacing-sm);
+}
+
+.section-title-center p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  margin: 0;
+}
+
+/* ==================================================================
+   4. FORMULARIOS — fieldset como card
+   ================================================================== */
+fieldset {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-xl);
+  background: var(--color-surface);
+}
+
+legend {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  padding: 0 var(--spacing-sm);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-md);
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-group label,
+fieldset label {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+fieldset label:has(input[type="checkbox"]),
+fieldset label:has(input[type="radio"]) {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: var(--font-weight-regular);
+  cursor: pointer;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+fieldset input:not([type="checkbox"]):not([type="radio"]),
+fieldset select,
+fieldset textarea {
+  width: 100%;
+  padding: var(--spacing-sm) var(--spacing-md);
+  border: 1px solid var(--color-border-input);
+  border-radius: var(--border-radius-sm);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  background-color: var(--color-surface);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+fieldset input:not([type="checkbox"]):not([type="radio"]):focus,
+fieldset select:focus,
+fieldset textarea:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(211, 47, 47, 0.12);
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  accent-color: var(--color-primary);
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Check-in — grid 2 col */
+#checkin-form {
+  max-width: 780px;
+  margin-inline: auto;
+}
+
+#checkin-form fieldset {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-md) var(--spacing-xl);
+  align-items: start;
+}
+
+#checkin-form fieldset legend {
+  grid-column: 1 / -1;
+}
+
+#checkin-form fieldset .form-group {
+  margin-bottom: 0;
+}
+
+/* Secciones con layout izquierdo */
+#baggage-info h2 {
+  text-align: left;
+}
+
+#baggage-info > p {
+  text-align: left;
+  margin-inline: 0;
+  max-width: none;
+}
+
+/* ==================================================================
+   5. ESTADO DE VUELO — formulario en fila
+   ================================================================== */
+#flight-status-form {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--spacing-md);
+  flex-wrap: wrap;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xl);
+  max-width: 580px;
+  margin-inline: auto;
+}
+
+#flight-status-form .form-group {
+  flex: 1;
+  min-width: 150px;
+  margin-bottom: 0;
+}
+
+/* ==================================================================
+   6. TABLA DE EQUIPAJE
+   ================================================================== */
+#baggage-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-small);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  margin-bottom: var(--spacing-xl);
+}
+
+#baggage-table caption {
+  caption-side: top;
+  text-align: left;
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-style: italic;
+}
+
+#baggage-table thead {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+#baggage-table th {
+  padding: var(--spacing-md) var(--spacing-lg);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  white-space: nowrap;
+}
+
+#baggage-table td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+#baggage-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#baggage-table tbody tr:hover {
+  background-color: rgba(211, 47, 47, 0.04);
+}
+
+#baggage-table tfoot td {
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--color-background);
+  color: var(--color-text-secondary);
+  font-size: 0.8rem;
+  border-top: 1px solid var(--color-border);
+  font-style: italic;
+}
+
+/* Artículos prohibidos */
+.prohibited-items-list-title {
+  padding-top: var(--spacing-xl);
+}
+
+#prohibited-items-list {
+  padding-left: var(--spacing-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-md);
+}
+
+#prohibited-items-list li::marker {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* ==================================================================
+   7. FAQ — details / summary
+   ================================================================== */
+#faq .section-title-center {
+  margin-bottom: var(--spacing-xl);
+}
+
+details {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  width: 100%;
+  margin: 0 0 var(--spacing-md);
+  transition: box-shadow 0.2s ease;
+}
+
+details[open] {
+  box-shadow: var(--shadow-md);
+  border-color: rgba(211, 47, 47, 0.4);
+}
+
+summary {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  transition: background-color 0.2s ease, color 0.2s ease;
+  user-select: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: '+';
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+details[open] summary::after {
+  content: '×';
+}
+
+summary:hover {
+  background-color: rgba(211, 47, 47, 0.04);
+  color: var(--color-primary);
+}
+
+details[open] summary {
+  color: var(--color-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+
+details>p,
+details>ul {
+  padding: var(--spacing-lg) var(--spacing-xl);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+  line-height: 1.7;
+  margin: 0;
+}
+
+details>ul {
+  padding-left: calc(var(--spacing-xl) + var(--spacing-md));
+  list-style: disc;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xs);
+}
+
+/* ==================================================================
+   8. SOPORTE Y CONTACTO — layout 2 columnas
+   ================================================================== */
+.support-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-xxl);
+  align-items: start;
+}
+
+#support-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+#support-form h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0;
+}
+
+/* Tarjeta de información de contacto */
+.support-info {
+  background: var(--color-background);
+  border-radius: var(--border-radius-lg);
+  padding: var(--spacing-xxl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-lg);
+}
+
+.support-info h3 {
+  font-size: var(--font-size-h3);
+  font-weight: var(--font-weight-bold);
+  margin: 0;
+}
+
+.support-info>p {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-body);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.support-info address {
+  font-style: normal;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.support-info address p {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-body);
+  color: var(--color-text-primary);
+  margin: 0;
+}
+
+.support-info address i,
+.support-info address svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.support-info address a {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+.support-info address a:hover {
+  text-decoration: underline;
+  color: var(--color-primary-hover);
+}
+
+.support-hours {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--spacing-lg);
+}
+
+.support-hours h4 {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  margin: 0 0 var(--spacing-sm);
+}
+
+.support-hours p {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  margin: 0 0 var(--spacing-xs);
+  line-height: 1.6;
+}
+
+/* ==================================================================
+   RESPONSIVE — Tablet (≤ 900px)
+   ================================================================== */
+@media (max-width: 900px) {
+  #checkin-form fieldset {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==================================================================
+   RESPONSIVE — Móvil (≤ 768px)
+   ================================================================== */
+@media (max-width: 768px) {
+  #self-service-hero {
+    min-height: 340px;
+  }
+
+  #self-service-hero .hero-content {
+    padding: var(--spacing-xxl) var(--spacing-md);
+  }
+
+  #self-service-hero h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #services-overview,
+  #checkin,
+  #flight-status,
+  #baggage-info,
+  #refund-request,
+  #faq,
+  #support-contact {
+    padding-block: var(--spacing-xxl);
+    padding-inline: var(--spacing-md);
+  }
+
+  #flight-status-form {
+    flex-direction: column;
+    padding: var(--spacing-lg);
+  }
+
+  #flight-status-form .form-group {
+    min-width: 100%;
+  }
+
+  fieldset {
+    padding: var(--spacing-lg);
+  }
+
+  summary {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  details>p,
+  details>ul {
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  #baggage-table th,
+  #baggage-table td {
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: 0.8rem;
+  }
+}
