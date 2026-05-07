@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.3.0] - 2026-05-07
+
+### 🚀 Added
+
+- homogenizar header y footer en todas las páginas
+
+---
+
 ## [2.2.0] - 2026-05-07
 
 ### 🚀 Added
