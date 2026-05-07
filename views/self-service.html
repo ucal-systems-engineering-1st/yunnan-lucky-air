@@ -1,34 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portal de autoservicio Lucky Air. Realiza tu check-in en línea, consulta el estado de tu vuelo, solicita reembolsos y gestiona tu equipaje." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Portal de autoservicio Lucky Air. Realiza tu check-in en línea, consulta el estado de tu vuelo, solicita reembolsos y gestiona tu equipaje." />
   <title>Lucky Air | Autoservicio</title>
-  <link rel="stylesheet" href="../css/themes/brand.css" />
-  <link rel="stylesheet" href="../css/layouts/main.css" />
-  <link rel="stylesheet" href="../css/components/buttons.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/components/header.css" />
+  <link rel="stylesheet" href="../css/components/footer.css" />
+  <link rel="stylesheet" href="../css/views/self-service.css" />
+  <!-- Iconos Lucide -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
+
 <body>
 
   <!-- HEADER / NAV -->
-  <header id="main-header">
-    <nav id="main-nav">
-      <div class="logo">
-        <img src="../assets/images/logo.webp" alt="Lucky Air Logo" />
-        <span>Lucky Air</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="self-service.html" aria-current="page">Autoservicio</a></li>
-        <li><a href="community.html">Comunidad</a></li>
-        <li><a href="students.html">Estudiantes</a></li>
-        <li><a href="corporate.html">Corporativo</a></li>
+  <header id="main-header" class="header">
+    <nav id="main-nav" class="header__nav" aria-label="Navegación principal">
+
+      <a href="../index.html" class="header__logo" aria-label="Lucky Air – Inicio">
+        <span class="header__logo-text">Lucky Air</span>
+      </a>
+
+      <button id="menu-toggle" class="header__menu-toggle" aria-label="Abrir menú" aria-expanded="false"
+        aria-controls="main-links">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul id="main-links" class="header__links" role="list">
+        <li class="header__link-item"><a href="../index.html" class="header__link">Inicio</a></li>
+        <li class="header__link-item"><a href="self-service.html" class="header__link header__link--active"
+            aria-current="page">Autoservicio</a></li>
+        <li class="header__link-item"><a href="community.html" class="header__link">Comunidad</a></li>
+        <li class="header__link-item"><a href="students.html" class="header__link">Estudiantes</a></li>
+        <li class="header__link-item"><a href="corporate.html" class="header__link">Corporativo</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" class="btn btn-outline">Iniciar sesión</a>
-        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+
+      <div class="header__actions">
+        <a href="login.html" class="header__btn-ghost">Iniciar Sesión</a>
+        <a href="../index.html#booking" class="header__btn-primary">Registrarse</a>
+        <a href="login.html" class="header__icon-user" aria-label="Iniciar sesión">
+          <i data-lucide="user-circle"></i>
+        </a>
       </div>
+
     </nav>
   </header>
 
@@ -43,30 +66,58 @@
           Gestiona tus vuelos sin hacer filas ni llamar. Realiza el check-in,
           consulta el estado de tu vuelo, solicita reembolsos y más, todo desde aquí.
         </p>
-        <a href="#checkin" class="btn btn-primary btn-large">Hacer check-in ahora</a>
-        <a href="#flight-status" class="btn btn-outline">Consultar vuelo</a>
+        <div class="hero-actions">
+          <a href="#checkin" class="btn btn-primary">Hacer check-in ahora</a>
+          <a href="#flight-status" class="btn btn-outline">Consultar vuelo</a>
+        </div>
       </div>
     </section>
 
     <!-- SERVICIOS DISPONIBLES -->
     <section id="services-overview">
-      <h2>¿Qué puedes hacer aquí?</h2>
-      <p>Nuestro portal de autoservicio te permite completar los trámites más comunes de manera rápida y sencilla:</p>
-      <ul id="services-list">
-        <li>✈️ <strong>Check-in en línea</strong> – Regístrate hasta 48 h antes de tu vuelo y elige tu asiento.</li>
-        <li>🔍 <strong>Estado de vuelo</strong> – Consulta en tiempo real si tu vuelo está a tiempo, demorado o cancelado.</li>
-        <li>💼 <strong>Gestión de equipaje</strong> – Agrega maletas adicionales o consulta las restricciones vigentes.</li>
-        <li>🔄 <strong>Cambio de vuelo</strong> – Modifica la fecha o el horario de tu reserva sin cobro adicional (según tarifa).</li>
-        <li>💰 <strong>Solicitud de reembolso</strong> – Solicita la devolución de tu dinero directamente desde este portal.</li>
-        <li>🪑 <strong>Selección de asiento</strong> – Escoge tu asiento preferido en el mapa del avión antes de volar.</li>
-        <li>📄 <strong>Descarga de itinerario</strong> – Descarga o comparte tu itinerario en PDF de forma gratuita.</li>
-      </ul>
+      <div class="section-title-center">
+        <h2>¿Qué puedes hacer aquí?</h2>
+        <p>Nuestro portal de autoservicio te permite completar los trámites más comunes de manera rápida y sencilla.</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i data-lucide="ticket-check"></i>
+          <h3>Check-in en línea</h3>
+          <p>Regístrate hasta 48 h antes de tu vuelo y elige tu asiento preferido.</p>
+        </div>
+        <div class="feature-item">
+          <i data-lucide="radar"></i>
+          <h3>Estado de vuelo</h3>
+          <p>Consulta en tiempo real si tu vuelo está a tiempo, demorado o cancelado.</p>
+        </div>
+        <div class="feature-item">
+          <i data-lucide="luggage"></i>
+          <h3>Gestión de equipaje</h3>
+          <p>Agrega maletas adicionales o consulta las restricciones vigentes.</p>
+        </div>
+        <div class="feature-item">
+          <i data-lucide="calendar-sync"></i>
+          <h3>Cambio de vuelo</h3>
+          <p>Modifica la fecha o el horario de tu reserva sin cobro adicional (según tarifa).</p>
+        </div>
+        <div class="feature-item">
+          <i data-lucide="wallet"></i>
+          <h3>Solicitud de reembolso</h3>
+          <p>Solicita la devolución de tu dinero directamente desde este portal.</p>
+        </div>
+        <div class="feature-item">
+          <i data-lucide="armchair"></i>
+          <h3>Selección de asiento</h3>
+          <p>Escoge tu asiento preferido en el mapa del avión antes de volar.</p>
+        </div>
+      </div>
     </section>
 
     <!-- CHECK-IN EN LÍNEA -->
     <section id="checkin">
       <h2>Check-in en línea</h2>
-      <p>Introduce los datos de tu reserva para iniciar el proceso de check-in. Disponible entre 48 h y 1 h antes del vuelo.</p>
+      <p>Introduce los datos de tu reserva para iniciar el proceso de check-in. Disponible entre 48 h y 1 h antes del
+        vuelo.</p>
 
       <form id="checkin-form" action="#" method="POST" novalidate>
         <fieldset>
@@ -74,48 +125,24 @@
 
           <div class="form-group">
             <label for="booking-code">Código de reserva</label>
-            <input
-              type="text"
-              id="booking-code"
-              name="booking_code"
-              placeholder="Ej. LKA-20261102"
-              required
-              pattern="[A-Z]{3}-\d{8}"
-              title="Formato: 3 letras mayúsculas, guion y 8 dígitos (Ej. LKA-20261102)"
-            />
+            <input type="text" id="booking-code" name="booking_code" placeholder="Ej. LKA-20261102" required
+              pattern="[A-Z]{3}-\d{8}" title="Formato: 3 letras mayúsculas, guion y 8 dígitos (Ej. LKA-20261102)" />
           </div>
 
           <div class="form-group">
             <label for="passenger-lastname">Apellido del pasajero</label>
-            <input
-              type="text"
-              id="passenger-lastname"
-              name="passenger_lastname"
-              placeholder="Ej. García"
-              required
-              minlength="2"
-            />
+            <input type="text" id="passenger-lastname" name="passenger_lastname" placeholder="Ej. García" required
+              minlength="2" />
           </div>
 
           <div class="form-group">
             <label for="passenger-doc">Número de documento</label>
-            <input
-              type="text"
-              id="passenger-doc"
-              name="passenger_doc"
-              placeholder="DNI o pasaporte"
-              required
-            />
+            <input type="text" id="passenger-doc" name="passenger_doc" placeholder="DNI o pasaporte" required />
           </div>
 
           <div class="form-group">
             <label for="flight-date">Fecha del vuelo</label>
-            <input
-              type="date"
-              id="flight-date"
-              name="flight_date"
-              required
-            />
+            <input type="date" id="flight-date" name="flight_date" required />
           </div>
         </fieldset>
 
@@ -154,13 +181,7 @@
       <form id="flight-status-form" action="#" method="GET" novalidate>
         <div class="form-group">
           <label for="flight-number">Número de vuelo</label>
-          <input
-            type="text"
-            id="flight-number"
-            name="flight_number"
-            placeholder="Ej. LK 203"
-            required
-          />
+          <input type="text" id="flight-number" name="flight_number" placeholder="Ej. LK 203" required />
         </div>
         <div class="form-group">
           <label for="status-date">Fecha</label>
@@ -177,7 +198,8 @@
       <h2>Política de equipaje</h2>
       <p>
         Conoce los límites de peso y dimensiones según la tarifa de tu boleto.
-        El exceso de equipaje puede ser agregado en línea con descuento de hasta el 30 % respecto al precio en aeropuerto.
+        El exceso de equipaje puede ser agregado en línea con descuento de hasta el 30 % respecto al precio en
+        aeropuerto.
       </p>
 
       <div class="table-wrapper">
@@ -233,7 +255,7 @@
         </table>
       </div>
 
-      <p>
+      <p class="prohibited-items-list-title">
         <strong>Artículos prohibidos en bodega:</strong>
       </p>
       <ol id="prohibited-items-list">
@@ -259,34 +281,17 @@
 
           <div class="form-group">
             <label for="refund-booking">Código de reserva</label>
-            <input
-              type="text"
-              id="refund-booking"
-              name="refund_booking"
-              placeholder="Ej. LKA-20261102"
-              required
-            />
+            <input type="text" id="refund-booking" name="refund_booking" placeholder="Ej. LKA-20261102" required />
           </div>
 
           <div class="form-group">
             <label for="refund-email">Correo electrónico de contacto</label>
-            <input
-              type="email"
-              id="refund-email"
-              name="refund_email"
-              placeholder="tu@correo.com"
-              required
-            />
+            <input type="email" id="refund-email" name="refund_email" placeholder="tu@correo.com" required />
           </div>
 
           <div class="form-group">
             <label for="refund-phone">Teléfono de contacto</label>
-            <input
-              type="tel"
-              id="refund-phone"
-              name="refund_phone"
-              placeholder="+51 900 000 000"
-            />
+            <input type="tel" id="refund-phone" name="refund_phone" placeholder="+51 900 000 000" />
           </div>
 
           <div class="form-group">
@@ -303,13 +308,8 @@
 
           <div class="form-group">
             <label for="refund-details">Descripción adicional</label>
-            <textarea
-              id="refund-details"
-              name="refund_details"
-              rows="4"
-              placeholder="Describe brevemente la situación (máx. 500 caracteres)"
-              maxlength="500"
-            ></textarea>
+            <textarea id="refund-details" name="refund_details" rows="4"
+              placeholder="Describe brevemente la situación (máx. 500 caracteres)" maxlength="500"></textarea>
           </div>
         </fieldset>
 
@@ -415,100 +415,118 @@
         <time datetime="PT24H">24 horas</time>, los 7 días de la semana.
       </p>
 
-      <address>
-        <p>📧 <a href="mailto:soporte@luckyair.com">soporte@luckyair.com</a></p>
-        <p>📞 <a href="tel:+8687100000000">+86 871 0000 0000</a></p>
-        <p>📍 Kunming Changshui International Airport, Yunnan, China</p>
-      </address>
+      <div class="support-grid">
+        <!-- Columna izquierda: formulario -->
+        <form id="support-form" action="#" method="POST" novalidate>
+          <h3>Envíanos un mensaje</h3>
 
-      <form id="support-form" action="#" method="POST" novalidate>
-        <h3>Envíanos un mensaje</h3>
+          <div class="form-group">
+            <label for="support-name">Nombre completo</label>
+            <input type="text" id="support-name" name="support_name" placeholder="Tu nombre completo" required
+              minlength="3" />
+          </div>
 
-        <div class="form-group">
-          <label for="support-name">Nombre completo</label>
-          <input
-            type="text"
-            id="support-name"
-            name="support_name"
-            placeholder="Tu nombre completo"
-            required
-            minlength="3"
-          />
-        </div>
+          <div class="form-group">
+            <label for="support-email">Correo electrónico</label>
+            <input type="email" id="support-email" name="support_email" placeholder="tu@correo.com" required />
+          </div>
 
-        <div class="form-group">
-          <label for="support-email">Correo electrónico</label>
-          <input
-            type="email"
-            id="support-email"
-            name="support_email"
-            placeholder="tu@correo.com"
-            required
-          />
-        </div>
+          <div class="form-group">
+            <label for="support-subject">Asunto</label>
+            <input type="text" id="support-subject" name="support_subject" placeholder="¿En qué podemos ayudarte?"
+              required />
+          </div>
 
-        <div class="form-group">
-          <label for="support-subject">Asunto</label>
-          <input
-            type="text"
-            id="support-subject"
-            name="support_subject"
-            placeholder="¿En qué podemos ayudarte?"
-            required
-          />
-        </div>
+          <div class="form-group">
+            <label for="support-message">Mensaje</label>
+            <textarea id="support-message" name="support_message" rows="5"
+              placeholder="Describe tu consulta con el mayor detalle posible" required minlength="20"></textarea>
+          </div>
 
-        <div class="form-group">
-          <label for="support-message">Mensaje</label>
-          <textarea
-            id="support-message"
-            name="support_message"
-            rows="5"
-            placeholder="Describe tu consulta con el mayor detalle posible"
-            required
-            minlength="20"
-          ></textarea>
-        </div>
+          <button type="submit" id="support-submit-btn" class="btn btn-primary">
+            Enviar mensaje
+          </button>
+        </form>
 
-        <button type="submit" id="support-submit-btn" class="btn btn-primary">
-          Enviar mensaje
-        </button>
-      </form>
+        <!-- Columna derecha: información de contacto -->
+        <aside class="support-info">
+          <h3>Información de contacto</h3>
+          <p>Puedes comunicarte directamente con nosotros a través de cualquiera de estos canales.</p>
+          <address>
+            <p><i data-lucide="mail"></i> <a href="mailto:soporte@luckyair.com">soporte@luckyair.com</a></p>
+            <p><i data-lucide="phone"></i> <a href="tel:+8687100000000">+86 871 0000 0000</a></p>
+            <p><i data-lucide="map-pin"></i> Kunming Changshui International Airport, Yunnan, China</p>
+          </address>
+          <div class="support-hours">
+            <h4>Horario de atención</h4>
+            <p>Lunes a Domingo: 24 horas</p>
+            <p>Tiempo de respuesta: menos de 2 horas</p>
+          </div>
+        </aside>
+      </div>
     </section>
 
   </main>
 
   <!-- FOOTER -->
-  <footer id="main-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="../assets/images/logo.webp" alt="Lucky Air" />
-        <p>Conectando el mundo con Yunnan.</p>
+  <footer id="main-footer" class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+
+        <!-- Column 1: Brand & Social -->
+        <div class="footer-column brand-column">
+          <span class="footer-logo-text">Lucky Air</span>
+          <p class="brand-description">
+            Conectando la belleza de Yunnan con el mundo. Excelencia en servicio y seguridad aérea desde Kunming para
+            una experiencia de viaje inigualable.
+          </p>
+          <div class="social-icons">
+            <a href="#" aria-label="Website"><i data-lucide="globe"></i></a>
+            <a href="#" aria-label="Email"><i data-lucide="mail"></i></a>
+            <a href="#" aria-label="Phone"><i data-lucide="smartphone"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Destinos -->
+        <div class="footer-column">
+          <h3 class="footer-title">DESTINOS</h3>
+          <ul class="footer-links">
+            <li><a href="../index.html#card-dali">Dali</a></li>
+            <li><a href="../index.html#card-xishuangbanna">Xishuangbanna</a></li>
+            <li><a href="../index.html#card-kunming">Kunming</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Servicios -->
+        <div class="footer-column">
+          <h3 class="footer-title">SERVICIOS</h3>
+          <ul class="footer-links">
+            <li><a href="self-service.html">Autoservicio</a></li>
+            <li><a href="community.html">Comunidad</a></li>
+            <li><a href="students.html">Estudiantes</a></li>
+            <li><a href="corporate.html">Corporativo</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contacto -->
+        <div class="footer-column">
+          <h3 class="footer-title">CONTACTO</h3>
+          <ul class="footer-links">
+            <li><a href="mailto:soporte@luckyair.com">soporte@luckyair.com</a></li>
+            <li><a href="tel:+8687100000000">+86 871 0000 0000</a></li>
+          </ul>
+        </div>
+
       </div>
-      <nav class="footer-links" aria-label="Destinos">
-        <h4>Destinos</h4>
-        <ul>
-          <li><a href="#">Dali</a></li>
-          <li><a href="#">Xishuangbanna</a></li>
-          <li><a href="#">Kunming</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-links" aria-label="Servicios">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="self-service.html">Autoservicio</a></li>
-          <li><a href="community.html">Comunidad</a></li>
-          <li><a href="../index.html">Inicio</a></li>
-        </ul>
-      </nav>
-      <div class="footer-contact">
-        <h4>Contacto</h4>
-        <p>soporte@luckyair.com</p>
-        <p>+86 871 0000 0000</p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 LUCKY AIR CO., LTD. MIEMBRO DEL GRUPO HNA. CONECTANDO YUNNAN CON EL MUNDO.</p>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
+
 </html>
