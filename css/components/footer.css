@@ -110,3 +110,43 @@
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+/* -----------------------------------------------------------
+   Responsive — Tablet (≤ 900px)
+   ----------------------------------------------------------- */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    .brand-column {
+        grid-column: span 2;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .brand-description {
+        max-width: 100%;
+    }
+}
+
+/* -----------------------------------------------------------
+   Responsive — Móvil (≤ 768px)
+   ----------------------------------------------------------- */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    .brand-column {
+        grid-column: span 1;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer-title {
+        margin-bottom: var(--spacing-sm);
+    }
+}
