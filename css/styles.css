@@ -2,7 +2,8 @@
 
 /* Import base variables */
 @import url('base/variables.css');
-/* header.css se carga como <link> en el HTML — no duplicar aquí */
+@import url('components/header.css');
+@import url('components/footer.css');
 
 /* Basic Reset */
 *, *::before, *::after {
@@ -37,6 +38,40 @@ ul {
 img {
   max-width: 100%;
   display: block;
+}
+
+/* =============================================================
+   COMPONENTES GLOBALES — Botones
+   ============================================================= */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: var(--border-radius-md);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-primary);
+  text-align: center;
+  cursor: pointer;
+  transition: var(--transition-base);
+  border: none;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: rgba(211, 47, 47, 0.05);
 }
 
 /* =============================================================

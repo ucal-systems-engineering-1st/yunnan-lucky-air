@@ -113,7 +113,6 @@
 
 /* ------------------------------------------------------------------
    VARIANTE COMPACTA — .footer--compact
-   Fondo azul oscuro heredado, logo + links en fila + copyright
    ------------------------------------------------------------------ */
 .footer--compact {
     padding: var(--spacing-xxl) 0;
@@ -163,44 +162,48 @@
     margin: 0;
 }
 
-@media (max-width: 600px) {
+/* ------------------------------------------------------------------
+   Responsive — Tablet (<= 900px)
+   ------------------------------------------------------------------ */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-xl);
+    }
+    .brand-column {
+        grid-column: span 2;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .brand-description {
+        max-width: 100%;
+    }
+}
+
+/* ------------------------------------------------------------------
+   Responsive — Movil (<= 768px)
+   ------------------------------------------------------------------ */
+@media (max-width: 768px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: var(--spacing-lg);
+    }
+    .brand-column {
+        grid-column: span 1;
+    }
+    .social-icons {
+        justify-content: center;
+    }
+    .footer-title {
+        margin-bottom: var(--spacing-sm);
+    }
     .footer-compact-nav {
         gap: var(--spacing-sm) var(--spacing-lg);
     }
-
     .footer-compact-inner {
         padding: 0 var(--spacing-md);
     }
 }
-
-/* ------------------------------------------------------------------
-   Responsive — Tablet (≤ 900px)
-   ------------------------------------------------------------------ */
-@media (max-width: 900px) {
-    .footer-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .brand-column {
-        grid-column: 1 / -1;   /* ocupa el ancho completo */
-    }
-}
-
-/* ------------------------------------------------------------------
-   Responsive — Móvil (≤ 600px)
-   ------------------------------------------------------------------ */
-@media (max-width: 600px) {
-    .footer-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-xl);
-    }
-
-    .brand-column {
-        grid-column: auto;
-    }
-
-    .footer-container {
-        padding: 0 var(--spacing-md);
-    }
-}
