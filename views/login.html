@@ -5,26 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Inicia sesión en Lucky Air y accede a tus reservas, historial de vuelos y beneficios del programa de lealtad." />
   <title>Lucky Air | Iniciar sesión</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <!-- Estilos Globales -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Estilos Específicos de la Vista -->
+  <link rel="stylesheet" href="../css/views/login.css">
 </head>
 <body>
 
   <!-- HEADER / NAV -->
-  <header id="main-header">
-    <nav id="main-nav">
-      <div class="logo">
-        <img src="../assets/images/logo.webp" alt="Lucky Air Logo" />
-        <span>Lucky Air</span>
-      </div>
-      <ul class="nav-links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="self-service.html">Autoservicio</a></li>
-        <li><a href="community.html">Comunidad</a></li>
-        <li><a href="students.html">Estudiantes</a></li>
-        <li><a href="corporate.html">Corporativo</a></li>
+  <header class="header">
+    <nav class="header__nav">
+      <a href="../index.html" class="header__logo">
+        <span class="header__logo-text">Lucky Air</span>
+      </a>
+      
+      <!-- Botón Hamburguesa Móvil -->
+      <button id="menu-toggle" class="header__menu-toggle" aria-label="Abrir menú">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul id="main-links" class="header__links">
+        <li class="header__link-item"><a href="../index.html" class="header__link">Inicio</a></li>
+        <li class="header__link-item"><a href="self-service.html" class="header__link">Autoservicio</a></li>
+        <li class="header__link-item"><a href="community.html" class="header__link">Comunidad</a></li>
+        <li class="header__link-item"><a href="students.html" class="header__link">Estudiantes</a></li>
+        <li class="header__link-item"><a href="corporate.html" class="header__link">Corporativo</a></li>
       </ul>
-      <div class="nav-actions">
-        <a href="login.html" aria-current="page" class="btn btn-outline">Iniciar sesión</a>
-        <a href="../index.html#booking" class="btn btn-primary">Reservar ahora</a>
+      <div class="header__actions">
+        <a href="login.html" class="header__btn-ghost">Iniciar sesión</a>
+        <a href="register.html" class="header__btn-primary">Registrarse</a>
       </div>
     </nav>
   </header>
@@ -52,44 +65,101 @@
         <button type="submit" id="login-btn" class="btn btn-primary">Ingresar</button>
 
         <p>¿No tienes cuenta? <a href="register.html">Regístrate aquí</a></p>
-        <p><a href="#">¿Olvidaste tu contraseña?</a></p>
+        <p><a href="#" id="forgot-password-link">¿Olvidaste tu contraseña?</a></p>
 
       </form>
     </section>
 
   </main>
 
+  <!-- MODAL: Recuperar contraseña -->
+  <div id="forgot-password-modal" class="modal">
+    <div class="modal__content">
+      <button class="modal__close" aria-label="Cerrar modal">&times;</button>
+      <h2>Recuperar contraseña</h2>
+      <p>Ingresa tu correo electrónico y te enviaremos las instrucciones para restablecerla.</p>
+      <form id="forgot-password-form">
+        <div class="form-group">
+          <label for="forgot-email">Correo electrónico</label>
+          <input type="email" id="forgot-email" name="email" placeholder="correo@ejemplo.com" required />
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar enlace</button>
+      </form>
+    </div>
+  </div>
+
   <!-- FOOTER -->
-  <footer id="main-footer">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="../assets/images/logo.webp" alt="Lucky Air" />
-        <p>Conectando el mundo con Yunnan.</p>
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-grid">
+        <div class="brand-column">
+          <span class="footer-logo-text">Lucky Air</span>
+          <p class="brand-description">Conectando el mundo con Yunnan.</p>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Destinos</h4>
+          <ul class="footer-links">
+            <li><a href="../index.html#popular-destinations">Dali</a></li>
+            <li><a href="../index.html#popular-destinations">Xishuangbanna</a></li>
+            <li><a href="../index.html#popular-destinations">Kunming</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Servicios</h4>
+          <ul class="footer-links">
+            <li><a href="self-service.html">Autoservicio</a></li>
+            <li><a href="community.html">Comunidad</a></li>
+            <li><a href="register.html">Crear cuenta</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h4 class="footer-title">Contacto</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:soporte@luckyair.com">soporte@luckyair.com</a></li>
+            <li><a href="tel:+8687100000000">+86 871 0000 0000</a></li>
+          </ul>
+        </div>
       </div>
-      <nav class="footer-links" aria-label="Destinos">
-        <h4>Destinos</h4>
-        <ul>
-          <li><a href="../index.html#popular-destinations">Dali</a></li>
-          <li><a href="../index.html#popular-destinations">Xishuangbanna</a></li>
-          <li><a href="../index.html#popular-destinations">Kunming</a></li>
-        </ul>
-      </nav>
-      <nav class="footer-links" aria-label="Servicios">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="self-service.html">Autoservicio</a></li>
-          <li><a href="community.html">Comunidad</a></li>
-          <li><a href="register.html">Crear cuenta</a></li>
-        </ul>
-      </nav>
-      <div class="footer-contact">
-        <h4>Contacto</h4>
-        <p>soporte@luckyair.com</p>
-        <p>+86 871 0000 0000</p>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
       </div>
     </div>
-    <p class="footer-copy">&copy; 2026 Lucky Air. Todos los derechos reservados.</p>
   </footer>
 
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Menú Hamburguesa
+      const menuToggle = document.getElementById("menu-toggle");
+      const mainLinks = document.getElementById("main-links");
+      
+      if (menuToggle && mainLinks) {
+        menuToggle.addEventListener("click", function() {
+          mainLinks.classList.toggle("header__links--open");
+        });
+      }
+
+      // Modal Recuperar Contraseña
+      const forgotLink = document.getElementById("forgot-password-link");
+      const modal = document.getElementById("forgot-password-modal");
+      const closeBtn = document.querySelector(".modal__close");
+
+      if (forgotLink && modal && closeBtn) {
+        forgotLink.addEventListener("click", function(e) {
+          e.preventDefault();
+          modal.classList.add("modal--active");
+        });
+
+        closeBtn.addEventListener("click", function() {
+          modal.classList.remove("modal--active");
+        });
+
+        window.addEventListener("click", function(e) {
+          if (e.target === modal) {
+            modal.classList.remove("modal--active");
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
