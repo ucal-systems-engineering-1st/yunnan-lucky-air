@@ -210,7 +210,7 @@
    ----------------------------------------------------------- */
 @media (max-width: 768px) {
   .header__nav {
-    flex-wrap: nowrap;             /* una sola fila: hamburguesa | logo | user */
+    flex-wrap: wrap;               /* permite que los links caigan debajo al abrir menú */
     padding: var(--spacing-sm) var(--spacing-md);
     gap: var(--spacing-sm);
     align-items: center;
