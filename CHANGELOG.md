@@ -8,6 +8,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ## [2.4.1] - 2026-05-16
 
+### 🔄 Changed
+
+- Maintenance and internal improvements
+
+---
+
+## [2.4.1] - 2026-05-16
+
 ### 🔧 Fixed
 
 - include missing Rachel's features from develop: self-service portal, students and community views, responsive header navigation
