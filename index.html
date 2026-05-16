@@ -154,42 +154,117 @@
 
     <!-- RUTAS Y TARIFAS -->
     <section id="routes-fares">
-      <h2>Rutas Populares y Tarifas</h2>
-      <div class="table-wrapper">
-        <table id="routes-table">
-          <thead>
-            <tr>
-              <th scope="col">Origen</th>
-              <th scope="col">Destino</th>
-              <th scope="col">Duración Aprox.</th>
-              <th scope="col">Tarifa Desde</th>
-              <th scope="col"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Kunming (KMG)</td>
-              <td>Beijing (PEK)</td>
-              <td>33 h</td>
-              <td class="price-highlight">¥680</td>
-              <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
-            </tr>
-            <tr>
-              <td>Kunming (KMG)</td>
-              <td>Shanghai (PVG)</td>
-              <td>31 h</td>
-              <td class="price-highlight">¥750</td>
-              <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
-            </tr>
-            <tr>
-              <td>Lijiang (LJG)</td>
-              <td>Guangzhou (CAN)</td>
-              <td>31 h</td>
-              <td class="price-highlight">¥635</td>
-              <td><a href="#booking" class="table-link">Ver Tarifas</a></td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="routes-inner">
+        <div class="routes-header">
+          <div>
+            <h2>Rutas Populares y Tarifas</h2>
+            <p>Descubre nuestras rutas más solicitadas con los mejores precios</p>
+          </div>
+          <a href="#booking" class="btn btn-outline routes-header__cta">Ver todas las rutas →</a>
+        </div>
+
+        <div class="routes-list">
+
+          <article class="route-card" id="route-kmg-pek">
+            <div class="route-card__airports">
+              <div class="route-card__airport">
+                <span class="route-card__code">KMG</span>
+                <span class="route-card__city">Kunming</span>
+              </div>
+              <div class="route-card__path">
+                <span class="route-card__duration">
+                  <i data-lucide="clock"></i> 33 h
+                </span>
+                <div class="route-card__line">
+                  <span class="route-card__dot"></span>
+                  <span class="route-card__dash"></span>
+                  <i data-lucide="plane"></i>
+                  <span class="route-card__dash"></span>
+                  <span class="route-card__dot"></span>
+                </div>
+                <span class="route-card__tag">Directo</span>
+              </div>
+              <div class="route-card__airport route-card__airport--dest">
+                <span class="route-card__code">PEK</span>
+                <span class="route-card__city">Beijing</span>
+              </div>
+            </div>
+            <div class="route-card__price">
+              <div class="route-card__price-info">
+                <span class="route-card__label">Tarifa desde</span>
+                <span class="route-card__amount">¥680</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Reservar</a>
+            </div>
+          </article>
+
+          <article class="route-card" id="route-kmg-pvg">
+            <div class="route-card__airports">
+              <div class="route-card__airport">
+                <span class="route-card__code">KMG</span>
+                <span class="route-card__city">Kunming</span>
+              </div>
+              <div class="route-card__path">
+                <span class="route-card__duration">
+                  <i data-lucide="clock"></i> 31 h
+                </span>
+                <div class="route-card__line">
+                  <span class="route-card__dot"></span>
+                  <span class="route-card__dash"></span>
+                  <i data-lucide="plane"></i>
+                  <span class="route-card__dash"></span>
+                  <span class="route-card__dot"></span>
+                </div>
+                <span class="route-card__tag">Directo</span>
+              </div>
+              <div class="route-card__airport route-card__airport--dest">
+                <span class="route-card__code">PVG</span>
+                <span class="route-card__city">Shanghai</span>
+              </div>
+            </div>
+            <div class="route-card__price">
+              <div class="route-card__price-info">
+                <span class="route-card__label">Tarifa desde</span>
+                <span class="route-card__amount">¥750</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Reservar</a>
+            </div>
+          </article>
+
+          <article class="route-card" id="route-ljg-can">
+            <div class="route-card__airports">
+              <div class="route-card__airport">
+                <span class="route-card__code">LJG</span>
+                <span class="route-card__city">Lijiang</span>
+              </div>
+              <div class="route-card__path">
+                <span class="route-card__duration">
+                  <i data-lucide="clock"></i> 31 h
+                </span>
+                <div class="route-card__line">
+                  <span class="route-card__dot"></span>
+                  <span class="route-card__dash"></span>
+                  <i data-lucide="plane"></i>
+                  <span class="route-card__dash"></span>
+                  <span class="route-card__dot"></span>
+                </div>
+                <span class="route-card__tag">Directo</span>
+              </div>
+              <div class="route-card__airport route-card__airport--dest">
+                <span class="route-card__code">CAN</span>
+                <span class="route-card__city">Guangzhou</span>
+              </div>
+            </div>
+            <div class="route-card__price">
+              <div class="route-card__price-info">
+                <span class="route-card__label">Tarifa desde</span>
+                <span class="route-card__amount">¥635</span>
+              </div>
+              <a href="#booking" class="btn btn-primary">Reservar</a>
+            </div>
+          </article>
+
+        </div>
       </div>
     </section>
 
