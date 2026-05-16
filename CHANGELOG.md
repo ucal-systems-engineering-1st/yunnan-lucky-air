@@ -25,6 +25,41 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.3.1] - 2026-05-16
+
+### 🐞 Fixed
+
+- ref style table rates and routes
+
+---
+
+## [2.3.0] - 2026-05-07
+
+### 🚀 Added
+
+- homogenizar header y footer en todas las páginas
+
+---
+
+## [2.2.0] - 2026-05-07
+
+### 🚀 Added
+
+- agregar theme-color corporativo a todas las vistas
+- implement self-service page with layout components, forms, and global styles
+- implementar vistas corporate, login y register con estilos responsivos y modales
+- implementar página Community con CSS EE2
+
+### 🔄 Changed
+
+- mover community.css a css/views/ para unificar convención
+
+### 🐞 Fixed
+
+- fixed student page apply
+
+---
+
 ## [2.1.0] - 2026-05-02
 
 ### 🚀 Added
