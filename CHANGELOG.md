@@ -6,6 +6,16 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.4.0] - 2026-05-16
+
+### 🚀 Added
+
+- implement self-service portal page with layout styles and service forms
+- add students and community views along with necessary component styles
+- implement responsive header navigation with mobile toggle functionality
+
+---
+
 ## [2.1.0] - 2026-05-02
 
 ### 🚀 Added
