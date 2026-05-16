@@ -375,6 +375,57 @@ input[type="radio"] {
 }
 
 /* ==================================================================
+   6b. TARJETAS DE EQUIPAJE — solo móvil
+   ================================================================== */
+.baggage-cards {
+  display: none;
+}
+
+.baggage-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.baggage-card__header {
+  background-color: var(--color-primary);
+  color: #fff;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-body);
+  padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.baggage-card__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.baggage-card__label {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  flex-shrink: 0;
+}
+
+.baggage-card__value {
+  font-size: var(--font-size-small);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  text-align: right;
+}
+
+.baggage-cards__note {
+  font-size: 0.8rem;
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+/* ==================================================================
    7. FAQ — details / summary
    ================================================================== */
 #faq .section-title-center {
@@ -619,5 +670,21 @@ details>ul {
   #baggage-table td {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.8rem;
+  }
+
+  /* Ocultar tabla, mostrar tarjetas */
+  .table-wrapper {
+    display: none;
+  }
+
+  .baggage-cards {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .support-grid {
+    grid-template-columns: 1fr;
   }
 }

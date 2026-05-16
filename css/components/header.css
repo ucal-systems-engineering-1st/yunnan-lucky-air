@@ -209,11 +209,19 @@
    8. Responsive — Móvil (≤ 768px)
    ----------------------------------------------------------- */
 @media (max-width: 768px) {
+
+  /* El header necesita position: relative para anclar el dropdown */
+  .header {
+    position: sticky;
+    z-index: 100;
+  }
+
   .header__nav {
-    flex-wrap: nowrap;             /* una sola fila: hamburguesa | logo | user */
+    flex-wrap: nowrap;
     padding: var(--spacing-sm) var(--spacing-md);
     gap: var(--spacing-sm);
     align-items: center;
+    position: relative;            /* ancla del dropdown */
   }
 
   /* Hamburguesa al extremo izquierdo */
@@ -228,39 +236,75 @@
     order: 0;
   }
 
-  /* Links ocultos hasta que se abran */
+  /* ---- Menú pantalla completa ---- */
   .header__links {
-    display: none;
-    order: 10;                     /* debajo de todo */
+    /* Fixed: ocupa todo el viewport */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 99;                   /* debajo del header sticky (z-index: 100) */
+
+    /* Empuja los links debajo de la barra del header */
+    padding-top: 52px;
+
+    /* Oculto por defecto con transición */
+    display: flex;
     flex-direction: column;
-    width: 100%;
     gap: 0;
-    padding: var(--spacing-sm) 0;
+    overflow-y: auto;
+
+    /* Estilo visual */
+    background-color: var(--color-surface);
     border-top: 1px solid var(--color-border);
+
+    /* Animación de apertura */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
   }
 
   .header__links--open {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   .header__link {
     font-size: var(--font-size-body);
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
     border-radius: 0;
     width: 100%;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease, color 0.2s ease;
   }
 
+  .header__link:hover {
+    background-color: rgba(211, 47, 47, 0.06);
+  }
+
+  /* Enlace activo: fondo sutil rojo en vez de barra lateral */
   .header__link--active {
-    border-bottom: none;
-    border-left: 3px solid var(--color-primary);
-    padding-left: calc(var(--spacing-md) - 3px);
+    border-bottom: 1px solid var(--color-border);
+    border-left: none;
+    padding-left: var(--spacing-lg);
     border-radius: 0;
+    background-color: rgba(211, 47, 47, 0.08);
+    color: var(--color-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  /* Último link sin border-bottom */
+  .header__link-item:last-child .header__link {
+    border-bottom: none;
   }
 
   /* Acciones: esconder botones de texto, mostrar solo ícono de usuario */
   .header__actions {
     order: 1;
-    margin-left: auto;             /* empuja el ícono al extremo derecho */
+    margin-left: auto;
     width: auto;
     padding: 0;
     border: none;
@@ -270,10 +314,10 @@
 
   .header__btn-ghost,
   .header__btn-primary {
-    display: none;                 /* ocultar botones en móvil */
+    display: none;
   }
 
   .header__icon-user {
-    display: flex;                 /* mostrar ícono de usuario en móvil */
+    display: flex;
   }
 }
