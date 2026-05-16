@@ -6,13 +6,12 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
-## [2.4.0] - 2026-05-16
+## [2.4.1] - 2026-05-16
 
-### 🚀 Added
+### 🔧 Fixed
 
-- implement self-service portal page with layout styles and service forms
-- add students and community views along with necessary component styles
-- implement responsive header navigation with mobile toggle functionality
+- include missing Rachel's features from develop: self-service portal, students and community views, responsive header navigation
+- ensure main.js is properly loaded in all HTML files for mobile hamburger menu functionality
 
 ---
 
