@@ -620,4 +620,8 @@ details>ul {
     padding: var(--spacing-sm) var(--spacing-md);
     font-size: 0.8rem;
   }
+
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
 }
