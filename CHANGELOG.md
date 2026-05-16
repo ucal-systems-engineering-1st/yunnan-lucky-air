@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [2.3.1] - 2026-05-16
+
+### 🐞 Fixed
+
+- ref style table rates and routes
+
+---
+
 ## [2.3.0] - 2026-05-07
 
 ### 🚀 Added
