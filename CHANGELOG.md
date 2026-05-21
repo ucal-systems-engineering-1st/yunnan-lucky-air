@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [3.0.1] - 2026-05-21
+
+### 🐞 Fixed
+
+- mover main.js de js/ a scripts/ para corregir 404 en GitHub Pages
+
+---
+
 ## [3.0.0] - 2026-05-21
 
 ### 🚀 Added
