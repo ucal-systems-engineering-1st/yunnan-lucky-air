@@ -4,6 +4,8 @@
    Interacciones globales del sitio (navegación móvil, etc.)
    ============================================================= */
 
+console.log('✅ Lucky Air – main.js conectado');
+
 /* -----------------------------------------------------------
    1. Menú hamburguesa (móvil)
    ----------------------------------------------------------- */
