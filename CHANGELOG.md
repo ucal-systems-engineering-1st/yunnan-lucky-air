@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [3.1.0] - 2026-05-28
+
+### 🚀 Added
+
+- agregar ejercicios DOM — tarjeta seleccionable, vista previa de vuelo y beneficio desplegable
+
+---
+
 ## [3.0.1] - 2026-05-21
 
 ### 🐞 Fixed
