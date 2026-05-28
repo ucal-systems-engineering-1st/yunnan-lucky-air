@@ -1,7 +1,6 @@
 /* =============================================================
    MAIN.JS — Lucky Air
-   Archivo: js/main.js
-   Interacciones globales del sitio (navegación móvil, etc.)
+   Interacciones globales del sitio
    ============================================================= */
 
 console.log('✅ Lucky Air – main.js conectado');
@@ -33,3 +32,52 @@ if (menuToggle && mainLinks) {
     });
   });
 }
+
+/* -----------------------------------------------------------
+   2. Ej.1 — Tarjeta de destino seleccionable
+   Concepto: querySelector + addEventListener + classList.toggle
+   ----------------------------------------------------------- */
+const destinationCards = document.querySelectorAll('.destination-card');
+
+destinationCards.forEach((card) => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('destination-card--seleccionada');
+  });
+});
+
+/* -----------------------------------------------------------
+   3. Ej.2 — Vista previa de vuelo en tiempo real
+   Concepto: addEventListener('input') + .value + textContent
+   ----------------------------------------------------------- */
+const originInput = document.querySelector('#origin');
+const destInput   = document.querySelector('#destination');
+const previewOrigin = document.querySelector('#preview-origin');
+const previewDest   = document.querySelector('#preview-dest');
+
+if (originInput && previewOrigin) {
+  originInput.addEventListener('input', () => {
+    previewOrigin.textContent = originInput.value || '---';
+  });
+}
+
+if (destInput && previewDest) {
+  destInput.addEventListener('input', () => {
+    previewDest.textContent = destInput.value || '---';
+  });
+}
+
+/* -----------------------------------------------------------
+   4. Ej.3 — Beneficio desplegable (¿Por qué Lucky Air?)
+   Concepto: classList.toggle('oculta') + display: none en CSS
+   ----------------------------------------------------------- */
+const featureItems = document.querySelectorAll('#why-lucky-air .feature-item');
+
+featureItems.forEach((item) => {
+  const desc = item.querySelector('p');
+  if (desc) {
+    desc.classList.add('oculta');
+    item.addEventListener('click', () => {
+      desc.classList.toggle('oculta');
+    });
+  }
+});

@@ -1076,3 +1076,34 @@ img {
     padding: var(--spacing-xxl) var(--spacing-md);
   }
 }
+
+/* ===================================================================
+   EJERCICIOS JS — Lucky Air v3.0
+   =================================================================== */
+
+/* Ej.1 — Tarjeta de destino seleccionada */
+.destination-card--seleccionada {
+  border: 2px solid var(--color-primary);
+  background-color: #fff5f5;
+}
+
+/* Ej.2 — Vista previa de vuelo */
+.flight-preview {
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-small);
+  margin-top: var(--spacing-sm);
+  text-align: center;
+  width: 100%;
+}
+.flight-preview span {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Ej.3 — Ocultar descripción en feature items desplegables */
+.oculta {
+  display: none;
+}
+#why-lucky-air .feature-item {
+  cursor: pointer;
+}
