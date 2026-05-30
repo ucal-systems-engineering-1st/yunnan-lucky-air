@@ -1,38 +1,27 @@
 # CODEOWNERS — Lucky Air Portal
 #
-# Cada integrante es responsable de su vista, estilos y script asignados.
+# Cada integrante es responsable de su dominio completo (HTML, CSS, JS, assets).
 # GitHub requerirá su aprobación en cualquier PR que toque esos archivos.
 
 # ── Geraldo (@Geraldow) ────────────────────────────────────────
 # Home + Students
-index.html                  @Geraldow
-views/students.html         @Geraldow
-css/layouts/students.css    @Geraldow
-scripts/main.js             @Geraldow
-scripts/students.js         @Geraldow
-data/site-data.json         @Geraldow
+index.html                          @Geraldow
+main.js                             @Geraldow
+students/                           @Geraldow
+data/site-data.json                 @Geraldow
 
 # ── Ivan (@1v4nz2023) ──────────────────────────────────────────
-# Corporate + Login + Register
-views/corporate.html        @1v4nz2023
-views/login.html            @1v4nz2023
-views/register.html         @1v4nz2023
-css/views/corporate.css     @1v4nz2023
-css/views/login.css         @1v4nz2023
-css/views/register.css      @1v4nz2023
-css/base/variables.css      @1v4nz2023
-js/corporate/corporate.js   @1v4nz2023
-js/constants/constants.js   @1v4nz2023
+# Corporate + Auth
+corporate/                          @1v4nz2023
+auth/                               @1v4nz2023
 
 # ── Rachel (@Rachelduarte) ─────────────────────────────────────
 # Self-Service
-views/self-service.html     @Rachelduarte
-css/views/self-service.css  @Rachelduarte
-scripts/self-service.js     @Rachelduarte
+self-service/                       @Rachelduarte
 
 # ── Alessandro (@alemarquina) ─────────────────────────────────
 # Community
-views/community.html        @alemarquina
-css/views/community.css     @alemarquina
-css/pages/community.css     @alemarquina
-scripts/community.js        @alemarquina
+community/                          @alemarquina
+
+# ── Recursos globales compartidos (todos) ─────────────────────
+shared/                             @Geraldow @1v4nz2023 @Rachelduarte @alemarquina

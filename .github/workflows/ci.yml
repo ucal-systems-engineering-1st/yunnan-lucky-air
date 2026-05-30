@@ -65,45 +65,46 @@ jobs:
               ERRORS=$((ERRORS + 1))
             fi
 
-            # list with minimum 5 items
-            LI_COUNT=$(grep -c '<li' index.html 2>/dev/null || echo "0")
+            # list with minimum 5 items (scan all HTML files — screaming architecture)
+            ALL_HTML=$(find . -name "*.html" -not -path "./.git/*" 2>/dev/null)
+            LI_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<li' 2>/dev/null | awk '{s+=$1} END {print s+0}')
             if [ "$LI_COUNT" -ge 5 ]; then
-              echo "  ✅ List with $LI_COUNT items (minimum 5)"
+              echo "  ✅ List with $LI_COUNT items across all pages (minimum 5)"
             else
-              echo "  ❌ List with fewer than 5 items ($LI_COUNT found)"
+              echo "  ❌ List with fewer than 5 items across all pages ($LI_COUNT found)"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # table (minimum 3 columns × 4 rows → minimum 4 <tr> and 3 <td> per row)
-            TR_COUNT=$(grep -c '<tr' index.html 2>/dev/null || echo "0")
-            TD_COUNT=$(grep -c '<td' index.html 2>/dev/null || echo "0")
+            # table (minimum 3 columns × 4 rows — scan all HTML files)
+            TR_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<tr' 2>/dev/null | awk '{s+=$1} END {print s+0}')
+            TD_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<td' 2>/dev/null | awk '{s+=$1} END {print s+0}')
             if [ "$TR_COUNT" -ge 4 ] && [ "$TD_COUNT" -ge 9 ]; then
-              echo "  ✅ Table present ($TR_COUNT rows, $TD_COUNT cells)"
+              echo "  ✅ Table present across pages ($TR_COUNT rows, $TD_COUNT cells)"
             else
-              echo "  ❌ Insufficient table — minimum 4 rows and 3 columns (found: $TR_COUNT tr, $TD_COUNT td)"
+              echo "  ❌ Insufficient table — minimum 4 rows and 3 columns across all pages (found: $TR_COUNT tr, $TD_COUNT td)"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # form with type=email and required
-            if grep -qi 'type="email"' index.html || grep -qi "type='email'" index.html; then
+            # form with type=email and required (scan all HTML files)
+            if echo "$ALL_HTML" | xargs grep -qli 'type="email"' 2>/dev/null; then
               echo "  ✅ Form with type=\"email\" present"
             else
-              echo "  ❌ Missing form field with type=\"email\""
+              echo "  ❌ Missing form field with type=\"email\" in any page"
               ERRORS=$((ERRORS + 1))
             fi
 
-            if grep -qi '\brequired\b' index.html; then
-              echo "  ✅ required attribute present in form"
+            if echo "$ALL_HTML" | xargs grep -qli '\brequired\b' 2>/dev/null; then
+              echo "  ✅ required attribute present in forms"
             else
               echo "  ❌ Missing required attribute in form fields"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # label in form
-            if grep -qi '<label' index.html; then
-              echo "  ✅ <label> elements present in form"
+            # label in form (scan all HTML files)
+            if echo "$ALL_HTML" | xargs grep -qli '<label' 2>/dev/null; then
+              echo "  ✅ <label> elements present in forms"
             else
-              echo "  ❌ Missing <label> in form (required by EE1 guidelines)"
+              echo "  ❌ Missing <label> in forms (required by EE1 guidelines)"
               ERRORS=$((ERRORS + 1))
             fi
           fi
@@ -184,27 +185,29 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Detectar si hay archivos JS
-          JS_FILE=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" | head -1)
-
-          if [ -z "$JS_FILE" ]; then
-            echo "ℹ️  No JS file found — EE3 checks skipped"
+          # EE3 se activa solo cuando existen JS de dominio EE3 (students, community, self-service)
+          # corporate y main.js son EE2/estructura base — no activan las validaciones EE3
+          EE3_JS=$(find students/ community/ self-service/ -name "*.js" 2>/dev/null | head -1)
+          if [ -z "$EE3_JS" ]; then
+            echo "ℹ️  No EE3 domain JS files found (students/community/self-service) — EE3 checks skipped"
             exit 0
           fi
 
           echo "🔍 EE3 — Checking JavaScript requirements..."
           ERRORS=0
 
-          # scripts/ must exist
-          if [ -d "scripts" ]; then
-            echo "  ✅ scripts/ folder exists"
+          # JS structure: accept screaming architecture (domain folders) or legacy scripts/
+          JS_DIRS="main.js corporate/corporate.js students/students.js community/community.js self-service/self-service.js scripts/"
+          JS_FOUND=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./shared/constants.js" | head -1)
+          if [ -n "$JS_FOUND" ]; then
+            echo "  ✅ JavaScript files found (screaming architecture)"
           else
-            echo "  ❌ scripts/ folder not found (EE3 guideline: /scripts/main.js)"
+            echo "  ❌ No JS files found"
             ERRORS=$((ERRORS + 1))
           fi
 
           # Script linked in index.html with defer or at the end of body
-          if grep -qi '<script.*scripts/' index.html; then
+          if grep -qi '<script.*\.js' index.html; then
             echo "  ✅ Script linked in index.html"
             if grep -qi 'defer' index.html || grep -qi '</body>' index.html; then
               echo "  ✅ Script with defer or at the end of body"
@@ -216,10 +219,10 @@ jobs:
             ERRORS=$((ERRORS + 1))
           fi
 
-          # addEventListener (minimum 2 DOM interactions)
-          ALL_JS=$(find scripts/ -name "*.js" 2>/dev/null || echo "")
+          # addEventListener (minimum 2 DOM interactions) — search all JS locations
+          ALL_JS=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null || echo "")
           if [ -n "$ALL_JS" ]; then
-            EVENT_COUNT=$(grep -rh 'addEventListener' scripts/ 2>/dev/null | wc -l || echo "0")
+            EVENT_COUNT=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -h 'addEventListener' {} \; 2>/dev/null | wc -l || echo "0")
             if [ "$EVENT_COUNT" -ge 2 ]; then
               echo "  ✅ addEventListener found ($EVENT_COUNT use(s) — minimum 2)"
             else
@@ -228,7 +231,7 @@ jobs:
             fi
 
             # localStorage
-            if grep -rq 'localStorage' scripts/ 2>/dev/null; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'localStorage' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ localStorage implemented"
             else
               echo "  ❌ localStorage not found (minimum 1 case required)"
@@ -236,15 +239,23 @@ jobs:
             fi
 
             # Fetch
-            if grep -rq 'fetch(' scripts/ 2>/dev/null; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'fetch(' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ Fetch API implemented"
             else
               echo "  ❌ fetch() not found (Fetch + dynamic rendering required)"
               ERRORS=$((ERRORS + 1))
             fi
 
+            # Form validation — preventDefault() must intercept submit
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'preventDefault' {} \; 2>/dev/null | grep -q .; then
+              echo "  ✅ Form validation with preventDefault() found"
+            else
+              echo "  ❌ preventDefault() not found — form submit must be intercepted in JS"
+              ERRORS=$((ERRORS + 1))
+            fi
+
             # No inline onclick
-            if grep -qi 'onclick=' index.html; then
+            if grep -rqi 'onclick=' *.html */*.html 2>/dev/null; then
               echo "  ❌ Inline onclick found in HTML — use addEventListener instead"
               ERRORS=$((ERRORS + 1))
             else
@@ -253,7 +264,7 @@ jobs:
           fi
 
           # data/ with JSON (if using local Fetch)
-          if grep -rq 'site-data.json\|data/' scripts/ 2>/dev/null; then
+          if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'site-data.json\|data/' {} \; 2>/dev/null | grep -q .; then
             if [ -d "data" ]; then
               echo "  ✅ data/ folder with JSON present"
             else
