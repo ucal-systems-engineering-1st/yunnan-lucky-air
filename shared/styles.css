@@ -1,9 +1,9 @@
 /* Lucky Air - Global Styles */
 
 /* Import base variables */
-@import url('base/variables.css');
-@import url('components/header.css');
-@import url('components/footer.css');
+@import url('./variables.css');
+@import url('./header.css');
+@import url('./footer.css');
 
 /* Basic Reset */
 *, *::before, *::after {
