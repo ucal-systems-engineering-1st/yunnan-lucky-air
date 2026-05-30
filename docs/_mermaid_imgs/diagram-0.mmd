@@ -1,0 +1,11 @@
+graph TD
+       %% Patrón de Colores UX
+       classDef hero fill:#DBEAFE,stroke:#3B82F6,stroke-width:2px,color:#1E3A8A;
+       classDef page fill:#F8FAFC,stroke:#94A3B8,stroke-width:2px,color:#0F172A;
+
+       Home[Inicio - index.html]:::hero
+       Home --> Est(Estudiantes - students):::page
+       Home --> Corp(Corporativo - corporate):::page
+       Home --> Com(Comunidad - community):::page
+       Home --> Auto(Autoservicio - self-service):::page
+       Home --> Reg(Auth - login / register):::page
