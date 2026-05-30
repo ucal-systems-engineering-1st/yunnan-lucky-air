@@ -65,45 +65,46 @@ jobs:
               ERRORS=$((ERRORS + 1))
             fi
 
-            # list with minimum 5 items
-            LI_COUNT=$(grep -c '<li' index.html 2>/dev/null || echo "0")
+            # list with minimum 5 items (scan all HTML files — screaming architecture)
+            ALL_HTML=$(find . -name "*.html" -not -path "./.git/*" 2>/dev/null)
+            LI_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<li' 2>/dev/null | awk '{s+=$1} END {print s+0}')
             if [ "$LI_COUNT" -ge 5 ]; then
-              echo "  ✅ List with $LI_COUNT items (minimum 5)"
+              echo "  ✅ List with $LI_COUNT items across all pages (minimum 5)"
             else
-              echo "  ❌ List with fewer than 5 items ($LI_COUNT found)"
+              echo "  ❌ List with fewer than 5 items across all pages ($LI_COUNT found)"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # table (minimum 3 columns × 4 rows → minimum 4 <tr> and 3 <td> per row)
-            TR_COUNT=$(grep -c '<tr' index.html 2>/dev/null || echo "0")
-            TD_COUNT=$(grep -c '<td' index.html 2>/dev/null || echo "0")
+            # table (minimum 3 columns × 4 rows — scan all HTML files)
+            TR_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<tr' 2>/dev/null | awk '{s+=$1} END {print s+0}')
+            TD_COUNT=$(echo "$ALL_HTML" | xargs grep -ch '<td' 2>/dev/null | awk '{s+=$1} END {print s+0}')
             if [ "$TR_COUNT" -ge 4 ] && [ "$TD_COUNT" -ge 9 ]; then
-              echo "  ✅ Table present ($TR_COUNT rows, $TD_COUNT cells)"
+              echo "  ✅ Table present across pages ($TR_COUNT rows, $TD_COUNT cells)"
             else
-              echo "  ❌ Insufficient table — minimum 4 rows and 3 columns (found: $TR_COUNT tr, $TD_COUNT td)"
+              echo "  ❌ Insufficient table — minimum 4 rows and 3 columns across all pages (found: $TR_COUNT tr, $TD_COUNT td)"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # form with type=email and required
-            if grep -qi 'type="email"' index.html || grep -qi "type='email'" index.html; then
+            # form with type=email and required (scan all HTML files)
+            if echo "$ALL_HTML" | xargs grep -qli 'type="email"' 2>/dev/null; then
               echo "  ✅ Form with type=\"email\" present"
             else
-              echo "  ❌ Missing form field with type=\"email\""
+              echo "  ❌ Missing form field with type=\"email\" in any page"
               ERRORS=$((ERRORS + 1))
             fi
 
-            if grep -qi '\brequired\b' index.html; then
-              echo "  ✅ required attribute present in form"
+            if echo "$ALL_HTML" | xargs grep -qli '\brequired\b' 2>/dev/null; then
+              echo "  ✅ required attribute present in forms"
             else
               echo "  ❌ Missing required attribute in form fields"
               ERRORS=$((ERRORS + 1))
             fi
 
-            # label in form
-            if grep -qi '<label' index.html; then
-              echo "  ✅ <label> elements present in form"
+            # label in form (scan all HTML files)
+            if echo "$ALL_HTML" | xargs grep -qli '<label' 2>/dev/null; then
+              echo "  ✅ <label> elements present in forms"
             else
-              echo "  ❌ Missing <label> in form (required by EE1 guidelines)"
+              echo "  ❌ Missing <label> in forms (required by EE1 guidelines)"
               ERRORS=$((ERRORS + 1))
             fi
           fi
