@@ -195,16 +195,18 @@ jobs:
           echo "🔍 EE3 — Checking JavaScript requirements..."
           ERRORS=0
 
-          # scripts/ must exist
-          if [ -d "scripts" ]; then
-            echo "  ✅ scripts/ folder exists"
+          # JS structure: accept screaming architecture (domain folders) or legacy scripts/
+          JS_DIRS="main.js corporate/corporate.js students/students.js community/community.js self-service/self-service.js scripts/"
+          JS_FOUND=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -not -path "./shared/constants.js" | head -1)
+          if [ -n "$JS_FOUND" ]; then
+            echo "  ✅ JavaScript files found (screaming architecture)"
           else
-            echo "  ❌ scripts/ folder not found (EE3 guideline: /scripts/main.js)"
+            echo "  ❌ No JS files found"
             ERRORS=$((ERRORS + 1))
           fi
 
           # Script linked in index.html with defer or at the end of body
-          if grep -qi '<script.*scripts/' index.html; then
+          if grep -qi '<script.*\.js' index.html; then
             echo "  ✅ Script linked in index.html"
             if grep -qi 'defer' index.html || grep -qi '</body>' index.html; then
               echo "  ✅ Script with defer or at the end of body"
@@ -216,10 +218,10 @@ jobs:
             ERRORS=$((ERRORS + 1))
           fi
 
-          # addEventListener (minimum 2 DOM interactions)
-          ALL_JS=$(find scripts/ -name "*.js" 2>/dev/null || echo "")
+          # addEventListener (minimum 2 DOM interactions) — search all JS locations
+          ALL_JS=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" 2>/dev/null || echo "")
           if [ -n "$ALL_JS" ]; then
-            EVENT_COUNT=$(grep -rh 'addEventListener' scripts/ 2>/dev/null | wc -l || echo "0")
+            EVENT_COUNT=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -h 'addEventListener' {} \; 2>/dev/null | wc -l || echo "0")
             if [ "$EVENT_COUNT" -ge 2 ]; then
               echo "  ✅ addEventListener found ($EVENT_COUNT use(s) — minimum 2)"
             else
@@ -228,7 +230,7 @@ jobs:
             fi
 
             # localStorage
-            if grep -rq 'localStorage' scripts/ 2>/dev/null; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'localStorage' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ localStorage implemented"
             else
               echo "  ❌ localStorage not found (minimum 1 case required)"
@@ -236,7 +238,7 @@ jobs:
             fi
 
             # Fetch
-            if grep -rq 'fetch(' scripts/ 2>/dev/null; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'fetch(' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ Fetch API implemented"
             else
               echo "  ❌ fetch() not found (Fetch + dynamic rendering required)"
@@ -244,7 +246,7 @@ jobs:
             fi
 
             # No inline onclick
-            if grep -qi 'onclick=' index.html; then
+            if grep -rqi 'onclick=' *.html */*.html 2>/dev/null; then
               echo "  ❌ Inline onclick found in HTML — use addEventListener instead"
               ERRORS=$((ERRORS + 1))
             else
@@ -253,7 +255,7 @@ jobs:
           fi
 
           # data/ with JSON (if using local Fetch)
-          if grep -rq 'site-data.json\|data/' scripts/ 2>/dev/null; then
+          if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'site-data.json\|data/' {} \; 2>/dev/null | grep -q .; then
             if [ -d "data" ]; then
               echo "  ✅ data/ folder with JSON present"
             else
