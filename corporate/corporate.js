@@ -1,4 +1,4 @@
-import { ENTERPRISE_URL } from '../constants/constants.js';
+import { ENTERPRISE_URL } from '../shared/constants.js';
 
 const enterpriseForm = document.querySelector('#corporateForm');
 const errorMessage = document.querySelector('#errorMessage');
