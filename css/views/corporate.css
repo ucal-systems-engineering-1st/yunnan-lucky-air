@@ -182,6 +182,11 @@
   box-shadow: var(--shadow-sm);
   text-align: left;
 }
+
+.corporate-form.active {
+  box-shadow: var(--shadow-md);
+}
+
 .form-group {
   margin-bottom: var(--spacing-md);
 }
@@ -267,6 +272,26 @@
 }
 .btn-outline:hover {
   background-color: rgba(211, 47, 47, 0.05);
+}
+
+
+/* ------------------------------------------------------------------
+   8. Mensajes de error y éxito
+   ------------------------------------------------------------------ */
+
+.response-message {
+  margin-top: var(--spacing-md);
+  min-height: 24px;
+}
+
+.error-message {
+  color: var(--color-error);
+  font-weight: var(--font-weight-semibold);
+}
+
+.success-message {
+  color: var(--color-success);
+  font-weight: var(--font-weight-semibold);
 }
 
 /* ------------------------------------------------------------------

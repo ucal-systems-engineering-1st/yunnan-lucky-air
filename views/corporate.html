@@ -123,7 +123,7 @@
   <!-- FORMULARIO -->
   <section id="registro" class="form-section">
     <h2>Registra tu empresa</h2>
-    <form class="corporate-form" action="#" method="POST">
+    <form class="corporate-form" action="#" method="POST" id="corporateForm">
       <div class="form-group">
         <label for="company-name">Nombre de la empresa</label>
         <input type="text" id="company-name" name="company_name" placeholder="Nombre de la empresa" required />
@@ -137,6 +137,11 @@
         <input type="number" id="company-employees" name="company_employees" placeholder="Número de empleados" />
       </div>
       <button type="submit" class="btn btn-primary">Registrarse</button>
+      <div class="response-message">
+       <p id="errorMessage" class="error-message"></p>
+       <p id="successMessage" class="success-message"></p>
+      </div>
+
     </form>
   </section>
 
@@ -198,5 +203,6 @@
       }
     });
   </script>
+  <script type="module" src="../js/corporate/corporate.js" defer></script>
 </body>
 </html>
