@@ -246,6 +246,14 @@ jobs:
               ERRORS=$((ERRORS + 1))
             fi
 
+            # Form validation — preventDefault() must intercept submit
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'preventDefault' {} \; 2>/dev/null | grep -q .; then
+              echo "  ✅ Form validation with preventDefault() found"
+            else
+              echo "  ❌ preventDefault() not found — form submit must be intercepted in JS"
+              ERRORS=$((ERRORS + 1))
+            fi
+
             # No inline onclick
             if grep -rqi 'onclick=' *.html */*.html 2>/dev/null; then
               echo "  ❌ Inline onclick found in HTML — use addEventListener instead"
