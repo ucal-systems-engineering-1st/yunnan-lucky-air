@@ -113,12 +113,80 @@ feat/*     fix/*     docs/*
 
 ### Asignación de ramas por integrante
 
+#### EE1 / EE2 — HTML + CSS (referencia histórica)
+
 | Integrante | Rama | Página asignada |
 |------------|------|-----------------|
 | Rachel | `feat/self-service` | `views/self-service.html` |
 | Ivan | `feat/corporate` | `views/corporate.html` |
 | Alessandro | `feat/community` | `views/community.html` |
 | Geraldo | `feat/students` | `views/students.html` |
+
+#### EE3 — JavaScript + DOM + Datos (v3.0 — en proceso)
+
+| Integrante | Rama EE3 | Archivo JS | Vista |
+|------------|----------|-----------|-------|
+| Rachel | `feat/self-service-js` | `scripts/self-service.js` | `views/self-service.html` |
+| Ivan | `feat/corporate-js` | `scripts/corporate.js` | `views/corporate.html` |
+| Alessandro | `feat/community-js` | `scripts/community.js` | `views/community.html` |
+| Geraldo | `feat/students-js` | `scripts/students.js` | `views/students.html` |
+
+> Geraldo también mantiene `scripts/main.js` para `index.html` y crea `data/site-data.json` como merge master.
+> **Estado actual `scripts/main.js` (v3.1.0):** menú hamburguesa ✅ · tarjetas destino seleccionables ✅ · vista previa de vuelo ✅ · beneficios desplegables ✅ — Pendiente: localStorage + Fetch + `scripts/students.js`
+
+##### Implementaciones requeridas por integrante (rúbrica EE3)
+
+| Criterio | Rachel — self-service | Ivan — corporate | Alessandro — community | Geraldo — students |
+|----------|-----------------------|-----------------|------------------------|-------------------|
+| **DOM + eventos (≥2)** | Toggle pasos check-in · mostrar resultado validación de ticket | Toggle comparación de planes · accordion de preguntas frecuentes | Filtro de reseñas por destino · modal "Compartir viaje" | Filtro de ofertas estudiantiles · toggle formulario grupal |
+| **Validación form** | Formulario de validación de ticket / check-in | Formulario de registro corporativo | Formulario "Compartir mi viaje" | Formulario de registro estudiantil |
+| **localStorage (≥1)** | Último número de ticket ingresado | Plan corporativo seleccionado | Borrador del formulario compartir | Destino/filtro de búsqueda seleccionado |
+| **Fetch + render** | Estado de vuelo desde `data/site-data.json` | Planes disponibles desde `data/site-data.json` | Reseñas de viajeros desde `data/site-data.json` | Paquetes estudiantiles desde `data/site-data.json` |
+
+##### Hitos de commit recomendados (mínimo 4 por integrante — semanas 9–12)
+
+```bash
+feat(js): dom-eventos-{vista}    # toggles, listeners, classList
+feat(js): validacion-{vista}     # form submit interceptado + feedback
+feat(js): localstorage-{vista}   # guardar/recuperar preferencia
+feat(js): fetch-render-{vista}   # fetch + render dinámico desde JSON
+```
+
+##### Flujo diario EE3 (feature-js → develop)
+
+```bash
+# 1. Partir desde develop actualizado
+git checkout develop && git pull origin develop
+
+# 2. Crear rama EE3
+git checkout -b feat/{vista}-js
+
+# 3. Enlazar JS en tu vista (antes de </body>)
+# <script src="../scripts/{vista}.js" defer></script>
+
+# 4. Crear archivo JS
+# touch scripts/{vista}.js
+
+# 5. Desarrollar — 4 commits por hito
+git commit -m "feat(js): dom-eventos para {vista}"
+
+# 6. PR a develop
+git push -u origin feat/{vista}-js
+gh pr create --title "feat(js): interactividad {vista} v3.0" --base develop
+```
+
+##### Datos compartidos — `data/site-data.json`
+
+Geraldo crea el archivo `data/site-data.json` con la estructura base. Cada integrante consume la sección correspondiente:
+
+| Sección JSON | Consumida por |
+|-------------|---------------|
+| `flights` | Geraldo (`scripts/main.js` — index.html) |
+| `destinations` | Geraldo (`scripts/main.js`) |
+| `packages.students` | Geraldo (`scripts/students.js`) |
+| `packages.corporate` | Ivan (`scripts/corporate.js`) |
+| `reviews` | Alessandro (`scripts/community.js`) |
+| `services` | Rachel (`scripts/self-service.js`) |
 
 ### Flujo diario (feature → develop)
 
