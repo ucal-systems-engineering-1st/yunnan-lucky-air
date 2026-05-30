@@ -185,11 +185,11 @@ jobs:
         run: |
           set -euo pipefail
 
-          # Detectar si hay archivos JS
-          JS_FILE=$(find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" | head -1)
-
-          if [ -z "$JS_FILE" ]; then
-            echo "ℹ️  No JS file found — EE3 checks skipped"
+          # EE3 se activa solo cuando existen JS de dominio EE3 (students, community, self-service)
+          # corporate y main.js son EE2/estructura base — no activan las validaciones EE3
+          EE3_JS=$(find students/ community/ self-service/ -name "*.js" 2>/dev/null | head -1)
+          if [ -z "$EE3_JS" ]; then
+            echo "ℹ️  No EE3 domain JS files found (students/community/self-service) — EE3 checks skipped"
             exit 0
           fi
 
