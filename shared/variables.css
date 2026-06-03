@@ -20,6 +20,10 @@
   /* Gris claro */
   --color-border-input: #BDBDBD;
   --color-dark-background: #0F172A;
+
+  --color-error: #D32F2F;
+  --color-success: #388E3C;
+  
   /* 3. Tipografía */
   --font-primary: 'Inter', 'Roboto', 'Segoe UI', sans-serif;
   --font-size-base: 16px;

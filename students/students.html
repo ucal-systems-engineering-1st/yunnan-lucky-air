@@ -13,10 +13,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <!-- Estilos -->
-    <link rel="stylesheet" href="../css/styles.css" />
-    <link rel="stylesheet" href="../css/components/header.css" />
-    <link rel="stylesheet" href="../css/components/footer.css" />
-    <link rel="stylesheet" href="../css/layouts/students.css" />
+    <link rel="stylesheet" href="../shared/styles.css" />
+    <link rel="stylesheet" href="../shared/header.css" />
+    <link rel="stylesheet" href="../shared/footer.css" />
+    <link rel="stylesheet" href="students.css" />
     <!-- Iconos de Lucide -->
     <script src="https://unpkg.com/lucide@latest"></script>
   </head>
@@ -46,23 +46,23 @@
             <a href="../index.html" class="header__link">Inicio</a>
           </li>
           <li class="header__link-item">
-            <a href="self-service.html" class="header__link">Autoservicio</a>
+            <a href="../self-service/self-service.html" class="header__link">Autoservicio</a>
           </li>
           <li class="header__link-item">
-            <a href="community.html" class="header__link">Comunidad</a>
+            <a href="../community/community.html" class="header__link">Comunidad</a>
           </li>
           <li class="header__link-item">
             <a href="students.html" class="header__link header__link--active" aria-current="page">Estudiantes</a>
           </li>
           <li class="header__link-item">
-            <a href="corporate.html" class="header__link">Corporativo</a>
+            <a href="../corporate/corporate.html" class="header__link">Corporativo</a>
           </li>
         </ul>
 
         <!-- Acciones -->
         <div class="header__actions">
-          <a href="login.html" class="header__btn-ghost">Iniciar Sesión</a>
-          <a href="register.html" class="header__btn-primary">Registrarse</a>
+          <a href="../auth/login.html" class="header__btn-ghost">Iniciar Sesión</a>
+          <a href="../auth/register.html" class="header__btn-primary">Registrarse</a>
         </div>
 
       </nav>
@@ -312,8 +312,8 @@
           <div class="footer-column">
             <h4 class="footer-title">Servicios</h4>
             <ul class="footer-links">
-              <li><a href="./self-service.html">Autoservicio</a></li>
-              <li><a href="./community.html">Comunidad</a></li>
+              <li><a href="../self-service/self-service.html">Autoservicio</a></li>
+              <li><a href="../community/community.html">Comunidad</a></li>
               <li><a href="../index.html">Inicio</a></li>
             </ul>
           </div>
@@ -331,7 +331,8 @@
       </div>
     </footer>
 
-    <script src="../js/main.js"></script>
+    <script src="../main.js"></script>
+    <script type="module" src="students.js"></script>
     <script>
       lucide.createIcons();
     </script>

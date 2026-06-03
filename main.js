@@ -33,10 +33,6 @@ if (menuToggle && mainLinks) {
   });
 }
 
-/* -----------------------------------------------------------
-   2. Ej.1 — Tarjeta de destino seleccionable
-   Concepto: querySelector + addEventListener + classList.toggle
-   ----------------------------------------------------------- */
 const destinationCards = document.querySelectorAll('.destination-card');
 
 destinationCards.forEach((card) => {
@@ -45,14 +41,12 @@ destinationCards.forEach((card) => {
   });
 });
 
-/* -----------------------------------------------------------
-   3. Ej.2 — Vista previa de vuelo en tiempo real
-   Concepto: addEventListener('input') + .value + textContent
-   ----------------------------------------------------------- */
+
+
 const originInput = document.querySelector('#origin');
-const destInput   = document.querySelector('#destination');
+const destInput = document.querySelector('#destination');
 const previewOrigin = document.querySelector('#preview-origin');
-const previewDest   = document.querySelector('#preview-dest');
+const previewDest = document.querySelector('#preview-dest');
 
 if (originInput && previewOrigin) {
   originInput.addEventListener('input', () => {

@@ -1,0 +1,159 @@
+{
+  "flights": [
+    {
+      "number": "LK 203",
+      "origin": "Kunming",
+      "destination": "Dali",
+      "status": "A tiempo",
+      "departure": "10:30",
+      "arrival": "11:45",
+      "date": "2026-11-02"
+    },
+    {
+      "number": "LK 105",
+      "origin": "Kunming",
+      "destination": "Xishuangbanna",
+      "status": "Demorado",
+      "departure": "14:00",
+      "arrival": "15:30",
+      "date": "2026-11-02"
+    },
+    {
+      "number": "LK 317",
+      "origin": "Dali",
+      "destination": "Kunming",
+      "status": "A tiempo",
+      "departure": "08:15",
+      "arrival": "09:20",
+      "date": "2026-11-03"
+    },
+    {
+      "number": "LK 412",
+      "origin": "Kunming",
+      "destination": "Lijiang",
+      "status": "Cancelado",
+      "departure": "16:45",
+      "arrival": "17:50",
+      "date": "2026-11-02"
+    }
+  ],
+  "destinations": [
+    {
+      "id": "dali",
+      "name": "Dali",
+      "description": "Ciudad histórica junto al lago Erhai, conocida por su arquitectura bai y paisajes de montaña.",
+      "image": "../assets/images/dali.webp"
+    },
+    {
+      "id": "xishuangbanna",
+      "name": "Xishuangbanna",
+      "description": "La Amazonia de China: selva tropical, elefantes y la rica cultura del pueblo dai.",
+      "image": "../assets/images/xishuangbanna.webp"
+    },
+    {
+      "id": "kunming",
+      "name": "Kunming",
+      "description": "La Ciudad Eterna de Primavera. Base ideal para explorar toda la provincia de Yunnan.",
+      "image": "../assets/images/kunming.webp"
+    }
+  ],
+  "packages": {
+    "students": [
+      {
+        "id": "stu-basic",
+        "name": "Básico",
+        "discount": "10%",
+        "min_passengers": 5,
+        "max_passengers": 9,
+        "baggage": "Solo equipaje de mano",
+        "date_change": false,
+        "insurance": false,
+        "recommended": false
+      },
+      {
+        "id": "stu-standard",
+        "name": "Estándar",
+        "discount": "20%",
+        "min_passengers": 10,
+        "max_passengers": 19,
+        "baggage": "23 kg facturado",
+        "date_change": "1 vez gratis",
+        "insurance": "Cobertura básica",
+        "recommended": true
+      },
+      {
+        "id": "stu-premium",
+        "name": "Premium",
+        "discount": "30%",
+        "min_passengers": 20,
+        "baggage": "32 kg facturado",
+        "date_change": "Ilimitado",
+        "insurance": "Cobertura completa",
+        "recommended": false
+      }
+    ],
+    "corporate": [
+      {
+        "id": "corp-basic",
+        "name": "Plan Básico",
+        "min_employees": 1,
+        "max_employees": 10,
+        "benefits": ["Tarifas corporativas exclusivas", "Reservas centralizadas"]
+      },
+      {
+        "id": "corp-standard",
+        "name": "Plan Estándar",
+        "min_employees": 11,
+        "max_employees": 50,
+        "benefits": ["Tarifas corporativas", "Reportes mensuales", "Prioridad en check-in", "Gestión de gastos"]
+      },
+      {
+        "id": "corp-enterprise",
+        "name": "Plan Enterprise",
+        "min_employees": 51,
+        "benefits": ["Tarifas corporativas", "Asesor dedicado", "Facturación consolidada", "Acceso API", "SLA garantizado"]
+      }
+    ]
+  },
+  "reviews": [
+    {
+      "user": "María G.",
+      "destination": "Dali",
+      "date": "2026-03-15",
+      "title": "Una semana en Dali: el lago Erhai y los pueblos bai",
+      "comment": "Llegué a Dali sin esperar mucho y me fui completamente enamorado. El lago Erhai al amanecer es una de las vistas más impresionantes que viví en mi vida.",
+      "rating": 4
+    },
+    {
+      "user": "Carlos T.",
+      "destination": "Xishuangbanna",
+      "date": "2026-02-28",
+      "title": "Xishuangbanna: la Amazonia de China",
+      "comment": "La selva tropical al sur de Yunnan no se parece a nada que haya visto antes. La diversidad cultural de los pueblos dai es increíble y el vuelo con Lucky Air fue puntual.",
+      "rating": 5
+    },
+    {
+      "user": "Laura M.",
+      "destination": "Kunming",
+      "date": "2026-01-10",
+      "title": "Kunming en primavera: la ciudad eterna",
+      "comment": "Kunming merece más reconocimiento internacional. Su clima perfecto todo el año y la gastronomía la convierten en una parada obligada.",
+      "rating": 4
+    },
+    {
+      "user": "Pedro R.",
+      "destination": "Dali",
+      "date": "2026-04-05",
+      "title": "El Cangshan desde Dali: trekking imperdible",
+      "comment": "Las vistas desde la montaña Cangshan son simplemente espectaculares. Lucky Air me hizo el viaje muy cómodo y sin escalas.",
+      "rating": 5
+    }
+  ],
+  "services": [
+    { "id": "checkin", "name": "Check-in en línea", "available": true, "fee": 0 },
+    { "id": "baggage-extra", "name": "Equipaje adicional", "available": true, "fee_per_kg": 6 },
+    { "id": "seat-selection", "name": "Selección de asiento", "available": true, "fee": 5 },
+    { "id": "refund", "name": "Reembolso", "available": true, "processing_days": "7-14" },
+    { "id": "date-change", "name": "Cambio de fecha", "available": true, "fee": 30 }
+  ]
+}

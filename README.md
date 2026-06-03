@@ -25,11 +25,14 @@ LUCKY-AIR-ECOMMERCE/
 │   ├── rubrica/       # Rúbricas de evaluación (EE1–EE4)
 │   ├── case-ecommerce-at-yunnan-lucky-air.md  # Caso del proyecto
 │   └── silabo-fundamentos-de-desarrollo-frontend.md
-├── js/
-│   ├── auth/          # Lógica de inicio de sesión para miembros de lealtad
-│   ├── booking/       # Motor de búsqueda y reserva de vuelos
-│   ├── community/     # Lógica para blogs y comentarios de usuarios
-│   └── payment/       # Integración segura de pagos (Alipay / PayPal)
+├── data/
+│   └── site-data.json     # Datos del sitio: vuelos, destinos, paquetes, reseñas, servicios
+├── scripts/
+│   ├── main.js            # Home (index.html): buscador, fetch destinos — Geraldo
+│   ├── self-service.js    # Check-in, validación ticket, reembolsos — Rachel
+│   ├── corporate.js       # Planes corporativos, registro PYME — Ivan
+│   ├── community.js       # Filtro reseñas, formulario compartir — Alessandro
+│   └── students.js        # Filtro ofertas, registro estudiantil — Geraldo
 ├── skills/
 │   ├── frontend-html/     # HTML semántico, formularios, validación HTML5
 │   ├── frontend-css/      # CSS externo, Flexbox, Grid, media queries
@@ -77,7 +80,7 @@ LUCKY-AIR-ECOMMERCE/
 
 - **HTML5** semántico (estructura principal del proyecto)
 - **CSS3** – organizado por capas: `themes`, `layouts`, `components` *(pendiente)*
-- **JavaScript** – organizado por módulos: `auth`, `booking`, `community`, `payment` *(pendiente)*
+- **JavaScript** – organizado en `/scripts/`: `main.js` (home) + un archivo por vista *(EE3 — en proceso)*
 - **Git + GitHub** – GitFlow, Conventional Commits, GitHub Actions CI/CD
 
 ---
@@ -107,16 +110,95 @@ Las skills son guías de contexto que el asistente carga automáticamente según
 
 ## Estado del proyecto
 
-| Entregable                  | Tecnologías                            | Estado      | Versión |
-| --------------------------- | -------------------------------------- | ----------- | ------- |
-| EE1 — Estructura HTML       | HTML5 + Git/GitHub                     | ✅ Completo  | v1.0.0  |
-| EE2 — Layout y estilos      | + CSS3, Flexbox, Grid, Responsive      | 🔜 Pendiente | v2.0.0  |
-| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | 🔜 Pendiente | v3.0.0  |
-| EE4 — Integración y calidad | + PRs, Lighthouse, Despliegue          | 🔜 Pendiente | v4.0.0  |
+| Entregable                  | Tecnologías                            | Estado        | Versión |
+| --------------------------- | -------------------------------------- | ------------- | ------- |
+| EE1 — Estructura HTML       | HTML5 + Git/GitHub                     | ✅ Completo   | v1.0.0  |
+| EE2 — Layout y estilos      | + CSS3, Flexbox, Grid, Responsive      | ✅ Completo   | v2.0.0  |
+| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | 🔄 En proceso | v3.0.0  |
+| EE4 — Integración y calidad | + PRs, Lighthouse, Despliegue          | 🔜 Pendiente  | v4.0.0  |
 
 ---
 
+## Funcionalidades v3.0
 
+> Sección requerida por EE3 — actualizar a medida que cada integrante complete su implementación.
+
+### Home — `index.html` (Geraldo)
+- [x] Menú hamburguesa con toggle responsive (`scripts/main.js` — v3.0.0)
+- [x] Tarjetas de destino seleccionables con `classList.toggle` (v3.1.0)
+- [x] Vista previa de vuelo en tiempo real (inputs origin/destination → preview) (v3.1.0)
+- [x] Beneficios desplegables con toggle `oculta` (v3.1.0)
+- [ ] localStorage: guardar última búsqueda del usuario
+- [ ] Fetch + render dinámico de destinos desde `data/site-data.json`
+
+### Self-Service — `views/self-service.html` (Rachel)
+- [ ] Toggle de pasos del check-in (mostrar/ocultar etapas)
+- [ ] Mostrar resultado de validación de ticket al usuario
+- [ ] Validación de formulario de check-in con feedback claro (error/éxito)
+- [ ] localStorage: recordar último número de ticket ingresado
+- [ ] Fetch + render: estado del vuelo desde `data/site-data.json`
+
+### Corporate — `views/corporate.html` (Ivan)
+- [ ] Toggle de comparación de planes corporativos
+- [ ] Accordion de preguntas frecuentes
+- [ ] Validación de formulario de registro corporativo
+- [ ] localStorage: guardar plan corporativo seleccionado
+- [ ] Fetch + render: planes disponibles desde `data/site-data.json`
+
+### Community — `views/community.html` (Alessandro)
+- [ ] Filtro de reseñas por destino
+- [ ] Modal o toggle para formulario "Compartir mi viaje"
+- [ ] Validación del formulario con feedback
+- [ ] localStorage: guardar borrador del formulario compartir
+- [ ] Fetch + render: reseñas de viajeros desde `data/site-data.json`
+
+### Students — `views/students.html` (Geraldo)
+- [ ] `scripts/students.js`: filtro de ofertas estudiantiles por destino/precio
+- [ ] Toggle del formulario de registro grupal
+- [ ] Validación del formulario de registro estudiantil con feedback
+- [ ] localStorage: guardar filtro/destino seleccionado
+- [ ] Fetch + render: paquetes estudiantiles desde `data/site-data.json`
+
+---
+
+## Cómo probar (v3.0)
+
+> Instrucciones para validar cada funcionalidad sin servidor — abrir directamente en el navegador.
+
+### Requisitos
+- Navegador moderno (Chrome recomendado)
+- DevTools abierto: `F12` → pestaña **Console** y **Application → Local Storage**
+
+### 1. DOM + Eventos
+1. Abrir la vista correspondiente en el navegador (`index.html` o `views/{vista}.html`)
+2. Interactuar con los elementos interactivos (botones de toggle, filtros, acordeones)
+3. Verificar en **Console** que no aparezcan errores en rojo
+
+### 2. Validación de formulario
+1. Intentar enviar el formulario con campos vacíos o con datos inválidos
+2. Verificar que aparecen mensajes de error claros debajo de cada campo
+3. Completar el formulario correctamente y verificar mensaje de éxito
+
+### 3. localStorage
+1. Interactuar con la funcionalidad que guarda preferencias (búsqueda, selección, borrador)
+2. Abrir **DevTools → Application → Local Storage → `file://`**
+3. Verificar que aparece la clave guardada con su valor
+4. Recargar la página (`F5`) y confirmar que el valor persiste
+
+### 4. Fetch + render dinámico
+1. Abrir la vista y esperar que la sección de datos cargue automáticamente
+2. Verificar en **Console** que no hay errores de red (`Failed to fetch`)
+3. Confirmar que las cards/lista se renderizan correctamente
+4. **Nota:** El fetch con `file://` puede requerir un servidor local. Usar la extensión *Live Server* en VS Code o el comando: `python -m http.server 5500`
+
+### 5. Verificación rápida completa
+```bash
+# Levantar servidor local desde la raíz del proyecto
+python -m http.server 5500
+# Luego abrir: http://localhost:5500
+```
+
+---
 
 ## Criterios de diseño
 
@@ -209,12 +291,23 @@ feat/*   fix/*    chore/*
 
 ### Asignación de ramas por colaborador
 
-| Colaborador | Rama                | Página asignada           |
-| ----------- | ------------------- | ------------------------- |
+#### EE1 / EE2 (referencia histórica)
+
+| Colaborador | Rama | Página asignada |
+| ----------- | ---- | --------------- |
 | Rachel      | `feat/self-service` | `views/self-service.html` |
 | Ivan        | `feat/corporate`    | `views/corporate.html`    |
 | Alessandro  | `feat/community`    | `views/community.html`    |
 | Geraldo     | `feat/students`     | `views/students.html`     |
+
+#### EE3 — JavaScript (v3.0 — semanas 9–12)
+
+| Colaborador | Rama EE3 | Archivo JS | Vista |
+| ----------- | -------- | ---------- | ----- |
+| Rachel      | `feat/self-service-js` | `scripts/self-service.js` | `views/self-service.html` |
+| Ivan        | `feat/corporate-js`    | `scripts/corporate.js`    | `views/corporate.html`    |
+| Alessandro  | `feat/community-js`    | `scripts/community.js`    | `views/community.html`    |
+| Geraldo     | `feat/students-js`     | `scripts/students.js`     | `views/students.html`     |
 
 ### Convención de mensajes de commit
 

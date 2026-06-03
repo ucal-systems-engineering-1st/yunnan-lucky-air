@@ -1,9 +1,27 @@
 # CODEOWNERS — Lucky Air Portal
 #
-# Cada integrante es responsable de su vista asignada.
+# Cada integrante es responsable de su dominio completo (HTML, CSS, JS, assets).
 # GitHub requerirá su aprobación en cualquier PR que toque esos archivos.
 
-views/self-service.html   @Rachelduarte
-views/corporate.html      @1v4nz2023
-views/community.html      @alemarquina
-views/students.html       @Geraldow
+# ── Geraldo (@Geraldow) ────────────────────────────────────────
+# Home + Students
+index.html                          @Geraldow
+main.js                             @Geraldow
+students/                           @Geraldow
+data/site-data.json                 @Geraldow
+
+# ── Ivan (@1v4nz2023) ──────────────────────────────────────────
+# Corporate + Auth
+corporate/                          @1v4nz2023
+auth/                               @1v4nz2023
+
+# ── Rachel (@Rachelduarte) ─────────────────────────────────────
+# Self-Service
+self-service/                       @Rachelduarte
+
+# ── Alessandro (@alemarquina) ─────────────────────────────────
+# Community
+community/                          @alemarquina
+
+# ── Recursos globales compartidos (todos) ─────────────────────
+shared/                             @Geraldow @1v4nz2023 @Rachelduarte @alemarquina
