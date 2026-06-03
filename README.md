@@ -114,7 +114,7 @@ Las skills son guías de contexto que el asistente carga automáticamente según
 | --------------------------- | -------------------------------------- | ------------- | ------- |
 | EE1 — Estructura HTML       | HTML5 + Git/GitHub                     | ✅ Completo   | v1.0.0  |
 | EE2 — Layout y estilos      | + CSS3, Flexbox, Grid, Responsive      | ✅ Completo   | v2.0.0  |
-| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | 🔄 En proceso | v3.0.0  |
+| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | ✅ Completo   | v3.0.0  |
 | EE4 — Integración y calidad | + PRs, Lighthouse, Despliegue          | 🔜 Pendiente  | v4.0.0  |
 
 ---
