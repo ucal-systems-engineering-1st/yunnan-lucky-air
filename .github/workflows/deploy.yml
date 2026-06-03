@@ -31,11 +31,15 @@ jobs:
         run: |
           mkdir -p dist
           cp index.html dist/
-          [ -d views ]   && cp -r views   dist/
-          [ -d assets ]  && cp -r assets  dist/
-          [ -d css ]     && cp -r css     dist/
-          [ -d scripts ] && cp -r scripts dist/
-          [ -d data ]    && cp -r data    dist/
+          cp main.js    dist/
+          [ -d assets       ] && cp -r assets       dist/
+          [ -d data         ] && cp -r data         dist/
+          [ -d shared       ] && cp -r shared       dist/
+          [ -d auth         ] && cp -r auth         dist/
+          [ -d community    ] && cp -r community    dist/
+          [ -d corporate    ] && cp -r corporate    dist/
+          [ -d self-service ] && cp -r self-service dist/
+          [ -d students     ] && cp -r students     dist/
           touch dist/.nojekyll
 
       - name: Setup Pages
