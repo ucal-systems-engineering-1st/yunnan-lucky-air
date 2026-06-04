@@ -3,8 +3,6 @@
    Interacciones específicas de index.html (home page).
    ============================================================= */
 
-console.log('✅ Lucky Air – index.js conectado');
-
 /* -----------------------------------------------------------
    1. Tarjetas de destino seleccionables
    Selector: .destination-card
@@ -29,24 +27,16 @@ const destInput     = document.querySelector('#destination');
 const previewOrigin = document.querySelector('#preview-origin');
 const previewDest   = document.querySelector('#preview-dest');
 
-console.log('Preview elements:', { originInput, destInput, previewOrigin, previewDest });
-
 if (originInput && previewOrigin) {
   originInput.addEventListener('input', () => {
-    console.log('Origin input changed:', originInput.value);
     previewOrigin.textContent = originInput.value || '---';
   });
-} else {
-  console.warn('Origin preview listener not attached');
 }
 
 if (destInput && previewDest) {
   destInput.addEventListener('input', () => {
-    console.log('Destination input changed:', destInput.value);
     previewDest.textContent = destInput.value || '---';
   });
-} else {
-  console.warn('Destination preview listener not attached');
 }
 
 /* -----------------------------------------------------------
