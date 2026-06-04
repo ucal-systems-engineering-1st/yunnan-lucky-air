@@ -2,6 +2,7 @@ import { DATA_URL } from '../shared/constants.js';
 
 const flightStatusForm = document.getElementById('flight-status-form');
 const flightNumberInput = document.getElementById('flight-number');
+const checkinForm       = document.getElementById('checkin-form');
 
 /* ─────────────────────────────────────────────
    1. LOCALSTORAGE — recordar último vuelo buscado
@@ -131,4 +132,10 @@ function showFieldError(input, msg) {
 document.addEventListener('DOMContentLoaded', () => {
   loadLastFlight();
   flightStatusForm?.addEventListener('submit', searchFlightStatus);
+  checkinForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const btn = checkinForm.querySelector('[type="submit"]');
+    btn.textContent = '✓ Check-in iniciado correctamente';
+    btn.disabled = true;
+  });
 });
