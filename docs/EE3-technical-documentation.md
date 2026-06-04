@@ -176,8 +176,29 @@ Los números de vuelo para probar en self-service son `LK 203` (Kunming → Dali
 
 ---
 
+## Cómo ver los cambios en el sitio
+
+El sitio está en vivo en https://ucal-systems-engineering-1st.github.io/yunnan-lucky-air/. Aquí está dónde hacer click o escribir para ver cada funcionalidad que implementamos:
+
+| Funcionalidad | Dónde verla |
+|---|---|
+| **Tarjetas destino seleccionables** | Home → sección "Destinos" — hace click en las tarjetas |
+| **Vista previa vuelo en tiempo real** | Home → "¿A dónde viajas?" — escribe en los inputs origin/destination |
+| **Beneficios desplegables** | Home → sección "¿Por qué Lucky Air?" — hace click en cada tarjeta |
+| **Búsqueda de vuelo** | "Autoservicio" → "Estado de tu vuelo" — ingresa un número (ej: `LK 203`) |
+| **Filtro muro de comunidad** | "Comunidad" → "Muro de experiencias" — aparecen botones Todos/Dali/Xishuangbanna/Kunming |
+| **Form compartir experiencia** | "Comunidad" → "Comparte tu experiencia" — completa el form |
+| **Plan estudiantil recomendado** | "Estudiantes" → "Registrá tu grupo" — ingresa número de integrantes |
+| **Form registro estudiantil** | "Estudiantes" → formulario de registro |
+| **Plan corporativo recomendado** | "Corporativo" → "Registra tu empresa" — ingresa número de empleados |
+| **Form registro corporativo** | "Corporativo" → formulario de registro |
+
+Todas las interacciones guardan datos en **localStorage** — abre DevTools (F12) → Application → Local Storage para verlos.
+
+---
+
 ## Cómo probar
 
-El sitio está desplegado en GitHub Pages en `https://ucal-systems-engineering-1st.github.io/yunnan-lucky-air/` y ahí funciona todo directo, incluyendo el fetch al JSON, porque GitHub Pages sirve los archivos sobre HTTPS.
+El sitio está desplegado en GitHub Pages y ahí funciona todo directo, incluyendo el fetch al JSON, porque GitHub Pages sirve los archivos sobre HTTPS.
 
 Para verificar que todo esté bien abrir DevTools con F12: en Console no debe haber errores en rojo, en Application → Local Storage se pueden ver las claves `luckyair_*` después de interactuar con los formularios, y en Network → Fetch/XHR se puede ver la petición a `site-data.json` con status 200.
