@@ -52,9 +52,13 @@ function showPlanRecommendation() {
 function validateForm() {
   clearErrors();
   let valid = true;
+  const regex = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/; 
 
   if (!companyNameInput.value.trim()) {
     showFieldError(companyNameInput, 'El nombre de la empresa es obligatorio.');
+    valid = false;
+  } else if (!regex.test(companyNameInput.value.trim())) {
+    showFieldError(companyNameInput, 'El nombre de la empresa solo puede contener letras y espacios.');
     valid = false;
   }
 
