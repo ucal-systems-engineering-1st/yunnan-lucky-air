@@ -2,6 +2,7 @@ import { DATA_URL } from '../shared/constants.js';
 
 const flightStatusForm = document.getElementById('flight-status-form');
 const flightNumberInput = document.getElementById('flight-number');
+const checkinForm       = document.getElementById('checkin-form');
 
 /* ─────────────────────────────────────────────
    1. LOCALSTORAGE — recordar último vuelo buscado
@@ -131,4 +132,40 @@ function showFieldError(input, msg) {
 document.addEventListener('DOMContentLoaded', () => {
   loadLastFlight();
   flightStatusForm?.addEventListener('submit', searchFlightStatus);
+  checkinForm?.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const bookingCode  = checkinForm.querySelector('#booking-code');
+    const lastname     = checkinForm.querySelector('#passenger-lastname');
+    const doc          = checkinForm.querySelector('#passenger-doc');
+    const flightDate   = checkinForm.querySelector('#flight-date');
+
+    checkinForm.querySelectorAll('.field-error').forEach(el => el.remove());
+    checkinForm.querySelectorAll('.input-error').forEach(el => el.classList.remove('input-error'));
+
+    let valid = true;
+
+    if (!/^[A-Z]{3}-\d{8}$/.test(bookingCode.value.trim())) {
+      showFieldError(bookingCode, 'Formato incorrecto. Ej. LKA-20261102');
+      valid = false;
+    }
+    if (lastname.value.trim().length < 2) {
+      showFieldError(lastname, 'El apellido debe tener al menos 2 caracteres.');
+      valid = false;
+    }
+    if (!doc.value.trim()) {
+      showFieldError(doc, 'Ingresa tu número de documento.');
+      valid = false;
+    }
+    if (!flightDate.value) {
+      showFieldError(flightDate, 'Selecciona la fecha del vuelo.');
+      valid = false;
+    }
+
+    if (valid) {
+      const btn = checkinForm.querySelector('[type="submit"]');
+      btn.textContent = '✓ Check-in iniciado correctamente';
+      btn.disabled = true;
+    }
+  });
 });

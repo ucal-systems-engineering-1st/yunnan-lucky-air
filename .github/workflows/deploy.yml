@@ -32,6 +32,7 @@ jobs:
           mkdir -p dist
           cp index.html dist/
           cp main.js    dist/
+          cp index.js   dist/
           [ -d assets       ] && cp -r assets       dist/
           [ -d data         ] && cp -r data         dist/
           [ -d shared       ] && cp -r shared       dist/
