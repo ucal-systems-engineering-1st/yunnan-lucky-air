@@ -6,6 +6,21 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [3.4.0] - 2026-06-13
+
+### 🚀 Added
+
+- change url bk and add a name validation
+
+### 🐞 Fixed
+
+- agregar validación manual a checkin-form en JS
+- quitar novalidate de checkin-form para activar validación nativa
+- interceptar submit de checkin-form para evitar 405 en GitHub Pages
+- agregar index.js al paso de copia en deploy.yml
+
+---
+
 ## [3.1.0] - 2026-05-28
 
 ### 🚀 Added
