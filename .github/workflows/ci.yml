@@ -231,7 +231,7 @@ jobs:
             fi
 
             # localStorage
-            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'localStorage' {} \; 2>/dev/null | grep -q .; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -l 'localStorage' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ localStorage implemented"
             else
               echo "  ❌ localStorage not found (minimum 1 case required)"
@@ -239,7 +239,7 @@ jobs:
             fi
 
             # Fetch
-            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'fetch(' {} \; 2>/dev/null | grep -q .; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -l 'fetch(' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ Fetch API implemented"
             else
               echo "  ❌ fetch() not found (Fetch + dynamic rendering required)"
@@ -247,7 +247,7 @@ jobs:
             fi
 
             # Form validation — preventDefault() must intercept submit
-            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'preventDefault' {} \; 2>/dev/null | grep -q .; then
+            if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -l 'preventDefault' {} \; 2>/dev/null | grep -q .; then
               echo "  ✅ Form validation with preventDefault() found"
             else
               echo "  ❌ preventDefault() not found — form submit must be intercepted in JS"
@@ -264,7 +264,7 @@ jobs:
           fi
 
           # data/ with JSON (if using local Fetch)
-          if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -lq 'site-data.json\|data/' {} \; 2>/dev/null | grep -q .; then
+          if find . -name "*.js" -not -path "./.git/*" -not -path "./node_modules/*" -exec grep -l 'site-data.json\|data/' {} \; 2>/dev/null | grep -q .; then
             if [ -d "data" ]; then
               echo "  ✅ data/ folder with JSON present"
             else
