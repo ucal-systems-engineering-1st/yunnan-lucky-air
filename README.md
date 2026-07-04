@@ -7,7 +7,7 @@ Proyecto web para la aerolínea **Lucky Air**, enfocado en la venta de vuelos a 
 ## Estructura del proyecto
 
 ```
-LUCKY-AIR-ECOMMERCE/
+yunnan-lucky-air/
 ├── .github/
 │   └── workflows/
 │       ├── ci.yml         # Validación automática (HTML, CSS, JS, commits, ramas)
@@ -15,24 +15,22 @@ LUCKY-AIR-ECOMMERCE/
 ├── assets/
 │   ├── images/        # Imágenes de destinos (Yunnan, Dali, Xishuangbanna)
 │   ├── icons/         # Íconos de estrellas y puntuación para reseñas
-│   └── docs/          # Guías de destinos en PDF descargables
-├── css/
-│   ├── layouts/       # Estilos del portal de autoservicio y estructura general
-│   ├── components/    # Estilos de botones, cards y chatbot
-│   └── themes/        # Paleta de colores y tipografía de marca Lucky Air
-├── docs/
-│   ├── lineamientos/  # Lineamientos de cada entregable (EE1–EE4)
-│   ├── rubrica/       # Rúbricas de evaluación (EE1–EE4)
-│   ├── case-ecommerce-at-yunnan-lucky-air.md  # Caso del proyecto
-│   └── silabo-fundamentos-de-desarrollo-frontend.md
+│   └── docs/          # Lineamientos, rúbricas, sílabo y caso del proyecto
+├── shared/
+│   ├── constants.js   # URLs compartidas (API_BASE_URL, ENTERPRISE_URL, DATA_URL)
+│   ├── styles.css     # Estilos base y variables de marca
+│   ├── header.css     # Header y navegación responsive
+│   ├── footer.css
+│   └── variables.css  # Paleta de colores y tipografía
 ├── data/
 │   └── site-data.json     # Datos del sitio: vuelos, destinos, paquetes, reseñas, servicios
-├── scripts/
-│   ├── main.js            # Home (index.html): buscador, fetch destinos — Geraldo
-│   ├── self-service.js    # Check-in, validación ticket, reembolsos — Rachel
-│   ├── corporate.js       # Planes corporativos, registro PYME — Ivan
-│   ├── community.js       # Filtro reseñas, formulario compartir — Alessandro
-│   └── students.js        # Filtro ofertas, registro estudiantil — Geraldo
+├── docs/
+│   ├── quality.md                    # Evidencia de calidad EE4 (hallazgos y correcciones)
+│   ├── EE3-technical-documentation.md
+│   ├── EE3-exposicion.md
+│   ├── EE3-presentacion-guia.md
+│   ├── EE4-exposicion.md
+│   └── EE4-presentacion-guia.md
 ├── skills/
 │   ├── frontend-html/     # HTML semántico, formularios, validación HTML5
 │   ├── frontend-css/      # CSS externo, Flexbox, Grid, media queries
@@ -42,27 +40,33 @@ LUCKY-AIR-ECOMMERCE/
 │   ├── frontend-pr/       # Plantilla de Pull Request con checklist
 │   ├── frontend-changelog/ # keepachangelog.com + semver
 │   └── frontend-ci/       # GitHub Actions: CI + pipeline de release
-├── views/
-│   ├── corporate.html     # Herramientas de viaje para PYMES y control de gastos
-│   ├── students.html      # Ofertas y paquetes grupales para jóvenes estudiantes
-│   ├── self-service.html  # Check-in, validación de ticket y reembolsos
-│   └── community.html     # Muro de experiencias y reseñas de viajeros
+├── corporate/         # corporate.html + corporate.css + corporate.js — Ivan
+├── self-service/      # self-service.html + self-service.css + self-service.js — Rachel
+├── community/          # community.html + community.css + community.js — Alessandro
+├── students/           # students.html + students.css + students.js — Geraldo
+├── auth/               # login.html + register.html + sus estilos
 ├── index.html         # Home page con motor de búsqueda y enfoque en conversión
+├── index.js           # Interacciones propias del home
+├── main.js            # Menú hamburguesa global, cargado en todas las vistas
 ├── AGENTS.md          # Lineamientos del repositorio para el equipo y el asistente de IA
 └── README.md          # Este archivo
 ```
+
+> El proyecto usa **Screaming Architecture**: cada dominio de negocio (`corporate/`, `self-service/`, `community/`, `students/`) tiene su propio HTML, CSS y JS. El nombre de la carpeta dice exactamente qué hace, sin sorpresas. Ver `docs/EE3-technical-documentation.md` para el detalle función por función.
 
 ---
 
 ## Páginas disponibles
 
-| Archivo                   | Descripción                                                    |
-| ------------------------- | -------------------------------------------------------------- |
-| `index.html`              | Página principal con buscador de vuelos, destinos y reseñas    |
-| `views/corporate.html`    | Portal corporativo: planes, herramientas PYME y registro       |
-| `views/students.html`     | Ofertas estudiantiles, paquetes grupales y registro de jóvenes |
-| `views/self-service.html` | Check-in, validación de ticket, reembolsos y guías PDF         |
-| `views/community.html`    | Muro de experiencias, blogs y formulario para compartir viajes |
+| Archivo                        | Descripción                                                    |
+| ------------------------------ | -------------------------------------------------------------- |
+| `index.html`                   | Página principal con buscador de vuelos, destinos y reseñas    |
+| `corporate/corporate.html`     | Portal corporativo: planes, registro PYME y recomendación dinámica |
+| `students/students.html`       | Ofertas estudiantiles, paquetes grupales y registro de jóvenes |
+| `self-service/self-service.html` | Estado de vuelo, check-in y solicitud de reembolso           |
+| `community/community.html`     | Muro de experiencias, filtro por destino y formulario para compartir viajes |
+| `auth/login.html`              | Inicio de sesión (acceso a reservas e historial)               |
+| `auth/register.html`           | Registro de cuenta nueva                                        |
 
 ---
 
@@ -79,9 +83,9 @@ LUCKY-AIR-ECOMMERCE/
 ## Tecnologías utilizadas
 
 - **HTML5** semántico (estructura principal del proyecto)
-- **CSS3** – organizado por capas: `themes`, `layouts`, `components` *(pendiente)*
-- **JavaScript** – organizado en `/scripts/`: `main.js` (home) + un archivo por vista *(EE3 — en proceso)*
-- **Git + GitHub** – GitFlow, Conventional Commits, GitHub Actions CI/CD
+- **CSS3** – organizado por dominio de negocio (`shared/` + un `.css` por sección), sin frameworks
+- **JavaScript** vanilla (ES Modules) – un archivo por dominio (`corporate.js`, `self-service.js`, `community.js`, `students.js`) + `shared/constants.js` para URLs comunes. DOM, eventos, validación, `localStorage` y `fetch` (ver `docs/EE3-technical-documentation.md`)
+- **Git + GitHub** – GitFlow, Conventional Commits, GitHub Actions CI/CD, despliegue a GitHub Pages
 
 ---
 
@@ -114,64 +118,78 @@ Las skills son guías de contexto que el asistente carga automáticamente según
 | --------------------------- | -------------------------------------- | ------------- | ------- |
 | EE1 — Estructura HTML       | HTML5 + Git/GitHub                     | ✅ Completo   | v1.0.0  |
 | EE2 — Layout y estilos      | + CSS3, Flexbox, Grid, Responsive      | ✅ Completo   | v2.0.0  |
-| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | ✅ Completo   | v3.0.0  |
-| EE4 — Integración y calidad | + PRs, Lighthouse, Despliegue          | 🔜 Pendiente  | v4.0.0  |
+| EE3 — Interactividad        | + JavaScript, DOM, localStorage, Fetch | ✅ Completo   | v3.4.0  |
+| EE4 — Integración y calidad | + PRs, evidencia de calidad, despliegue | ✅ Completo  | v3.4.0  |
 
 ---
 
-## Funcionalidades v3.0
+## Funcionalidades v3.4 (EE3 — completo)
 
-> Sección requerida por EE3 — actualizar a medida que cada integrante complete su implementación.
+> Detalle función por función en [docs/EE3-technical-documentation.md](docs/EE3-technical-documentation.md).
 
-### Home — `index.html` (Geraldo)
-- [x] Menú hamburguesa con toggle responsive (`scripts/main.js` — v3.0.0)
-- [x] Tarjetas de destino seleccionables con `classList.toggle` (v3.1.0)
-- [x] Vista previa de vuelo en tiempo real (inputs origin/destination → preview) (v3.1.0)
-- [x] Beneficios desplegables con toggle `oculta` (v3.1.0)
-- [ ] localStorage: guardar última búsqueda del usuario
-- [ ] Fetch + render dinámico de destinos desde `data/site-data.json`
+### Home — `index.js` + `main.js` (Geraldo)
+- [x] Menú hamburguesa global con toggle responsive + `aria-expanded` (`main.js`)
+- [x] Tarjetas de destino seleccionables con `classList.toggle` (`index.js`, líneas 12–16)
+- [x] Vista previa de vuelo en tiempo real, inputs origin/destination (`index.js`, líneas 25–40)
+- [x] Beneficios desplegables con toggle `oculta` (`index.js`, líneas 48–56)
 
-### Self-Service — `views/self-service.html` (Rachel)
-- [ ] Toggle de pasos del check-in (mostrar/ocultar etapas)
-- [ ] Mostrar resultado de validación de ticket al usuario
-- [ ] Validación de formulario de check-in con feedback claro (error/éxito)
-- [ ] localStorage: recordar último número de ticket ingresado
-- [ ] Fetch + render: estado del vuelo desde `data/site-data.json`
+### Self-Service — `self-service/self-service.js` (Rachel)
+- [x] localStorage: recordar último número de vuelo buscado (líneas 10–17)
+- [x] Fetch + render dinámico del estado del vuelo desde `data/site-data.json` (líneas 22–84)
+- [x] Validación de check-in con regex — código de reserva, apellido, documento, fecha (líneas 135–170)
+- [x] Botón de check-in cambia de texto y se deshabilita tras envío exitoso
 
-### Corporate — `views/corporate.html` (Ivan)
-- [ ] Toggle de comparación de planes corporativos
-- [ ] Accordion de preguntas frecuentes
-- [ ] Validación de formulario de registro corporativo
-- [ ] localStorage: guardar plan corporativo seleccionado
-- [ ] Fetch + render: planes disponibles desde `data/site-data.json`
+### Corporate — `corporate/corporate.js` (Ivan)
+- [x] Estado activo del formulario (toggle de clase al hacer click dentro/fuera)
+- [x] Plan recomendado dinámico según número de empleados (líneas 24–47)
+- [x] Validación de formulario con errores inline (líneas 52–73)
+- [x] localStorage + POST real a webhook n8n en producción (líneas 78–122)
 
-### Community — `views/community.html` (Alessandro)
-- [ ] Filtro de reseñas por destino
-- [ ] Modal o toggle para formulario "Compartir mi viaje"
-- [ ] Validación del formulario con feedback
-- [ ] localStorage: guardar borrador del formulario compartir
-- [ ] Fetch + render: reseñas de viajeros desde `data/site-data.json`
+### Community — `community/community.js` (Alessandro)
+- [x] Fetch + render dinámico de reseñas desde `data/site-data.json` (líneas 14–42)
+- [x] Filtro de reseñas por destino (líneas 47–76)
+- [x] localStorage: autoguardado de borrador del formulario "Compartir mi viaje" (líneas 81–102)
+- [x] Validación del formulario con feedback inline (líneas 107–143)
 
-### Students — `views/students.html` (Geraldo)
-- [ ] `scripts/students.js`: filtro de ofertas estudiantiles por destino/precio
-- [ ] Toggle del formulario de registro grupal
-- [ ] Validación del formulario de registro estudiantil con feedback
-- [ ] localStorage: guardar filtro/destino seleccionado
-- [ ] Fetch + render: paquetes estudiantiles desde `data/site-data.json`
+### Students — `students/students.js` (Geraldo)
+- [x] Fetch + nota dinámica de paquetes disponibles (líneas 13–29)
+- [x] Plan recomendado según tamaño de grupo (líneas 32–60)
+- [x] Validación de formulario de registro estudiantil (líneas 71–110)
+- [x] localStorage: nombre, universidad y tamaño de grupo (líneas 115–126)
 
 ---
 
-## Cómo probar (v3.0)
+## Entregables EE4
 
-> Instrucciones para validar cada funcionalidad sin servidor — abrir directamente en el navegador.
+| Entregable | Contenido | Enlace |
+| ---------- | --------- | ------ |
+| 1. Repositorio final | Código + flujo GitFlow con PRs mergeados por integrante | Este repositorio, rama `main` |
+| 2. Sitio publicado | GitHub Pages — navegación completa, responsive, sin errores en consola | https://ucal-systems-engineering-1st.github.io/yunnan-lucky-air/ |
+| 3. Evidencia de calidad | 3 hallazgos identificados y corregidos (performance, CLS, UX de navegación) | [docs/quality.md](docs/quality.md) |
+| Exposición | Guión por integrante + guía de demo | [docs/EE4-exposicion.md](docs/EE4-exposicion.md) · [docs/EE4-presentacion-guia.md](docs/EE4-presentacion-guia.md) |
 
-### Requisitos
+---
+
+## Cómo probar
+
+> El sitio está desplegado en GitHub Pages, donde el `fetch` a `site-data.json` funciona directo sobre HTTPS. Es la forma más simple de probar todo sin instalar nada.
+
+### Opción recomendada — sitio publicado
+1. Abrir https://ucal-systems-engineering-1st.github.io/yunnan-lucky-air/
+2. Navegar entre Home, Autoservicio, Comunidad, Estudiantes, Corporativo y Login/Registro desde el header.
+3. Abrir DevTools (`F12`) → pestañas **Console** (sin errores en rojo), **Network** (fetch a `site-data.json` con status 200) y **Application → Local Storage** (claves `luckyair_*` tras interactuar con los formularios).
+
+### Requisitos para correr localmente
 - Navegador moderno (Chrome recomendado)
-- DevTools abierto: `F12` → pestaña **Console** y **Application → Local Storage**
+- Servidor local, porque el `fetch()` no funciona con `file://`:
+  ```bash
+  python -m http.server 5500
+  # Luego abrir: http://localhost:5500
+  ```
 
 ### 1. DOM + Eventos
-1. Abrir la vista correspondiente en el navegador (`index.html` o `views/{vista}.html`)
-2. Interactuar con los elementos interactivos (botones de toggle, filtros, acordeones)
+1. Abrir la vista correspondiente (`index.html` o `{dominio}/{dominio}.html`)
+2. Interactuar con los elementos interactivos (toggles, filtros, acordeones)
 3. Verificar en **Console** que no aparezcan errores en rojo
 
 ### 2. Validación de formulario
@@ -181,7 +199,7 @@ Las skills son guías de contexto que el asistente carga automáticamente según
 
 ### 3. localStorage
 1. Interactuar con la funcionalidad que guarda preferencias (búsqueda, selección, borrador)
-2. Abrir **DevTools → Application → Local Storage → `file://`**
+2. Abrir **DevTools → Application → Local Storage**
 3. Verificar que aparece la clave guardada con su valor
 4. Recargar la página (`F5`) y confirmar que el valor persiste
 
@@ -189,14 +207,6 @@ Las skills son guías de contexto que el asistente carga automáticamente según
 1. Abrir la vista y esperar que la sección de datos cargue automáticamente
 2. Verificar en **Console** que no hay errores de red (`Failed to fetch`)
 3. Confirmar que las cards/lista se renderizan correctamente
-4. **Nota:** El fetch con `file://` puede requerir un servidor local. Usar la extensión *Live Server* en VS Code o el comando: `python -m http.server 5500`
-
-### 5. Verificación rápida completa
-```bash
-# Levantar servidor local desde la raíz del proyecto
-python -m http.server 5500
-# Luego abrir: http://localhost:5500
-```
 
 ---
 
@@ -349,7 +359,8 @@ git commit -m "feat(js): implementar localStorage para historial de búsqueda"
 
 | Recurso              | Archivo                                                                                                |
 | -------------------- | ------------------------------------------------------------------------------------------------------ |
-| Sílabo completo      | [docs/silabo-fundamentos-de-desarrollo-frontend.md](docs/silabo-fundamentos-de-desarrollo-frontend.md) |
-| Lineamientos EE1–EE4 | [docs/lineamientos/](docs/lineamientos/)                                                               |
-| Rúbrica EE1–EE4      | [docs/rubrica/](docs/rubrica/)                                                                         |
-| Caso del proyecto    | [docs/case-ecommerce-at-yunnan-lucky-air.md](docs/case-ecommerce-at-yunnan-lucky-air.md)               |
+| Sílabo completo      | [assets/docs/silabo-fundamentos-de-desarrollo-frontend.md](assets/docs/silabo-fundamentos-de-desarrollo-frontend.md) |
+| Lineamientos EE1–EE4 | [assets/docs/lineamientos/](assets/docs/lineamientos/)                                                 |
+| Rúbrica EE1–EE4      | [assets/docs/rubrica/](assets/docs/rubrica/)                                                           |
+| Caso del proyecto    | [assets/docs/case-ecommerce-at-yunnan-lucky-air.md](assets/docs/case-ecommerce-at-yunnan-lucky-air.md) |
+| Evidencia de calidad EE4 | [docs/quality.md](docs/quality.md)                                                                 |
