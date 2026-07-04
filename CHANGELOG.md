@@ -6,6 +6,35 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [4.0.1] - 2026-07-04
+
+### 🐞 Fixed
+
+- eliminar entrada [4.0.0] duplicada generada por release.yml
+
+---
+
+## [4.0.0] - 2026-07-04
+
+### 🚀 Added
+
+- evidencia de calidad EE4 (`docs/quality.md`) con 3 hallazgos corregidos y verificables
+- guión de exposición y guía de presentación EE4 (`docs/EE4-exposicion.md`, `docs/EE4-presentacion-guia.md`)
+
+### 🐞 Fixed
+
+- fijar `lucide@1.23.0` con `defer` en 4 páginas (antes `@latest` sin `defer`, bloqueaba el render)
+- agregar `height` explícito a 6 imágenes de `corporate.html` sin dimensiones (riesgo de CLS)
+- quitar `target="_blank"` de un enlace interno (`#faq`) en `self-service.html`
+- corregir bug preexistente en `ci.yml`: `grep -lq` nunca detectaba `localStorage`/`fetch`/`preventDefault`
+- agregar segundo breakpoint responsive (`480px`) en `corporate.css`, que solo tenía uno
+
+### 📝 Docs
+
+- README actualizado: estructura real, funcionalidades EE3 completas, entregables EE4, enlaces corregidos
+
+---
+
 ## [3.4.0] - 2026-06-13
 
 ### 🚀 Added
