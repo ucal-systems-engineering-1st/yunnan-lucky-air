@@ -6,18 +6,67 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [4.0.0] - 2026-07-04
+
+### 🚀 Added
+
+- evidencia de calidad EE4 (`docs/quality.md`) con 3 hallazgos corregidos y verificables
+- guión de exposición y guía de presentación EE4 (`docs/EE4-exposicion.md`, `docs/EE4-presentacion-guia.md`)
+
+### 🐞 Fixed
+
+- fijar `lucide@1.23.0` con `defer` en 4 páginas (antes `@latest` sin `defer`, bloqueaba el render)
+- agregar `height` explícito a 6 imágenes de `corporate.html` sin dimensiones (riesgo de CLS)
+- quitar `target="_blank"` de un enlace interno (`#faq`) en `self-service.html`
+- corregir bug preexistente en `ci.yml`: `grep -lq` nunca detectaba `localStorage`/`fetch`/`preventDefault`
+- agregar segundo breakpoint responsive (`480px`) en `corporate.css`, que solo tenía uno
+
+### 📝 Docs
+
+- README actualizado: estructura real, funcionalidades EE3 completas, entregables EE4, enlaces corregidos
+
+---
+
 ## [3.4.0] - 2026-06-13
 
 ### 🚀 Added
 
-- change url bk and add a name validation
+- validación manual de nombre y actualización de URL de backend en el registro corporativo (Ivan)
 
 ### 🐞 Fixed
 
-- agregar validación manual a checkin-form en JS
-- quitar novalidate de checkin-form para activar validación nativa
-- interceptar submit de checkin-form para evitar 405 en GitHub Pages
-- agregar index.js al paso de copia en deploy.yml
+- interceptar submit de `checkin-form` en self-service para evitar error 405 en GitHub Pages
+- quitar `novalidate` de `checkin-form` para activar la validación nativa del navegador
+- agregar `index.js` al paso de copia de `deploy.yml` (faltaba en el despliegue)
+- limpiar `console.log` de depuración en `index.js`
+
+---
+
+## [3.3.0] - 2026-06-03
+
+### 📝 Docs
+
+- agregar guía visual de dónde ver cada cambio en el sitio publicado
+
+---
+
+## [3.2.0] - 2026-06-03
+
+### 🚀 Added
+
+- migración completa a Screaming Architecture por dominio de negocio (`corporate/`, `self-service/`, `community/`, `students/`, `shared/`)
+- implementar JavaScript EE3 completo — DOM, validación, localStorage y Fetch en los 4 dominios
+- separar `main.js` (menú global) de `index.js` (interacciones propias del home)
+- adaptar CI (`ci.yml`) y CODEOWNERS a la nueva estructura por dominio
+
+### 🐞 Fixed
+
+- corregir ruta de import de `shared/constants.js` en `corporate.js`
+
+### 📝 Docs
+
+- documentación técnica completa de EE3 con rutas reales, funciones, elementos HTML, eventos y localStorage
+- actualizar README y AGENTS.md para EE3 — asignación de ramas y estructura JS
 
 ---
 

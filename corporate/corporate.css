@@ -369,3 +369,29 @@
     padding: var(--spacing-xxl) var(--spacing-md);
   }
 }
+
+/* ------------------------------------------------------------------
+   Responsive — Móvil pequeño (≤ 480px)
+   ------------------------------------------------------------------ */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
+  .hero-content p {
+    font-size: var(--font-size-sm);
+  }
+  .benefit {
+    flex: 0 0 90%;
+  }
+  .feature {
+    flex: 0 0 90%;
+  }
+  .testimonial img {
+    width: 80px;
+    height: 80px;
+  }
+  .form-section,
+  .cta {
+    padding: var(--spacing-xl) var(--spacing-sm);
+  }
+}
