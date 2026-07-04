@@ -6,6 +6,14 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [4.0.1] - 2026-07-04
+
+### 🐞 Fixed
+
+- eliminar entrada [4.0.0] duplicada generada por release.yml
+
+---
+
 ## [4.0.0] - 2026-07-04
 
 ### 🚀 Added
