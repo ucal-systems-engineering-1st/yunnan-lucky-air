@@ -8,22 +8,6 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ## [4.0.0] - 2026-07-04
 
-### 🔄 Changed
-
-- agregar guion de exposicion y guia de presentacion
-- completar entradas 3.2.0, 3.3.0 y 3.4.0
-- actualizar estructura real, funcionalidades EE3 y entregables EE4
-
-### 🐞 Fixed
-
-- corregir deteccion de localStorage, fetch, preventDefault y data/ en EE3
-- agregar segundo breakpoint responsive en corporate.css
-- corregir script bloqueante, imagenes sin dimensiones y enlace target=_blank
-
----
-
-## [4.0.0] - 2026-07-04
-
 ### 🚀 Added
 
 - evidencia de calidad EE4 (`docs/quality.md`) con 3 hallazgos corregidos y verificables
