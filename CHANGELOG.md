@@ -6,6 +6,49 @@ Versionado semántico según [SemVer](https://semver.org/).
 
 ---
 
+## [3.4.0] - 2026-06-13
+
+### 🚀 Added
+
+- validación manual de nombre y actualización de URL de backend en el registro corporativo (Ivan)
+
+### 🐞 Fixed
+
+- interceptar submit de `checkin-form` en self-service para evitar error 405 en GitHub Pages
+- quitar `novalidate` de `checkin-form` para activar la validación nativa del navegador
+- agregar `index.js` al paso de copia de `deploy.yml` (faltaba en el despliegue)
+- limpiar `console.log` de depuración en `index.js`
+
+---
+
+## [3.3.0] - 2026-06-03
+
+### 📝 Docs
+
+- agregar guía visual de dónde ver cada cambio en el sitio publicado
+
+---
+
+## [3.2.0] - 2026-06-03
+
+### 🚀 Added
+
+- migración completa a Screaming Architecture por dominio de negocio (`corporate/`, `self-service/`, `community/`, `students/`, `shared/`)
+- implementar JavaScript EE3 completo — DOM, validación, localStorage y Fetch en los 4 dominios
+- separar `main.js` (menú global) de `index.js` (interacciones propias del home)
+- adaptar CI (`ci.yml`) y CODEOWNERS a la nueva estructura por dominio
+
+### 🐞 Fixed
+
+- corregir ruta de import de `shared/constants.js` en `corporate.js`
+
+### 📝 Docs
+
+- documentación técnica completa de EE3 con rutas reales, funciones, elementos HTML, eventos y localStorage
+- actualizar README y AGENTS.md para EE3 — asignación de ramas y estructura JS
+
+---
+
 ## [3.1.0] - 2026-05-28
 
 ### 🚀 Added
